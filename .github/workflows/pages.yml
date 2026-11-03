@@ -1,0 +1,57 @@
+# Publie le site vitrine AURA (dossier site/) sur GitHub Pages.
+# Prérequis (une seule fois) : Settings > Pages > Source = "GitHub Actions".
+# Voir docs/site-web.md.
+name: Site web (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "tools/generate_qr.py"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un seul déploiement à la fois ; on n'annule pas celui en cours.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Les QR codes sont régénérés à chaque déploiement : ils correspondent
+      # toujours à site/assets/data/config.json, même si on oublie de lancer
+      # le script en local.
+      - name: Génération des QR codes
+        run: |
+          pip install segno==1.6.6
+          python3 tools/generate_qr.py
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

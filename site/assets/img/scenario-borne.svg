@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d0d1a"/><stop offset="1" stop-color="#1b1036"/></linearGradient><linearGradient id="aura" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee6d6"/><stop offset=".5" stop-color="#6e7bff"/><stop offset="1" stop-color="#c86bfa"/></linearGradient><filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="6"/></filter></defs>
+  <rect width="320" height="200" fill="url(#bg)"/>
+  <g fill="none" stroke="#ff453a" stroke-linecap="round">
+    <path d="M70 60a40 40 0 0 1 60 0" stroke-width="3" opacity=".9"/>
+    <path d="M55 44a62 62 0 0 1 90 0" stroke-width="3" opacity=".55"/>
+    <path d="M40 28a84 84 0 0 1 120 0" stroke-width="3" opacity=".3"/>
+  </g>
+  <rect x="78" y="70" width="5" height="40" rx="2.5" fill="#ff453a"/>
+  <rect x="117" y="70" width="5" height="40" rx="2.5" fill="#ff453a"/>
+  <rect x="60" y="104" width="80" height="34" rx="10" fill="#22222c" stroke="#ff453a" stroke-width="2"/>
+  <circle cx="78" cy="121" r="3" fill="#ff453a"/><circle cx="90" cy="121" r="3" fill="#ff453a" opacity=".5"/>
+  <path d="M140 121 H 200" stroke="#ff453a" stroke-width="3" stroke-dasharray="7 5"/>
+  <rect x="200" y="104" width="96" height="34" rx="7" fill="#22222c" stroke="#4a4a58" stroke-width="1.5"/>
+  <g fill="#3a3a48"><rect x="210" y="116" width="10" height="10" rx="2"/><rect x="226" y="116" width="10" height="10" rx="2"/><rect x="258" y="116" width="10" height="10" rx="2"/><rect x="274" y="116" width="10" height="10" rx="2"/></g>
+  <rect x="242" y="116" width="10" height="10" rx="2" fill="#ff453a"/>
+  <rect x="207" y="150" width="82" height="20" rx="10" fill="url(#aura)"/>
+  <text x="248" y="164" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#0b0b10">Gi1/0/14</text>
+</svg>

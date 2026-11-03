@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d0d1a"/><stop offset="1" stop-color="#1b1036"/></linearGradient><linearGradient id="aura" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee6d6"/><stop offset=".5" stop-color="#6e7bff"/><stop offset="1" stop-color="#c86bfa"/></linearGradient><filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="6"/></filter></defs>
+  <rect width="320" height="200" fill="url(#bg)"/>
+  <rect x="30" y="40" width="120" height="34" rx="7" fill="#22222c" stroke="#4a4a58" stroke-width="1.5"/>
+  <g fill="#3a3a48"><rect x="40" y="52" width="10" height="10" rx="2"/><rect x="56" y="52" width="10" height="10" rx="2"/><rect x="72" y="52" width="10" height="10" rx="2"/><rect x="104" y="52" width="10" height="10" rx="2"/><rect x="120" y="52" width="10" height="10" rx="2"/></g>
+  <rect x="88" y="52" width="10" height="10" rx="2" fill="#ffd60a"/>
+  <path d="M93 74 V 110 H 170" fill="none" stroke="#ffd60a" stroke-width="3"/>
+  <rect x="170" y="94" width="70" height="30" rx="6" fill="#2a2416" stroke="#ffd60a" stroke-width="2"/>
+  <text x="205" y="113" text-anchor="middle" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffd60a">SWITCH ?</text>
+  <g stroke="#ffd60a" stroke-width="1.6" opacity=".7">
+    <line x1="240" y1="102" x2="285" y2="40"/><line x1="240" y1="106" x2="292" y2="78"/><line x1="240" y1="112" x2="295" y2="115"/>
+    <line x1="240" y1="118" x2="290" y2="152"/><line x1="240" y1="122" x2="278" y2="182"/>
+  </g>
+  <g fill="#ffd60a">
+    <circle cx="285" cy="40" r="7"/><circle cx="292" cy="78" r="7"/><circle cx="295" cy="115" r="7"/><circle cx="290" cy="152" r="7"/><circle cx="278" cy="182" r="7"/>
+  </g>
+  <rect x="34" y="140" width="116" height="24" rx="12" fill="url(#aura)"/>
+  <text x="92" y="156" text-anchor="middle" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#0b0b10">5 MAC · 1 port</text>
+</svg>

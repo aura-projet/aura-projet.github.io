@@ -41,6 +41,8 @@ Rubriques : **Ajouté**, **Modifié**, **Corrigé**, **Supprimé**, **Sécurité
 
 ### Corrigé
 
+- Logo : les arcs extérieurs étaient légèrement rognés (zone de dessin SVG
+  élargie).
 - Boutons sombres affichés avec un texte bleu sur les pages claires (bouton
   « Découvrir le projet » après envoi, bouton Framaforms).
 

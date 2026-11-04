@@ -111,6 +111,11 @@ toutes gratuites pour nous :
 4. Après une à deux minutes, le site est en ligne à l'adresse
    <https://stayx3811.github.io/aura-code/>.
 
+Si le workflow a tourné **avant** l'activation de Pages, il échoue à l'étape
+`configure-pages` avec le message « Get Pages site failed ». Ce n'est pas un
+bug : une fois Pages activé, ouvrir le run en échec dans l'onglet Actions et
+cliquer sur « Re-run all jobs » (ou lancer « Run workflow »).
+
 Si l'adresse change (autre compte, autre dépôt, nom de domaine), mettre à jour
 `siteUrl` dans `config.json`, la balise `og:image` de `index.html` et les
 chemins `/aura-code/` de `404.html`, puis régénérer les QR codes.
@@ -143,7 +148,11 @@ générateur de QR codes.
 ### 5.1 Ajouter l'adresse de support Proton
 
 1. Créer le compte sur <https://proton.me/mail> (offre gratuite), par exemple
-   `aura-support@proton.me` si le nom est libre.
+   `aura-support@proton.me` si le nom est libre. Pour un compte partagé à
+   quatre : mot de passe long rangé dans un gestionnaire de mots de passe
+   (KeePassXC, Bitwarden), double authentification activée, phrase de
+   récupération conservée hors ligne. Ne jamais mettre le mot de passe dans
+   le dépôt ni sur Discord.
 2. Renseigner l'adresse dans `config.json` :
    ```json
    "supportEmail": "aura-support@proton.me",
@@ -184,18 +193,43 @@ selon la config, dans cet ordre :
 Si rien n'est configuré, le formulaire l'indique clairement : il ne fait
 jamais croire que la réponse est partie.
 
-**Recommandation pour le pitch** : utiliser le mode « service d'envoi » avec
-[Formspree](https://formspree.io) (créer un formulaire, copier son URL
-`https://formspree.io/f/xxxxxxx` dans `endpoint`). Le site est déjà configuré
-pour autoriser ce domaine. Pour un autre service, ajouter son domaine dans la
-directive `connect-src` de la balise `Content-Security-Policy` de
-`satisfaction.html` et `index.html`, sinon le navigateur bloquera l'envoi.
+**Recommandation pour le pitch** : le mode « service d'envoi » avec
+[Formspree](https://formspree.io), **après validation RGPD** (voir
+[`rgpd-questionnaire.md`](rgpd-questionnaire.md)). Le site autorise déjà ce
+domaine. Pour un autre service, ajouter son domaine dans la directive
+`connect-src` de la balise `Content-Security-Policy` de `satisfaction.html` et
+`index.html`, sinon le navigateur bloquera l'envoi.
 
-Côté RGPD, le choix du prestataire est à documenter (Mahé) : Formspree est
-une société américaine ; Tally annonce un hébergement dans l'Union européenne ;
-Microsoft Forms via le compte universitaire reste dans le cadre de
-l'université. Mettre à jour la ligne « Sous-traitant » des mentions légales
-une fois le choix fait.
+Mise en place de Formspree, pas à pas :
+
+1. Créer d'abord l'adresse Proton (§5.1) : c'est elle qui recevra les
+   réponses.
+2. Créer un compte sur <https://formspree.io> avec cette adresse Proton, puis
+   confirmer le mail de vérification.
+3. Créer un nouveau formulaire, par exemple « AURA - questionnaire », avec
+   l'adresse Proton comme destinataire.
+4. Copier l'adresse du formulaire, de la forme `https://formspree.io/f/xxxxxxxx`.
+5. La coller dans `config.json` :
+   ```json
+   "satisfaction": {
+     "endpoint": "https://formspree.io/f/xxxxxxxx",
+     "externalFormUrl": ""
+   },
+   ```
+6. Committer et pousser sur `main` : le site se republie seul.
+7. Envoyer une réponse de test depuis le site en ligne et vérifier qu'elle
+   arrive dans le tableau de bord Formspree et dans la boîte Proton. Supprimer
+   ensuite cette réponse de test.
+
+**Limite à connaître** : l'offre gratuite de Formspree est limitée à environ
+50 réponses par mois. Au-delà, Formspree refuse l'envoi (erreur 429) ; le
+formulaire l'explique à la personne et lui propose d'envoyer son avis par
+mail à la place, si `supportEmail` est renseigné. Si nous attendons plus de
+50 réponses (pitch devant plusieurs groupes), préférer Microsoft Forms via
+`externalFormUrl`.
+
+Une fois le prestataire choisi, mettre à jour la ligne « Sous-traitant » des
+mentions légales avec le texte proposé dans `rgpd-questionnaire.md`.
 
 ## 7. QR codes
 

@@ -4,15 +4,15 @@
       "id": "site",
       "title": "Notre site",
       "subtitle": "Découvrez AURA",
-      "data": "https://stayx3811.github.io/aura-code/",
+      "data": "https://aura-projet.github.io/",
       "svg": "assets/qr/site.svg",
       "png": "assets/qr/site.png"
     },
     {
       "id": "satisfaction",
       "title": "Votre avis",
-      "subtitle": "30 secondes, questionnaire anonyme",
-      "data": "https://stayx3811.github.io/aura-code/satisfaction.html?src=qr",
+      "subtitle": "30 secondes, sans inscription",
+      "data": "https://aura-projet.github.io/satisfaction.html?src=qr",
       "svg": "assets/qr/satisfaction.svg",
       "png": "assets/qr/satisfaction.png"
     }

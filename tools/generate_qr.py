@@ -44,7 +44,7 @@ def build_entries(cfg):
         {
             "id": "satisfaction",
             "title": "Votre avis",
-            "subtitle": "30 secondes, questionnaire anonyme",
+            "subtitle": "30 secondes, sans inscription",
             # Le paramètre src permet de distinguer les réponses venues du QR code.
             "data": base + "satisfaction.html?src=qr",
         },

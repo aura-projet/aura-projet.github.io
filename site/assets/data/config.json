@@ -1,7 +1,7 @@
 {
   "_lisez_moi": "Fichier de configuration unique du site. Modifier ici, puis relancer `python3 tools/generate_qr.py` pour mettre à jour les QR codes. Voir docs/site-web.md.",
 
-  "siteUrl": "https://stayx3811.github.io/aura-code/",
+  "siteUrl": "https://aura-projet.github.io/",
 
   "supportEmail": "",
 

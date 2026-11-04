@@ -1,10 +1,27 @@
-# Journal des modifications
+# Journal des modifications du site
 
-Toutes les modifications notables du dépôt sont listées ici, de la plus
+Toutes les modifications notables du site sont listées ici, de la plus
 récente à la plus ancienne. Format inspiré de
 [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
 Rubriques : **Ajouté**, **Modifié**, **Corrigé**, **Supprimé**, **Sécurité**.
+
+---
+
+## 2026-11-04 · Transfert dans l'organisation aura-projet
+
+### Ajouté
+
+- Dépôt public `aura-projet/aura-projet.github.io`, publié sur
+  <https://aura-projet.github.io/>.
+- `README.md` propre au site.
+
+### Modifié
+
+- Le site, son outil de QR codes, sa documentation et son workflow quittent
+  le dépôt de code privé. L'historique Git du site a été conservé ; les
+  fichiers internes du projet (plugins, brief, répartition des tâches) n'ont
+  jamais été copiés ici.
 
 ---
 
@@ -107,12 +124,3 @@ Rubriques : **Ajouté**, **Modifié**, **Corrigé**, **Supprimé**, **Sécurité
 - Choisir le service qui reçoit les réponses du questionnaire (§6 de la
   documentation) et mettre à jour les mentions légales.
 - Vérifier le statut des objectifs O0 et O1 sur la feuille de route.
-
----
-
-## Avant le 2026-11-03
-
-- Présentation du projet (`README.md`), répartition des tâches, brief de
-  contexte (`CONTEXT.md`).
-- Plugin NetAlertX « Sonde Wi-Fi (Kismet) » dans
-  `server/plugins/netalertx_kismet/`.

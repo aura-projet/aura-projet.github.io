@@ -8,6 +8,32 @@ Rubriques : **Ajouté**, **Modifié**, **Corrigé**, **Supprimé**, **Sécurité
 
 ---
 
+## 2026-11-04 · Mise en ligne et questionnaire
+
+### Ajouté
+
+- `docs/rgpd-questionnaire.md` : fiche de validation RGPD du service qui
+  reçoit les réponses (Formspree, Microsoft Forms, mail Proton), points à
+  vérifier et texte prêt à reporter dans les mentions légales.
+- `docs/site-web.md` : pas à pas Formspree, conseils de sécurité pour le
+  compte Proton partagé, marche à suivre si le premier déploiement a échoué.
+
+### Modifié
+
+- Questionnaire : si l'envoi au service échoue (quota de 50 réponses par
+  mois atteint chez Formspree, ou problème réseau), le formulaire l'explique
+  et propose d'envoyer l'avis par mail au support.
+- Workflow GitHub Pages : `actions/checkout` v5 et `actions/setup-python` v6
+  (les versions précédentes utilisaient Node.js 20, déprécié par GitHub).
+
+### Notes
+
+- PR #2 fusionnée dans `main`. Le premier déploiement a échoué à l'étape
+  `configure-pages` : GitHub Pages n'était pas encore activé dans les
+  réglages du dépôt.
+
+---
+
 ## 2026-11-03 · Site web vitrine
 
 ### Ajouté

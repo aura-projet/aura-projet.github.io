@@ -15,6 +15,14 @@
       "data": "https://aura-projet.github.io/satisfaction.html?src=qr",
       "svg": "assets/qr/satisfaction.svg",
       "png": "assets/qr/satisfaction.png"
+    },
+    {
+      "id": "support",
+      "title": "Support",
+      "subtitle": "aura-support-ptut@proton.me",
+      "data": "mailto:aura-support-ptut@proton.me",
+      "svg": "assets/qr/support.svg",
+      "png": "assets/qr/support.png"
     }
   ]
 }

@@ -12,6 +12,8 @@ Rubriques : **Ajouté**, **Modifié**, **Corrigé**, **Supprimé**, **Sécurité
 
 ### Ajouté
 
+- Adresse de support : `aura-support-ptut@proton.me` (Proton Mail),
+  affichée dans Contact et les mentions légales, avec son QR code « Support ».
 - Page du questionnaire : panneau « Le questionnaire s'ouvre sur
   Framaforms » avant la redirection (2,5 s), pour prévenir la personne
   qu'elle quitte notre site.

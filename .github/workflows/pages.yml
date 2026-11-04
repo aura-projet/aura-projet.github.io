@@ -24,6 +24,9 @@ concurrency:
 
 jobs:
   build:
+    # Ne publie que depuis le dépôt public de l'organisation : une copie de ce
+    # workflow dans un autre dépôt (dépôt de code privé, fork) ne déploie rien.
+    if: github.repository == 'aura-projet/aura-projet.github.io'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5

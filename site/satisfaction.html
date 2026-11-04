@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Votre avis · AURA</title>
-  <meta name="description" content="Questionnaire de satisfaction anonyme sur le projet AURA.">
+  <meta name="description" content="Questionnaire de satisfaction sur le projet AURA, sans données d'identification demandées.">
   <meta name="theme-color" content="#f5f5f7">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -35,10 +35,10 @@
       <header class="page__head">
         <p class="eyebrow eyebrow--dark">Questionnaire de satisfaction</p>
         <h1 class="page__title">Votre avis sur <span class="gradient-text">AURA</span>.</h1>
-        <p class="page__lead">Cinq questions, trente secondes. Le questionnaire est anonyme&nbsp;: nous ne demandons ni nom ni adresse mail.</p>
+        <p class="page__lead">Cinq questions, trente secondes. Nous ne demandons ni nom ni adresse mail.</p>
       </header>
 
-      <form class="survey" id="survey" novalidate>
+      <form class="survey" id="survey" novalidate hidden>
         <fieldset class="q">
           <legend>Quelle note donneriez-vous au projet&nbsp;? <span class="q__hint">Obligatoire</span></legend>
           <div class="stars" role="radiogroup" aria-label="Note de 1 à 5 étoiles">
@@ -101,13 +101,24 @@
           <input type="text" id="site_web" name="site_web" tabindex="-1" autocomplete="off">
         </div>
 
-        <p class="consent">En envoyant ce questionnaire, vous acceptez que vos réponses anonymes soient utilisées par l'équipe AURA pour évaluer et améliorer le projet. Elles sont conservées jusqu'à la fin du projet tutoré (juin 2027). <a href="mentions-legales.html#confidentialite">Détails</a></p>
+        <p class="consent">En envoyant ce questionnaire, vous acceptez que vos réponses soient utilisées par l'équipe AURA pour évaluer et améliorer le projet. Elles sont conservées jusqu'à la fin du projet tutoré (juin 2027). <a href="mentions-legales.html#confidentialite">Détails</a></p>
 
         <div class="survey__actions">
           <button class="btn btn--dark" type="submit" id="submit">Envoyer mon avis</button>
           <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
         </div>
       </form>
+    </section>
+
+    <section class="external" id="external" hidden>
+      <div class="q external__card">
+        <p class="external__title">Le questionnaire s'ouvre sur <strong>Framaforms</strong>.</p>
+        <p class="external__text">Framaforms est un service libre et gratuit de l'association française Framasoft. Vos réponses y sont enregistrées pour l'équipe AURA. <a href="mentions-legales.html#confidentialite">Détails</a></p>
+        <div class="survey__actions">
+          <a class="btn btn--dark" id="external-link" href="#" rel="noopener">Ouvrir le questionnaire</a>
+          <p class="form-msg" id="external-msg" role="status" aria-live="polite">Redirection automatique…</p>
+        </div>
+      </div>
     </section>
 
     <section class="thanks" id="thanks" hidden tabindex="-1">

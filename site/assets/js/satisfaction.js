@@ -1,9 +1,9 @@
 /* AURA · questionnaire de satisfaction.
    Trois modes, choisis dans assets/data/config.json (voir docs/site-web.md) :
-     1. satisfaction.externalFormUrl renseigné : redirection vers ce formulaire
-        (Tally, Microsoft Forms...).
+     1. satisfaction.externalFormUrl renseigné : panneau d'information puis
+        redirection vers ce formulaire (choix actuel : Framaforms).
      2. satisfaction.endpoint renseigné : envoi JSON vers ce service
-        (compatible Formspree).
+        (compatible Formspree ; ajouter son domaine à connect-src dans la CSP).
      3. sinon, si supportEmail est renseigné : ouverture d'un mail pré-rempli.
    Si rien n'est configuré, un message l'indique : on ne fait jamais croire
    à l'utilisateur que sa réponse est partie alors qu'elle n'est stockée nulle part. */
@@ -23,7 +23,13 @@
   document.addEventListener('aura:config', function (e) {
     cfg = e.detail || {};
     var ext = cfg.satisfaction && cfg.satisfaction.externalFormUrl;
-    if (ext) window.location.replace(ext);
+    if (!ext) { form.hidden = false; return; }
+    // Formulaire externe (Framaforms) : on prévient avant de quitter le site.
+    var panel = document.getElementById('external');
+    var link = document.getElementById('external-link');
+    link.href = ext;
+    panel.hidden = false;
+    setTimeout(function () { window.location.href = ext; }, 2500);
   });
 
   function setMsg(text, isError) {

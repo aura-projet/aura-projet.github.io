@@ -12,11 +12,14 @@ Historique des modifications : voir [`CHANGELOG.md`](../CHANGELOG.md).
 
 | | |
 |---|---|
-| Adresse publique (une fois Pages activé) | <https://stayx3811.github.io/aura-code/> |
+| Adresse publique | <https://aura-projet.github.io/> |
+| Dépôt du site (public) | `aura-projet/aura-projet.github.io`, dans l'organisation GitHub de l'équipe |
+| Dépôt du code (privé) | `Stayx3811/aura-code` : plugins, moteur AURA, documents internes |
 | Hébergement | GitHub Pages, gratuit |
 | Technologies | HTML, CSS et JavaScript « à la main », sans framework ni étape de compilation |
 | Dépendances externes chargées par le navigateur | aucune (pas de CDN, pas de Google Fonts, pas de traceur) |
 | Déploiement | automatique à chaque push sur `main` qui touche `site/` (workflow `.github/workflows/pages.yml`) |
+| Questionnaire | hébergé sur Framaforms (Framasoft), voir §6 |
 | Fichier à modifier pour le mail, les réseaux et le questionnaire | `site/assets/data/config.json` |
 
 Le site reprend les codes des pages produit d'Apple : grandes typographies,
@@ -30,7 +33,7 @@ problème de droits).
 | Page | Rôle |
 |---|---|
 | `index.html` | Page principale (détail ci-dessous) |
-| `satisfaction.html` | Questionnaire de satisfaction anonyme, cible du QR code du pitch |
+| `satisfaction.html` | Point d'entrée du questionnaire, cible du QR code du pitch : prévient la personne puis l'envoie vers Framaforms |
 | `qr.html` | Kit QR codes : affichage, téléchargement SVG/PNG, impression A4 (4 par page). Non référencée par les moteurs de recherche |
 | `mentions-legales.html` | Mentions légales, politique de confidentialité, informations RGPD sur le questionnaire |
 | `404.html` | Page d'erreur servie par GitHub Pages pour toute adresse inconnue |
@@ -71,56 +74,66 @@ site/
     ├── css/style.css            toute la mise en forme (commentée par section)
     ├── js/main.js               config, menu, animations au défilement, démo simulée, feuille de route
     ├── js/hero.js               animation canvas du hero
-    ├── js/satisfaction.js       envoi du questionnaire
+    ├── js/satisfaction.js       questionnaire (redirection Framaforms ou formulaire intégré)
     ├── js/qr.js                 page kit QR codes
     ├── data/config.json         CONFIGURATION (mail, réseaux, questionnaire, URL du site)
     ├── img/                     logo, favicon, sonde, illustrations des scénarios, icônes, image de partage
     └── qr/                      QR codes générés (SVG + PNG + manifest.json) : ne pas modifier à la main
 tools/
 └── generate_qr.py               génère site/assets/qr/ à partir de config.json
+docs/site-web.md                 ce document
 .github/workflows/pages.yml      déploiement GitHub Pages
 ```
 
-## 4. Mise en ligne sur GitHub Pages
+## 4. Hébergement et mise en ligne
 
-### 4.1 Point de vigilance : le dépôt est privé
+### 4.1 Pourquoi une organisation GitHub
 
-GitHub Pages est gratuit pour les **dépôts publics**. Pour un dépôt **privé**,
-il faut un compte GitHub Pro (ou une organisation Team). Trois solutions,
-toutes gratuites pour nous :
+Publié depuis le dépôt de code, le site aurait eu pour adresse
+`stayx3811.github.io/aura-code`, avec le nom d'utilisateur personnel du chef
+de projet. Nous avons donc créé une **organisation GitHub gratuite**
+`aura-projet`. Un dépôt nommé exactement `aura-projet.github.io` y est publié
+à la racine de l'adresse <https://aura-projet.github.io/>.
 
-1. **GitHub Student Developer Pack** (solution conseillée) : en tant
-   qu'étudiants, nous pouvons obtenir GitHub Pro gratuitement sur
-   <https://education.github.com/pack> avec l'adresse mail de l'université.
-   Le dépôt reste privé, seul le site est public.
-2. **Rendre le dépôt public** : Settings > General > Danger Zone > Change
-   visibility. À éviter tant que nous n'avons pas vérifié qu'aucun secret
-   n'est passé dans l'historique Git.
-3. **Créer un second dépôt public** dédié au site, et y copier le dossier
-   `site/` et le workflow.
+Dans une organisation gratuite, GitHub Pages ne fonctionne qu'avec un dépôt
+**public**. D'où la séparation en deux dépôts :
 
-### 4.2 Activation (une seule fois)
+- le **site** (ce dépôt) est public : il ne contient que des fichiers statiques
+  destinés à être vus de tous, **aucun secret** ;
+- le **code** (plugins, moteur de corrélation, documents internes) reste dans
+  le dépôt privé `Stayx3811/aura-code`.
 
-1. Fusionner la branche du site dans `main` (le déploiement ne se lance que
-   depuis `main`).
-2. Sur GitHub : **Settings > Pages > Build and deployment > Source :
-   « GitHub Actions »**.
-3. Onglet **Actions** : le workflow « Site web (GitHub Pages) » se lance au
-   prochain push sur `main`. On peut aussi le lancer à la main avec
+Règle à respecter : ne jamais committer ici de mot de passe, clé d'API, jeton,
+adresse IP interne ou capture de la plateforme de TP.
+
+### 4.2 Création (une seule fois)
+
+1. Créer l'organisation sur <https://github.com/organizations/plan>, offre
+   **Free**, nom `aura-projet`. Inviter les trois autres membres.
+2. Dans l'organisation, créer le dépôt **public** `aura-projet.github.io`,
+   vide (sans README).
+3. Pousser le site dans ce dépôt.
+4. **Settings > Pages > Build and deployment > Source : « GitHub Actions »**.
+   Ne pas cliquer sur les workflows suggérés (« Static HTML », « Jekyll ») :
+   notre workflow existe déjà.
+5. Onglet **Actions** : le workflow « Site web (GitHub Pages) » se lance à
+   chaque push sur `main`. On peut aussi le lancer à la main avec
    « Run workflow ».
-4. Après une à deux minutes, le site est en ligne à l'adresse
-   <https://stayx3811.github.io/aura-code/>.
 
 Si le workflow a tourné **avant** l'activation de Pages, il échoue à l'étape
 `configure-pages` avec le message « Get Pages site failed ». Ce n'est pas un
 bug : une fois Pages activé, ouvrir le run en échec dans l'onglet Actions et
-cliquer sur « Re-run all jobs » (ou lancer « Run workflow »).
+cliquer sur « Re-run all jobs ».
 
-Si l'adresse change (autre compte, autre dépôt, nom de domaine), mettre à jour
-`siteUrl` dans `config.json`, la balise `og:image` de `index.html` et les
-chemins `/aura-code/` de `404.html`, puis régénérer les QR codes.
+### 4.3 Changer d'adresse
 
-### 4.3 Tester en local
+Si l'adresse change (autre organisation, nom de domaine), mettre à jour
+`siteUrl` dans `config.json` et la balise `og:image` de `index.html`, puis
+régénérer les QR codes (§7) **avant de les imprimer**. Les chemins de
+`404.html` sont absolus depuis la racine (`/assets/…`) : ils restent valables
+tant que le site est servi à la racine du domaine.
+
+### 4.4 Tester en local
 
 ```bash
 cd site
@@ -133,16 +146,16 @@ Puis ouvrir <http://localhost:8000>. Ouvrir directement le fichier
 
 ## 5. Configuration : `site/assets/data/config.json`
 
-C'est le **seul fichier à modifier** quand nous créerons le mail et les
-réseaux sociaux. Il est lu par le site (au chargement de la page) et par le
+C'est le **seul fichier à modifier** pour le mail, les réseaux sociaux et le
+questionnaire. Il est lu par le site (au chargement de la page) et par le
 générateur de QR codes.
 
 | Clé | Rôle | Effet si vide |
 |---|---|---|
 | `siteUrl` | Adresse publique du site, utilisée dans les QR codes | obligatoire |
 | `supportEmail` | Adresse de support (Proton Mail) | le site affiche « bientôt disponible », pas de QR code support |
-| `satisfaction.endpoint` | URL d'un service qui reçoit les réponses du questionnaire (voir §6) | repli sur l'envoi par mail |
-| `satisfaction.externalFormUrl` | URL d'un formulaire externe (Tally, Microsoft Forms…) vers lequel rediriger | questionnaire intégré au site |
+| `satisfaction.externalFormUrl` | Adresse du questionnaire Framaforms (§6) | formulaire intégré au site, qui ne sait pas enregistrer de réponses seul |
+| `satisfaction.endpoint` | Service qui reçoit les réponses du formulaire intégré (mode non utilisé, voir §6.3) | repli sur l'envoi par mail |
 | `socials[].url` | Lien de chaque réseau social | le réseau n'est pas affiché, pas de QR code |
 
 ### 5.1 Ajouter l'adresse de support Proton
@@ -152,7 +165,7 @@ générateur de QR codes.
    quatre : mot de passe long rangé dans un gestionnaire de mots de passe
    (KeePassXC, Bitwarden), double authentification activée, phrase de
    récupération conservée hors ligne. Ne jamais mettre le mot de passe dans
-   le dépôt ni sur Discord.
+   un dépôt ni sur Discord.
 2. Renseigner l'adresse dans `config.json` :
    ```json
    "supportEmail": "aura-support@proton.me",
@@ -173,63 +186,80 @@ Renseigner l'`url` du réseau concerné dans `socials`, par exemple :
 Pour ajouter un réseau absent de la liste (TikTok, Discord…), ajouter une
 ligne avec un `id` unique sans espace. Régénérer ensuite les QR codes.
 
-## 6. Questionnaire de satisfaction
-
-Le questionnaire est **anonyme** : note sur 5, intérêt pour le problème,
-points marquants, recommandation sur 10, commentaire facultatif. Un champ
-caché piège les robots. Le paramètre `?src=qr` du QR code permet de savoir si
-la réponse vient du QR code ou du site.
+## 6. Questionnaire de satisfaction (Framaforms)
 
 GitHub Pages ne fait que servir des fichiers : il ne peut pas enregistrer de
-réponses. Il faut donc choisir où elles arrivent. Le script choisit le mode
-selon la config, dans cet ordre :
+réponses. Nous utilisons donc **[Framaforms](https://framaforms.org)**, service
+gratuit et sans publicité de l'association française Framasoft, basé sur le
+logiciel libre Yakforms. C'est cohérent avec notre discours open source et
+RGPD, et la limite (5 000 réponses par formulaire) ne nous gênera pas.
 
-| Mode | Config | Avantages | Limites |
-|---|---|---|---|
-| Formulaire externe | `externalFormUrl` | statistiques et export Excel tout prêts | on quitte notre site ; données chez le prestataire |
-| Service d'envoi | `endpoint` | on garde notre design, réponses reçues en JSON ou par mail | offre gratuite limitée en nombre de réponses par mois |
-| Mail pré-rempli | `supportEmail` seul | aucun prestataire en plus | la personne doit envoyer le mail elle-même : peu pratique sur le stand |
+Parcours : QR code → `satisfaction.html?src=qr` sur notre site → panneau
+« Le questionnaire s'ouvre sur Framaforms » → redirection automatique au bout
+de 2,5 secondes (ou clic sur le bouton). Le QR code pointe vers **notre**
+page et non directement vers Framaforms : si un jour nous changeons de
+service, les QR codes déjà imprimés restent valables.
 
-Si rien n'est configuré, le formulaire l'indique clairement : il ne fait
-jamais croire que la réponse est partie.
+### 6.1 Créer le questionnaire sur Framaforms
 
-**Recommandation pour le pitch** : le mode « service d'envoi » avec
-[Formspree](https://formspree.io), **après validation RGPD** (voir
-[`rgpd-questionnaire.md`](rgpd-questionnaire.md)). Le site autorise déjà ce
-domaine. Pour un autre service, ajouter son domaine dans la directive
-`connect-src` de la balise `Content-Security-Policy` de `satisfaction.html` et
-`index.html`, sinon le navigateur bloquera l'envoi.
+1. Créer un compte sur <https://framaforms.org> avec l'adresse de support
+   Proton (§5.1), pour que le compte appartienne à l'équipe et pas à une
+   personne.
+2. Créer un formulaire « Votre avis sur AURA » et recopier les questions
+   ci-dessous, dans cet ordre (les mêmes que le formulaire intégré au site) :
 
-Mise en place de Formspree, pas à pas :
+   | # | Question | Type | Réponses |
+   |---|---|---|---|
+   | 1 | Quelle note donneriez-vous au projet ? | choix unique, **obligatoire** | 1, 2, 3, 4, 5 |
+   | 2 | Le problème présenté vous parle-t-il ? | choix unique | Oui, tout à fait / Un peu / Pas vraiment |
+   | 3 | Qu'est-ce qui vous a le plus marqué ? | choix multiples | La sonde Wi-Fi / La corrélation ondes-réseau / La localisation sur le switch / Le tableau de bord / Le résumé par IA / Le pitch |
+   | 4 | Recommanderiez-vous AURA à une entreprise ? | choix unique (échelle) | 0 à 10 |
+   | 5 | Un commentaire, une idée, une critique ? | texte long, facultatif | aide : « Merci de ne pas indiquer de données personnelles. » |
 
-1. Créer d'abord l'adresse Proton (§5.1) : c'est elle qui recevra les
-   réponses.
-2. Créer un compte sur <https://formspree.io> avec cette adresse Proton, puis
-   confirmer le mail de vérification.
-3. Créer un nouveau formulaire, par exemple « AURA - questionnaire », avec
-   l'adresse Proton comme destinataire.
-4. Copier l'adresse du formulaire, de la forme `https://formspree.io/f/xxxxxxxx`.
-5. La coller dans `config.json` :
+3. Ajouter en tête du formulaire le texte d'information :
+   > Questionnaire de l'équipe AURA (projet tutoré, BUT R&T, IUT de Valence).
+   > Nous ne demandons ni nom ni adresse mail. Les réponses servent à évaluer
+   > et améliorer le projet ; elles sont conservées jusqu'en juin 2027 puis
+   > supprimées.
+4. **Repousser la date d'expiration** du formulaire jusqu'à fin juin 2027 :
+   par défaut, un formulaire Framaforms expire au bout de 6 mois.
+5. Ne pas demander d'adresse mail et ne pas activer d'option qui
+   enregistrerait des données d'identification.
+6. Copier l'adresse publique du formulaire, puis la coller dans
+   `config.json` :
    ```json
    "satisfaction": {
-     "endpoint": "https://formspree.io/f/xxxxxxxx",
-     "externalFormUrl": ""
+     "endpoint": "",
+     "externalFormUrl": "https://framaforms.org/votre-avis-sur-aura-XXXXXXXX"
    },
    ```
-6. Committer et pousser sur `main` : le site se republie seul.
-7. Envoyer une réponse de test depuis le site en ligne et vérifier qu'elle
-   arrive dans le tableau de bord Formspree et dans la boîte Proton. Supprimer
-   ensuite cette réponse de test.
+7. Committer et pousser : le site se republie seul.
+8. Tester depuis un téléphone en scannant le QR code « Votre avis », envoyer
+   une réponse de test, vérifier qu'elle apparaît dans les résultats
+   Framaforms, puis la supprimer.
 
-**Limite à connaître** : l'offre gratuite de Formspree est limitée à environ
-50 réponses par mois. Au-delà, Formspree refuse l'envoi (erreur 429) ; le
-formulaire l'explique à la personne et lui propose d'envoyer son avis par
-mail à la place, si `supportEmail` est renseigné. Si nous attendons plus de
-50 réponses (pitch devant plusieurs groupes), préférer Microsoft Forms via
-`externalFormUrl`.
+### 6.2 Exploiter les réponses
 
-Une fois le prestataire choisi, mettre à jour la ligne « Sous-traitant » des
-mentions légales avec le texte proposé dans `rgpd-questionnaire.md`.
+Les résultats se consultent et s'exportent (tableur) depuis l'onglet des
+résultats du formulaire sur Framaforms. Pour le rapport, exporter les
+réponses après chaque présentation. En juin 2027, supprimer le formulaire et
+les exports (voir la fiche RGPD dans le dépôt de code).
+
+### 6.3 Autres modes (non utilisés)
+
+Le script `satisfaction.js` sait aussi :
+
+- envoyer les réponses du formulaire intégré vers un service compatible
+  Formspree (`satisfaction.endpoint`). Il faut alors ajouter le domaine du
+  service dans la directive `connect-src` de la balise
+  `Content-Security-Policy` de `satisfaction.html`, sinon le navigateur
+  bloque l'envoi. En cas d'échec (quota atteint, réseau), il propose l'envoi
+  par mail ;
+- ouvrir un mail pré-rempli vers `supportEmail` si rien d'autre n'est
+  configuré.
+
+Si aucun mode n'est configuré, le formulaire l'indique clairement : il ne
+fait jamais croire que la réponse est partie.
 
 ## 7. QR codes
 
@@ -275,16 +305,15 @@ publié).
 | changer les couleurs | `assets/css/style.css`, variables `--c1`, `--c2`, `--c3` en haut du fichier |
 | remplacer une illustration | `assets/img/`, garder le même nom de fichier |
 
-Conventions de rédaction (voir `CONTEXT.md`) : « nous » plutôt que « on »,
-pas de formules toutes faites, espace insécable (`&nbsp;`) avant `: ; ? !`.
+Conventions de rédaction de l'équipe : « nous » plutôt que « on », pas de
+formules toutes faites, espace insécable (`&nbsp;`) avant `: ; ? !`.
 
 ## 9. Sécurité du site
 
 - **Content-Security-Policy** en balise `<meta>` sur chaque page : seuls les
-  scripts, styles et images du site lui-même sont autorisés ; l'envoi du
-  questionnaire n'est autorisé que vers Formspree. Aucun script en ligne
-  (`<script>…</script>`) ni attribut `style=""` : tout est dans des fichiers
-  séparés, ce qui permet une politique stricte.
+  scripts, styles, images et requêtes vers le site lui-même sont autorisés.
+  Aucun script en ligne (`<script>…</script>`) ni attribut `style=""` : tout
+  est dans des fichiers séparés, ce qui permet une politique stricte.
 - **Aucune ressource tierce** : police système (San Francisco sur Apple,
   Segoe UI sur Windows, Roboto sur Android) au lieu de Google Fonts, dont
   l'utilisation a déjà été jugée contraire au RGPD en Europe.
@@ -294,6 +323,7 @@ pas de formules toutes faites, espace insécable (`&nbsp;`) avant `: ; ? !`.
 - Contenu dynamique inséré avec `textContent` (jamais `innerHTML`) : pas
   d'injection possible depuis la config ou le manifeste des QR codes.
 - Liens externes en `rel="noopener noreferrer"`.
+- Dépôt public : aucun secret, voir §4.1.
 - Limite connue : GitHub Pages ne permet pas de définir des en-têtes HTTP
   (HSTS, `X-Frame-Options`…). La directive CSP `frame-ancestors` n'est pas
   prise en compte en balise `<meta>`.

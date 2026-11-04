@@ -8,29 +8,50 @@ Rubriques : **Ajouté**, **Modifié**, **Corrigé**, **Supprimé**, **Sécurité
 
 ---
 
-## 2026-11-04 · Mise en ligne et questionnaire
+## 2026-11-04 · Nouvelle adresse, Framaforms et mise en ligne
 
 ### Ajouté
 
-- `docs/rgpd-questionnaire.md` : fiche de validation RGPD du service qui
-  reçoit les réponses (Formspree, Microsoft Forms, mail Proton), points à
-  vérifier et texte prêt à reporter dans les mentions légales.
-- `docs/site-web.md` : pas à pas Formspree, conseils de sécurité pour le
-  compte Proton partagé, marche à suivre si le premier déploiement a échoué.
+- Page du questionnaire : panneau « Le questionnaire s'ouvre sur
+  Framaforms » avant la redirection (2,5 s), pour prévenir la personne
+  qu'elle quitte notre site.
+- `docs/rgpd-questionnaire.md` (dépôt de code) : fiche RGPD du questionnaire,
+  comparaison Framaforms / Formspree / Microsoft Forms, points à vérifier.
+- `docs/site-web.md` : pas à pas Framaforms (questions à recopier, date
+  d'expiration), organisation GitHub, conseils de sécurité pour le compte
+  Proton partagé.
 
 ### Modifié
 
-- Questionnaire : si l'envoi au service échoue (quota de 50 réponses par
-  mois atteint chez Formspree, ou problème réseau), le formulaire l'explique
-  et propose d'envoyer l'avis par mail au support.
+- Adresse du site : `https://aura-projet.github.io/` (organisation GitHub
+  `aura-projet`) au lieu de `stayx3811.github.io/aura-code`, pour ne pas
+  publier sous un compte personnel. QR codes régénérés, image de partage et
+  page 404 adaptées.
+- Questionnaire : **Framaforms** retenu (association Framasoft, logiciel
+  libre) à la place de Formspree.
+- Mentions légales : sous-traitant Framaforms, adresse IP citée dans les
+  données traitées ; « questionnaire anonyme » remplacé par « sans données
+  d'identification demandées », plus exact au sens du RGPD.
+- Formulaire intégré (mode de secours) : si le service d'envoi échoue, il
+  l'explique et propose l'envoi par mail au support.
 - Workflow GitHub Pages : `actions/checkout` v5 et `actions/setup-python` v6
   (les versions précédentes utilisaient Node.js 20, déprécié par GitHub).
 
+### Corrigé
+
+- Boutons sombres affichés avec un texte bleu sur les pages claires (bouton
+  « Découvrir le projet » après envoi, bouton Framaforms).
+
+### Sécurité
+
+- CSP resserrée : plus aucun domaine externe autorisé pour les requêtes
+  (`connect-src 'self'`), Formspree n'étant plus utilisé.
+
 ### Notes
 
-- PR #2 fusionnée dans `main`. Le premier déploiement a échoué à l'étape
-  `configure-pages` : GitHub Pages n'était pas encore activé dans les
-  réglages du dépôt.
+- PR #2 fusionnée dans `main` du dépôt de code. Son déploiement a échoué à
+  l'étape `configure-pages` (Pages pas encore activé) ; c'est voulu de ne pas
+  le relancer, pour ne pas publier sous l'adresse personnelle.
 
 ---
 

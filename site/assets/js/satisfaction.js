@@ -65,6 +65,21 @@
     ].join('\n');
   }
 
+  function mailHref(r, email) {
+    var subject = encodeURIComponent('Avis sur AURA (' + r.note + '/5)');
+    return 'mailto:' + email + '?subject=' + subject + '&body=' + encodeURIComponent(asText(r));
+  }
+
+  function openMail(r, email) { window.location.href = mailHref(r, email); }
+
+  // Repli si le service d'envoi échoue : lien vers un mail pré-rempli.
+  function offerMail(r, email) {
+    var a = document.createElement('a');
+    a.href = mailHref(r, email);
+    a.textContent = ' Envoyer mon avis par mail à la place.';
+    msg.appendChild(a);
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (form.site_web.value) return; // robot
@@ -88,16 +103,20 @@
       }).then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         done();
-      }).catch(function () {
+      }).catch(function (err) {
         btn.disabled = false;
-        setMsg("L'envoi a échoué. Vérifiez votre connexion et réessayez.", true);
+        // 429 = quota mensuel du service atteint (50 réponses/mois chez Formspree gratuit).
+        var quota = err && err.message === 'HTTP 429';
+        setMsg(quota
+          ? "Le service d'envoi a atteint sa limite de réponses ce mois-ci."
+          : "L'envoi a échoué. Vérifiez votre connexion et réessayez.", true);
+        if (email) offerMail(r, email);
       });
       return;
     }
 
     if (email) {
-      var subject = encodeURIComponent('Avis sur AURA (' + r.note + '/5)');
-      window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + encodeURIComponent(asText(r));
+      openMail(r, email);
       setMsg('Votre application de messagerie va s\'ouvrir : il ne reste qu\'à envoyer le mail.');
       return;
     }

@@ -3,519 +3,160 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>AURA · Le réseau et les ondes, au même endroit</title>
   <meta name="description" content="AURA détecte ce qui se branche et ce qui émet dans vos locaux, sans agent sur les postes. Projet tutoré BUT Réseaux & Télécoms, IUT de Valence.">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#070e20">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <meta property="og:title" content="AURA · Analyse Unifiée du Réseau et des Antennes">
   <meta property="og:description" content="Le réseau et les ondes, surveillés au même endroit. Sans agent sur les postes.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://aura-projet.github.io/assets/img/og-image.png">
+  <meta property="og:image" content="https://aura-projet.github.io/assets/img/og-refonte.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/scene-3d.css">
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/hero.js" defer></script>
+  <script src="assets/js/constellation.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/hero.js" type="module"></script>
 </head>
-<body>
+<body class="home">
 <a class="skip" href="#contenu">Aller au contenu</a>
 
-<!-- ============ NAVIGATION ============ -->
 <header class="nav" id="nav">
-  <div class="nav__inner">
-    <a class="nav__logo" href="#top" aria-label="AURA, retour en haut">
-      <img src="assets/img/logo.svg" alt="" width="26" height="26">
+  <div class="nav__inner glass">
+    <a class="nav__logo" href="index.html" aria-label="AURA, accueil">
+      <img src="assets/img/logo.svg" alt="" width="26" height="26" loading="lazy">
       <span>AURA</span>
     </a>
     <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
       <span></span><span></span>
     </button>
     <nav class="nav__menu" id="menu" aria-label="Navigation principale">
-      <a href="#fonctionnement">Fonctionnement</a>
-      <a href="#scenarios">Scénarios</a>
-      <a href="#sonde">La sonde</a>
-      <a href="#feuille-de-route">Feuille de route</a>
-      <a href="#equipe">Équipe</a>
-      <a href="#contact">Contact</a>
-      <a class="nav__cta" href="satisfaction.html">Donner mon avis</a>
+      <a href="index.html" class="is-active" aria-current="page">Accueil</a>
+      <a href="le-projet.html">Le projet</a>
+      <a href="demo.html">Démo</a>
+      <a href="comparatif.html">Comparatif</a>
+      <a href="faq.html">FAQ</a>
+      <a href="equipe.html">Équipe</a>
+      <a class="nav__cta js-magnetic" href="suggestions.html">Proposer une idée</a>
     </nav>
   </div>
 </header>
 
+<div class="aura-field" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="constellation" aria-hidden="true"></canvas>
 <main id="contenu">
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO DYNAMIQUE ============ -->
 <section class="hero" id="top">
-  <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
-  <div class="hero__content">
-    <p class="eyebrow reveal">Projet tutoré · BUT Réseaux &amp; Télécoms · IUT de Valence</p>
-    <h1 class="hero__title reveal" data-delay="1"><span class="gradient-text">AURA</span></h1>
-    <p class="hero__lead reveal" data-delay="2">Le réseau et les ondes.<br>Au même endroit.</p>
-    <p class="hero__sub reveal" data-delay="3">AURA repère ce qui se branche et ce qui émet dans vos locaux, sans installer le moindre agent sur les postes.</p>
-    <div class="hero__actions reveal" data-delay="4">
-      <a class="btn btn--primary" href="#fonctionnement">Découvrir</a>
-      <a class="btn btn--ghost" href="#demo">Voir la démo&nbsp;›</a>
+  <div class="hero__stage" aria-hidden="true">
+    <span class="hero__giant">AURA</span>
+    <canvas class="hero__canvas" id="hero-canvas"></canvas>
+    <svg class="hero__fallback" viewBox="0 0 600 420">
+      <defs>
+        <linearGradient id="fb-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#C9DEE8"/></linearGradient>
+        <radialGradient id="fb-orb" cx="30%" cy="25%" r="80%"><stop offset="0" stop-color="#c5f6ff"/><stop offset="1" stop-color="#08B0B3"/></radialGradient>
+      </defs>
+      <ellipse cx="300" cy="300" rx="250" ry="62" fill="none" stroke="#04D2F6" stroke-width="4" opacity=".4"/>
+      <ellipse cx="300" cy="300" rx="170" ry="42" fill="none" stroke="#04D2F6" stroke-width="7" opacity=".6"/>
+      <ellipse cx="300" cy="334" rx="110" ry="15" fill="#08183C" opacity=".1"/>
+      <rect x="352" y="120" width="12" height="130" rx="6" fill="#62798f"/>
+      <rect x="205" y="232" width="190" height="84" rx="30" fill="url(#fb-body)"/>
+      <circle cx="240" cy="276" r="8" fill="#04D2F6"/>
+      <circle cx="96" cy="280" r="22" fill="url(#fb-orb)"/>
+      <circle cx="470" cy="236" r="17" fill="url(#fb-orb)"/>
+      <circle cx="520" cy="322" r="24" fill="#E84E0E"/>
+    </svg>
+    <span class="hero__label hero__label--a glass">Réseau filaire</span>
+    <span class="hero__label hero__label--b glass">Wi-Fi · 2,4 GHz</span>
+  </div>
+  <div class="hero__content container">
+    <h1 class="hero__title reveal-split"><span class="sr-only">AURA. </span><span class="rl rl--1"><span class="rl__i">Le réseau et les ondes.</span></span><br><span class="rl rl--2"><span class="rl__i">Au même endroit.</span></span></h1>
+    <p class="hero__sub">Repérer ce qui se branche. Voir ce qui émet.<br>AURA croise les deux, sans agent sur les postes.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary js-magnetic" href="le-projet.html">Découvrir le projet <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a class="btn btn--glass" href="demo.html">Ouvrir la démo</a>
+    </div>
+    <p class="hero__fact">Projet tutoré · BUT3 Réseaux &amp; Télécoms · IUT de Valence</p>
+    <div class="hero__controls">
+      <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false">Mettre les animations en pause</button>
+      <a class="hero__scroll" href="#probleme">Explorer le projet <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14m-5-5 5 5 5-5"/></svg></a>
     </div>
   </div>
-  <a class="hero__scroll" href="#probleme" aria-label="Faire défiler">
-    <span></span>
-  </a>
 </section>
 
-<!-- ============ LE PROBLÈME (texte qui s'allume au défilement) ============ -->
-<section class="section section--dark problem" id="probleme">
+<section class="section problem" id="probleme">
+  <div class="container"><h2 class="statement" data-reveal>Un appareil inconnu n'a pas d'agent.<br>Il a pourtant <strong>une place sur votre réseau.</strong></h2></div>
+</section>
+
+<div class="strip" id="strip">
+  <div class="strip__track" aria-hidden="true"><span>Écouter</span><i></i><span>Recenser</span><i></i><span>Croiser</span><i></i><span>Alerter</span><i></i><span>Écouter</span><i></i><span>Recenser</span><i></i><span>Croiser</span><i></i><span>Alerter</span><i></i></div>
+  <button class="strip__pause" id="strip-pause" type="button" aria-pressed="false">Mettre le défilement en pause</button>
+</div>
+
+<!-- ============ ACCÈS AUX PAGES ============ -->
+<section class="section" id="parcours">
   <div class="container">
-    <p class="eyebrow eyebrow--muted reveal">Le problème</p>
-    <p class="scrub-text" id="scrub">Un appareil pirate n'a pas d'agent. Il n'apparaît dans aucun inventaire. Une borne Wi‑Fi branchée sous un bureau non plus. Pourtant, les deux sont bien sur votre réseau.</p>
-  </div>
-</section>
-
-<!-- ============ CHIFFRES CLÉS ============ -->
-<section class="section section--light stats">
-  <div class="container stats__grid">
-    <div class="stat reveal">
-      <span class="stat__value"><span class="count" data-to="0">0</span></span>
-      <span class="stat__label">agent à installer sur les postes</span>
-    </div>
-    <div class="stat reveal" data-delay="1">
-      <span class="stat__value">&lt;&nbsp;<span class="count" data-to="5">0</span>&nbsp;min</span>
-      <span class="stat__label">pour lever l'alerte, c'est notre objectif sur chaque scénario</span>
-    </div>
-    <div class="stat reveal" data-delay="2">
-      <span class="stat__value"><span class="count" data-to="4">0</span></span>
-      <span class="stat__label">scénarios d'intrusion démontrés en direct</span>
-    </div>
-    <div class="stat reveal" data-delay="3">
-      <span class="stat__value"><span class="count" data-to="2">0</span></span>
-      <span class="stat__label">mondes croisés&nbsp;: le câble et les ondes</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FONCTIONNEMENT (défilement collant) ============ -->
-<section class="section section--dark how" id="fonctionnement">
-  <div class="container">
-    <header class="section__head">
-      <p class="eyebrow reveal">Fonctionnement</p>
-      <h2 class="section__title reveal" data-delay="1">Écouter. Croiser.<br><span class="gradient-text">Alerter.</span></h2>
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Entrez dans AURA,<br>page par page.</h2>
+      <p class="section__lead">Chaque page va droit au but : comment AURA fonctionne, une démonstration à piloter, une comparaison honnête avec l’existant, les questions fréquentes et l’équipe derrière le projet.</p>
     </header>
-
-    <div class="how__layout">
-      <div class="how__visual">
-        <svg class="how-svg step-1" id="how-svg" viewBox="0 0 640 520" role="img" aria-labelledby="how-svg-title">
-          <title id="how-svg-title">Schéma du fonctionnement d'AURA : sonde Wi-Fi, serveur, switch, borne inconnue et alerte sur téléphone</title>
-          <defs>
-            <radialGradient id="g-core" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#7c8cff"/>
-              <stop offset="100%" stop-color="#3b2a8f"/>
-            </radialGradient>
-            <linearGradient id="g-aura" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#2ee6d6"/>
-              <stop offset="50%" stop-color="#6e7bff"/>
-              <stop offset="100%" stop-color="#c86bfa"/>
-            </linearGradient>
-          </defs>
-
-          <!-- liaisons -->
-          <g class="g s3">
-            <path class="flow" d="M150 130 C 230 130, 250 200, 300 210"/>
-          </g>
-          <g class="g s2 s3">
-            <path class="flow" d="M320 370 L 320 262"/>
-          </g>
-          <g class="g s4">
-            <path class="cable" d="M150 400 L 280 400"/>
-            <text x="215" y="388" class="svg-label svg-label--accent" text-anchor="middle">port Gi1/0/14</text>
-          </g>
-          <g class="g s2">
-            <path class="cable cable--plain" d="M360 400 L 470 400"/>
-          </g>
-          <g class="g s5">
-            <path class="flow flow--alert" d="M360 200 C 420 180, 450 140, 500 130"/>
-          </g>
-
-          <!-- ondes de la sonde -->
-          <g class="g s1 waves">
-            <circle cx="110" cy="120" r="40"/>
-            <circle cx="110" cy="120" r="40"/>
-            <circle cx="110" cy="120" r="40"/>
-          </g>
-
-          <!-- sonde -->
-          <g class="g s1 s3 node">
-            <rect x="78" y="100" width="64" height="44" rx="12" class="box"/>
-            <rect x="122" y="70" width="5" height="32" rx="2.5" class="ant"/>
-            <circle cx="96" cy="122" r="5" class="led"/>
-            <text x="110" y="170" text-anchor="middle" class="svg-label">Sonde Wi-Fi</text>
-          </g>
-
-          <!-- serveur AURA -->
-          <g class="g s2 s3 s5 node">
-            <circle cx="320" cy="210" r="52" class="core-ring"/>
-            <circle cx="320" cy="210" r="40" fill="url(#g-core)"/>
-            <text x="320" y="216" text-anchor="middle" class="svg-core">AURA</text>
-            <text x="320" y="290" text-anchor="middle" class="svg-label">NetAlertX + moteur AURA</text>
-          </g>
-
-          <!-- switch -->
-          <g class="g s2 s4 node">
-            <rect x="280" y="380" width="80" height="40" rx="8" class="box"/>
-            <g class="ports">
-              <rect x="290" y="404" width="8" height="8" rx="1"/>
-              <rect x="302" y="404" width="8" height="8" rx="1"/>
-              <rect x="314" y="404" width="8" height="8" rx="1" class="port-hot"/>
-              <rect x="326" y="404" width="8" height="8" rx="1"/>
-              <rect x="338" y="404" width="8" height="8" rx="1"/>
-            </g>
-            <text x="320" y="446" text-anchor="middle" class="svg-label">Switch (SNMP)</text>
-          </g>
-
-          <!-- borne inconnue -->
-          <g class="g s1 s4 node rogue">
-            <rect x="80" y="384" width="66" height="34" rx="10" class="box box--rogue"/>
-            <rect x="92" y="358" width="4" height="28" rx="2" class="ant ant--rogue"/>
-            <rect x="130" y="358" width="4" height="28" rx="2" class="ant ant--rogue"/>
-            <text x="113" y="446" text-anchor="middle" class="svg-label svg-label--danger">Borne inconnue</text>
-          </g>
-
-          <!-- poste connu -->
-          <g class="g s2 node">
-            <rect x="470" y="380" width="70" height="44" rx="6" class="box"/>
-            <rect x="460" y="424" width="90" height="6" rx="3" class="box"/>
-            <path d="M494 402 l7 7 l14 -14" class="check"/>
-            <text x="505" y="456" text-anchor="middle" class="svg-label">Poste connu</text>
-          </g>
-
-          <!-- téléphone + alerte -->
-          <g class="g s5 node phone">
-            <rect x="500" y="70" width="70" height="128" rx="14" class="box"/>
-            <rect x="508" y="84" width="54" height="34" rx="6" class="notif"/>
-            <rect x="514" y="92" width="34" height="5" rx="2.5" class="notif-line"/>
-            <rect x="514" y="103" width="24" height="5" rx="2.5" class="notif-line"/>
-            <text x="535" y="222" text-anchor="middle" class="svg-label">Alerte reçue</text>
-          </g>
-        </svg>
-        <div class="how__caption" id="how-caption" aria-live="polite">1 / 5 · Écouter</div>
-      </div>
-
-      <ol class="how__steps">
-        <li class="how__step is-active" data-step="1">
-          <span class="how__num">01</span>
-          <h3>Écouter les ondes</h3>
-          <p>Une sonde Raspberry Pi, équipée d'un dongle Wi-Fi en mode monitor, écoute les trames de gestion avec Kismet. Elle recense les bornes, les SSID et les adresses MAC autour d'elle. Elle ne fait qu'écouter&nbsp;: elle n'émet rien et ne lit aucun contenu.</p>
-        </li>
-        <li class="how__step" data-step="2">
-          <span class="how__num">02</span>
-          <h3>Recenser le réseau</h3>
-          <p>NetAlertX scanne le réseau filaire (ARP, DHCP, SNMP). Chaque appareil est comparé à un référentiel connu&nbsp;/&nbsp;inconnu, alimenté par import CSV, par GLPI ou par un mode apprentissage.</p>
-        </li>
-        <li class="how__step" data-step="3">
-          <span class="how__num">03</span>
-          <h3>Croiser les événements</h3>
-          <p>Le moteur AURA relie un événement radio à un événement réseau dans une même fenêtre de temps. Un poste qui disparaît du réseau au moment où une nouvelle borne apparaît, c'est probablement un partage de connexion.</p>
-        </li>
-        <li class="how__step" data-step="4">
-          <span class="how__num">04</span>
-          <h3>Localiser sur le switch</h3>
-          <p>En lisant les tables MAC des switchs en SNMP, AURA retrouve sur quel port physique est branché l'appareil ou la borne suspecte. L'administrateur sait où aller.</p>
-        </li>
-        <li class="how__step" data-step="5">
-          <span class="how__num">05</span>
-          <h3>Alerter, et expliquer</h3>
-          <p>L'alerte arrive sur le tableau de bord et sur le téléphone. La gravité est calculée par les règles&nbsp;; l'IA se contente de rédiger un résumé en français et de proposer une action.</p>
-        </li>
-      </ol>
+    <div class="nav-cards">
+      <a class="cell glass nav-card" href="le-projet.html" data-reveal>
+        <h3>Le projet</h3>
+        <p>Du réseau aux ondes : la démarche, les scénarios que nous cherchons à repérer et l’outil module par module.</p>
+        <span class="nav-card__go">Comprendre AURA →</span>
+      </a>
+      <a class="cell glass nav-card" href="demo.html" data-reveal data-delay="0.08">
+        <h3>La démonstration</h3>
+        <p>Un tableau de bord simulé : changez de vue, cherchez un appareil, déclenchez une alerte fictive.</p>
+        <span class="nav-card__go">Piloter la démo →</span>
+      </a>
+      <a class="cell glass nav-card" href="comparatif.html" data-reveal data-delay="0.16">
+        <h3>Face à l’existant</h3>
+        <p>Ce qu’AURA apporte par rapport aux outils actuels, pourquoi ces choix, le matériel et nos sources.</p>
+        <span class="nav-card__go">Voir le comparatif →</span>
+      </a>
+      <a class="cell glass nav-card" href="faq.html" data-reveal data-delay="0.24">
+        <h3>Questions fréquentes</h3>
+        <p>Vie privée, RGPD, matériel, portée réelle : les réponses claires aux questions qui reviennent.</p>
+        <span class="nav-card__go">Lire la FAQ →</span>
+      </a>
+      <a class="cell glass nav-card" href="equipe.html" data-reveal data-delay="0.32">
+        <h3>L’équipe</h3>
+        <p>Quatre étudiants du BUT3 Réseaux &amp; Télécoms, leurs rôles, et comment nous contacter.</p>
+        <span class="nav-card__go">Rencontrer l’équipe →</span>
+      </a>
+      <a class="cell glass nav-card" href="suggestions.html" data-reveal data-delay="0.4">
+        <h3>Proposer une idée</h3>
+        <p>Une suggestion, un passage du site peu clair ? Dites-nous ce qui vous aiderait.</p>
+        <span class="nav-card__go">Nous écrire →</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============ SCÉNARIOS ============ -->
-<section class="section section--light scenarios" id="scenarios">
-  <div class="container">
-    <header class="section__head section__head--split">
-      <div>
-        <p class="eyebrow eyebrow--dark reveal">Scénarios de démonstration</p>
-        <h2 class="section__title reveal" data-delay="1">Quatre intrusions.<br>Quatre alertes.</h2>
-      </div>
-      <div class="carousel__controls reveal" data-delay="2">
-        <button class="round-btn" data-carousel="prev" aria-label="Scénario précédent">‹</button>
-        <button class="round-btn" data-carousel="next" aria-label="Scénario suivant">›</button>
-      </div>
-    </header>
-  </div>
-
-  <div class="carousel" id="carousel" tabindex="0" aria-label="Scénarios, faire défiler horizontalement">
-    <article class="card card--scenario">
-      <div class="card__art art-1" aria-hidden="true">
-        <img src="assets/img/scenario-inconnu.svg" alt="" width="320" height="200" loading="lazy">
-      </div>
-      <span class="badge badge--high">Priorité 1</span>
-      <h3>Appareil inconnu sur le réseau</h3>
-      <p>Un appareil absent du référentiel se branche. L'alerte part sur le PC et le téléphone, avec le port du switch concerné.</p>
-    </article>
-    <article class="card card--scenario">
-      <div class="card__art art-2" aria-hidden="true">
-        <img src="assets/img/scenario-borne.svg" alt="" width="320" height="200" loading="lazy">
-      </div>
-      <span class="badge badge--high">Priorité 2</span>
-      <h3>Borne Wi-Fi sauvage</h3>
-      <p>Une borne non déclarée est branchée au réseau. La sonde la voit dans les ondes, puis AURA retrouve son port de switch.</p>
-    </article>
-    <article class="card card--scenario">
-      <div class="card__art art-3" aria-hidden="true">
-        <img src="assets/img/scenario-partage.svg" alt="" width="320" height="200" loading="lazy">
-      </div>
-      <span class="badge badge--mid">Priorité 3</span>
-      <h3>Partage de connexion</h3>
-      <p>Un poste connu quitte le réseau et rejoint un point d'accès apparu au même moment. Il sort sur Internet sans pare-feu ni journalisation.</p>
-    </article>
-    <article class="card card--scenario">
-      <div class="card__art art-4" aria-hidden="true">
-        <img src="assets/img/scenario-switch.svg" alt="" width="320" height="200" loading="lazy">
-      </div>
-      <span class="badge badge--mid">Priorité 4</span>
-      <h3>Switch non déclaré</h3>
-      <p>Plusieurs adresses MAC arrivent d'un coup derrière le même port. Quelqu'un a glissé un switch sous un bureau.</p>
-    </article>
-  </div>
-</section>
-
-<!-- ============ DÉMO SIMULÉE ============ -->
-<section class="section section--dark demo" id="demo">
-  <div class="container">
-    <header class="section__head">
-      <p class="eyebrow reveal">Tableau de bord</p>
-      <h2 class="section__title reveal" data-delay="1">Tout voir.<br><span class="gradient-text">En temps réel.</span></h2>
-      <p class="section__lead reveal" data-delay="2">Un aperçu du tableau de bord que nous développons. Les alertes ci-dessous défilent en direct, à partir de données fictives.</p>
-    </header>
-
-    <div class="window reveal" data-delay="2">
-      <div class="window__bar">
-        <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
-        <span class="window__title">aura.local · Tableau de bord</span>
-        <span class="window__tag">Démo simulée</span>
-      </div>
-      <div class="window__body">
-        <div class="kpis">
-          <div class="kpi"><span class="kpi__label">Appareils connus</span><span class="kpi__value" id="kpi-known">128</span></div>
-          <div class="kpi"><span class="kpi__label">À qualifier</span><span class="kpi__value kpi__value--warn" id="kpi-unknown">2</span></div>
-          <div class="kpi"><span class="kpi__label">Bornes Wi-Fi vues</span><span class="kpi__value" id="kpi-ap">14</span></div>
-          <div class="kpi"><span class="kpi__label">Alertes (24&nbsp;h)</span><span class="kpi__value kpi__value--alert" id="kpi-alerts">3</span></div>
-        </div>
-        <div class="dash">
-          <div class="dash__graph">
-            <svg viewBox="0 0 400 260" id="mini-graph" aria-label="Graphe du réseau (fictif)" role="img"></svg>
-            <div class="dash__legend">
-              <span><i class="lg lg--ok"></i>connu</span>
-              <span><i class="lg lg--warn"></i>à qualifier</span>
-              <span><i class="lg lg--bad"></i>suspect</span>
-            </div>
-          </div>
-          <ul class="feed" id="feed" aria-live="polite" aria-label="Flux d'alertes (fictif)"></ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LA SONDE ============ -->
-<section class="section section--black probe" id="sonde">
-  <div class="container probe__layout">
-    <div class="probe__text">
-      <p class="eyebrow reveal">La sonde</p>
-      <h2 class="section__title reveal" data-delay="1">Petite.<br>Discrète.<br><span class="gradient-text">Toujours à l'écoute.</span></h2>
-      <p class="section__lead reveal" data-delay="2">Le serveur est en salle technique et n'a pas de radio. Il faut donc un capteur physiquement présent dans la pièce à surveiller&nbsp;: c'est le rôle de la sonde.</p>
-      <ul class="specs reveal" data-delay="3">
-        <li><strong>Raspberry Pi</strong><span>Kismet en écoute permanente</span></li>
-        <li><strong>MediaTek MT7612U</strong><span>mode monitor, 2,4 et 5&nbsp;GHz</span></li>
-        <li><strong>Antenne externe</strong><span>meilleure portée qu'une puce intégrée</span></li>
-        <li><strong>Boîtier imprimé en 3D</strong><span>conçu par l'équipe sous SolidWorks</span></li>
-      </ul>
-    </div>
-    <div class="probe__visual" id="probe-visual">
-      <div class="probe__glow"></div>
-      <img class="probe__img parallax" data-speed="0.08" src="assets/img/sonde.svg" alt="Illustration de la sonde AURA : un boîtier compact avec une antenne Wi-Fi externe" width="520" height="520">
-      <span class="chip chip--a parallax" data-speed="-0.12">Écoute passive</span>
-      <span class="chip chip--b parallax" data-speed="0.16">API REST Kismet</span>
-      <span class="chip chip--c parallax" data-speed="-0.06">Aucune émission</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SÉCURITÉ & RGPD ============ -->
-<section class="section section--light trust" id="securite">
-  <div class="container">
-    <header class="section__head">
-      <p class="eyebrow eyebrow--dark reveal">Sécurité &amp; vie privée</p>
-      <h2 class="section__title reveal" data-delay="1">Un outil de sécurité<br>doit d'abord être sûr.</h2>
-    </header>
-    <div class="tiles">
-      <article class="tile reveal">
-        <img src="assets/img/icon-lock.svg" alt="" width="44" height="44">
-        <h3>Jamais exposé sur Internet</h3>
-        <p>L'accès à distance passe par un VPN (WireGuard ou Tailscale). L'interface est protégée par mot de passe, jamais celui par défaut.</p>
-      </article>
-      <article class="tile reveal" data-delay="1">
-        <img src="assets/img/icon-ear.svg" alt="" width="44" height="44">
-        <h3>Écoute, sans lire</h3>
-        <p>La sonde relève des adresses MAC et des noms de réseau. Elle ne capture aucun contenu et n'émet aucun signal.</p>
-      </article>
-      <article class="tile reveal" data-delay="2">
-        <img src="assets/img/icon-key.svg" alt="" width="44" height="44">
-        <h3>Aucun secret dans le code</h3>
-        <p>Mots de passe, clés d'API et jetons restent dans un fichier <code>.env</code> ignoré par Git. NetAlertX est tenu à jour.</p>
-      </article>
-      <article class="tile reveal" data-delay="3">
-        <img src="assets/img/icon-shield.svg" alt="" width="44" height="44">
-        <h3>RGPD pris au sérieux</h3>
-        <p>Les adresses MAC sont des données personnelles. Nous documentons le traitement, sa durée de conservation et son cadre légal.</p>
-      </article>
-    </div>
-    <p class="trust__note reveal">Ce site applique les mêmes principes&nbsp;: aucun cookie, aucun traceur, aucune police ni script chargé depuis un service tiers. <a href="mentions-legales.html#confidentialite">En savoir plus</a></p>
-  </div>
-</section>
-
-<!-- ============ FEUILLE DE ROUTE ============ -->
-<section class="section section--dark roadmap" id="feuille-de-route">
-  <div class="container">
-    <header class="section__head">
-      <p class="eyebrow reveal">Feuille de route</p>
-      <h2 class="section__title reveal" data-delay="1">D'octobre à juin.<br><span class="gradient-text">Une étape à la fois.</span></h2>
-    </header>
-
-    <!-- Statut à mettre à jour à la main : data-status="done" | "doing" | "todo" (voir docs/site-web.md) -->
-    <ol class="timeline" id="timeline">
-      <li class="milestone" data-status="done"><span class="milestone__id">O0</span><div><h3>Socle</h3><p>NetAlertX sur une VM Proxmox, premiers scans</p></div><time>mi-octobre</time></li>
-      <li class="milestone" data-status="doing"><span class="milestone__id">O1</span><div><h3>Sonde Wi-Fi</h3><p>Kismet sur le Raspberry Pi et plugin NetAlertX</p></div><time>mi-novembre</time></li>
-      <li class="milestone" data-status="todo"><span class="milestone__id">O2</span><div><h3>Connu / inconnu</h3><p>Import CSV, validation, mode apprentissage</p></div><time>mi-décembre</time></li>
-      <li class="milestone" data-status="todo"><span class="milestone__id">O3</span><div><h3>Corrélation</h3><p>Règle «&nbsp;partage de connexion&nbsp;» et alerte</p></div><time>fin janvier</time></li>
-      <li class="milestone" data-status="todo"><span class="milestone__id">O4</span><div><h3>Localisation</h3><p>Port du switch par SNMP, radio 433&nbsp;/&nbsp;868&nbsp;MHz en bonus</p></div><time>fin février</time></li>
-      <li class="milestone" data-status="todo"><span class="milestone__id">O5</span><div><h3>Interfaces</h3><p>Tableau de bord, graphe, cartographie, VLAN</p></div><time>fin mars</time></li>
-      <li class="milestone" data-status="todo"><span class="milestone__id">O6</span><div><h3>IA et GLPI</h3><p>Résumé des alertes, connecteur GLPI, capteur IR</p></div><time>fin avril</time></li>
-      <li class="milestone" data-status="todo"><span class="milestone__id">O7</span><div><h3>Durcissement</h3><p>Accès distant sécurisé, analyse de risque</p></div><time>mi-mai</time></li>
-      <li class="milestone" data-status="todo"><span class="milestone__id">O8</span><div><h3>Démo finale</h3><p>Scénarios répétés, vidéo, rapport</p></div><time>juin</time></li>
-    </ol>
-    <div class="progress reveal" aria-hidden="true"><div class="progress__bar" id="progress-bar"></div></div>
-    <p class="progress__label reveal" id="progress-label"></p>
-  </div>
-</section>
-
-<!-- ============ OPEN SOURCE ============ -->
-<section class="section section--light oss" id="open-source">
-  <div class="container">
-    <header class="section__head">
-      <p class="eyebrow eyebrow--dark reveal">Open source</p>
-      <h2 class="section__title reveal" data-delay="1">Nous ne refaisons pas<br>ce qui existe déjà.</h2>
-      <p class="section__lead section__lead--dark reveal" data-delay="2">AURA s'appuie sur des briques libres reconnues et leur ajoute ce qu'elles ne savent pas faire. Nos plugins NetAlertX sont publiés sous GPL&nbsp;3.0.</p>
-    </header>
-    <div class="oss__grid">
-      <div class="oss__item reveal"><strong>NetAlertX</strong><span>surveillance du réseau filaire</span><em>GPL 3.0</em></div>
-      <div class="oss__item reveal" data-delay="1"><strong>Kismet</strong><span>écoute Wi-Fi, utilisé par son API</span><em>GPL 2.0</em></div>
-      <div class="oss__item reveal" data-delay="2"><strong>Netdisco</strong><span>méthode SNMP dont nous nous inspirons</span><em>BSD 3</em></div>
-      <div class="oss__item reveal" data-delay="3"><strong>D3.js</strong><span>graphe du tableau de bord</span><em>ISC</em></div>
-      <div class="oss__item reveal" data-delay="4"><strong>rtl_433</strong><span>radio 433&nbsp;/&nbsp;868&nbsp;MHz (bonus)</span><em>GPL 2.0</em></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ÉQUIPE ============ -->
-<section class="section section--dark team" id="equipe">
-  <div class="container">
-    <header class="section__head">
-      <p class="eyebrow reveal">L'équipe</p>
-      <h2 class="section__title reveal" data-delay="1">Quatre étudiants.<br><span class="gradient-text">Un seul réseau à protéger.</span></h2>
-      <p class="section__lead reveal" data-delay="2">BUT Réseaux &amp; Télécommunications, parcours cybersécurité, IUT de Valence, promotion 2026-2027.</p>
-    </header>
-    <div class="team__grid">
-      <article class="member reveal">
-        <div class="avatar avatar--1" aria-hidden="true">YL</div>
-        <h3>Yanis Lameche</h3>
-        <p class="member__role">Chef de projet</p>
-        <p>Planning, collecte NetAlertX, back-end, sonde Wi-Fi, documentation technique et pitch.</p>
-      </article>
-      <article class="member reveal" data-delay="1">
-        <div class="avatar avatar--2" aria-hidden="true">BF</div>
-        <h3>Baptiste Faure--Streiff</h3>
-        <p class="member__role">Sécurité &amp; infrastructure</p>
-        <p>Durcissement, analyse de risque, VM serveur, capteur infrarouge et communication.</p>
-      </article>
-      <article class="member reveal" data-delay="2">
-        <div class="avatar avatar--3" aria-hidden="true">MP</div>
-        <h3>Mahé Peligry</h3>
-        <p class="member__role">IA, design &amp; RGPD</p>
-        <p>API vers l'IA, charte graphique et maquettes, cadre légal, guide utilisateur et tests d'ergonomie.</p>
-      </article>
-      <article class="member reveal" data-delay="3">
-        <div class="avatar avatar--4" aria-hidden="true">MP</div>
-        <h3>Mathys Pannetier</h3>
-        <p class="member__role">Interface &amp; conception</p>
-        <p>Tableau de bord web, boîtiers imprimés en 3D, montage vidéo et communication.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ AVIS + QR ============ -->
-<section class="section section--gradient feedback" id="avis">
-  <div class="container feedback__layout">
-    <div>
-      <p class="eyebrow eyebrow--dark reveal">Votre avis compte</p>
-      <h2 class="section__title reveal" data-delay="1">Vous avez assisté<br>au pitch&nbsp;?</h2>
-      <p class="section__lead section__lead--dark reveal" data-delay="2">Trente secondes, cinq questions, aucune donnée personnelle demandée. Vos réponses nous aident à améliorer AURA.</p>
-      <a class="btn btn--dark reveal" data-delay="3" href="satisfaction.html">Répondre au questionnaire</a>
-    </div>
-    <figure class="qr-card reveal" data-delay="2">
-      <img src="assets/qr/satisfaction.svg" alt="QR code vers le questionnaire de satisfaction" width="220" height="220">
-      <figcaption>Scannez avec votre téléphone</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section class="section section--dark contact" id="contact">
-  <div class="container contact__layout">
-    <div>
-      <p class="eyebrow reveal">Contact &amp; support</p>
-      <h2 class="section__title reveal" data-delay="1">Une question&nbsp;?<br><span class="gradient-text">Écrivez‑nous.</span></h2>
-    </div>
-    <div class="contact__cards">
-      <div class="contact__card reveal" data-delay="1">
-        <img src="assets/img/icon-mail.svg" alt="" width="36" height="36">
-        <div>
-          <h3>Support</h3>
-          <p class="contact__value" data-config="supportEmail" data-empty="Adresse Proton Mail bientôt disponible">Adresse Proton Mail bientôt disponible</p>
-        </div>
-      </div>
-      <div class="contact__card reveal" data-delay="2">
-        <img src="assets/img/icon-share.svg" alt="" width="36" height="36">
-        <div>
-          <h3>Réseaux sociaux</h3>
-          <div class="socials" data-socials data-empty="Nos réseaux arrivent très bientôt.">Nos réseaux arrivent très bientôt.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<section class="partners" aria-label="Établissements"><div class="container"><ul class="partners__logos"><li><img src="assets/img/brand/iut-valence.png" srcset="assets/img/brand/iut-valence-256.webp 256w, assets/img/brand/iut-valence.png 420w" sizes="(max-width: 560px) calc((100vw - 72px) / 2), (max-width: 860px) calc((100vw - 144px) / 4), 240px" alt="IUT de Valence" width="420" height="100" loading="lazy"></li><li><img src="assets/img/brand/but-rt.png" srcset="assets/img/brand/but-rt-256.webp 256w, assets/img/brand/but-rt.png 420w" sizes="(max-width: 560px) calc((100vw - 72px) / 2), (max-width: 860px) calc((100vw - 144px) / 4), 240px" alt="BUT Réseaux et Télécommunications" width="420" height="99" loading="lazy"></li><li><img src="assets/img/brand/uga.png" srcset="assets/img/brand/uga-256.webp 256w, assets/img/brand/uga.png 360w" sizes="(max-width: 560px) calc((100vw - 72px) / 2), (max-width: 860px) calc((100vw - 144px) / 4), 240px" alt="Université Grenoble Alpes" width="360" height="240" loading="lazy"></li><li><img src="assets/img/brand/greta.png" srcset="assets/img/brand/greta-256.webp 256w, assets/img/brand/greta.png 360w" sizes="(max-width: 560px) calc((100vw - 72px) / 2), (max-width: 860px) calc((100vw - 144px) / 4), 240px" alt="GRETA" width="360" height="156" loading="lazy"></li></ul><p>Projet tutoré BUT3 Réseaux &amp; Télécommunications, parcours cybersécurité · IUT de Valence, Université Grenoble Alpes · 2026–2027</p></div></section>
 </main>
 
-<!-- ============ PIED DE PAGE ============ -->
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <img src="assets/img/logo.svg" alt="" width="22" height="22">
+      <img src="assets/img/logo.svg" alt="" width="22" height="22" loading="lazy">
       <span>AURA · Analyse Unifiée du Réseau et des Antennes</span>
     </div>
     <nav class="footer__links" aria-label="Liens de pied de page">
-      <a href="satisfaction.html">Donner mon avis</a>
-      <a href="qr.html">Kit QR codes</a>
+      <a href="suggestions.html">Améliorations et suggestions</a>
+      <a href="faq.html">Questions fréquentes</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="mentions-legales.html#confidentialite">Confidentialité</a>
     </nav>
-    <p class="footer__legal">Projet tutoré BUT R&amp;T, IUT de Valence · <span id="year">2026</span> · Site sans cookie ni traceur.</p>
+    <p class="footer__legal">Projet tutoré BUT R&amp;T, IUT de Valence · <span id="year">2026</span> · Sans mesure d’audience. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
   </div>
+  <p class="footer__giant" aria-hidden="true">AURA</p>
 </footer>
 </body>
 </html>

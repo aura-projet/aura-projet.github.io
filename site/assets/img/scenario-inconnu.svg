@@ -1,18 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d0d1a"/><stop offset="1" stop-color="#1b1036"/></linearGradient><linearGradient id="aura" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee6d6"/><stop offset=".5" stop-color="#6e7bff"/><stop offset="1" stop-color="#c86bfa"/></linearGradient><filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="6"/></filter></defs>
-  <rect width="320" height="200" fill="url(#bg)"/>
-  <g stroke="#2e2e48" stroke-width="1.2">
-    <line x1="160" y1="100" x2="70" y2="50"/><line x1="160" y1="100" x2="60" y2="130"/><line x1="160" y1="100" x2="110" y2="170"/>
-    <line x1="160" y1="100" x2="210" y2="35"/><line x1="160" y1="100" x2="270" y2="70"/><line x1="160" y1="100" x2="200" y2="168"/>
-    <line x1="160" y1="100" x2="255" y2="140" stroke="#ff453a" stroke-dasharray="5 4" stroke-width="2"/>
-  </g>
-  <g fill="#30d158">
-    <circle cx="70" cy="50" r="7"/><circle cx="60" cy="130" r="7"/><circle cx="110" cy="170" r="7"/>
-    <circle cx="210" cy="35" r="7"/><circle cx="270" cy="70" r="7"/><circle cx="200" cy="168" r="7"/>
-  </g>
-  <circle cx="160" cy="100" r="18" fill="url(#aura)"/>
-  <circle cx="255" cy="140" r="22" fill="#ff453a" opacity=".45" filter="url(#glow)"/>
-  <circle cx="255" cy="140" r="12" fill="#ff453a"/>
-  <text x="255" y="145" text-anchor="middle" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#fff">?</text>
-  <rect x="196" y="98" width="72" height="20" rx="10" fill="#ff453a"/>
-  <text x="232" y="112" text-anchor="middle" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#fff">INCONNU</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 300" width="460" height="300">
+<title>Appareil inconnu absent du référentiel</title>
+<defs><radialGradient id="room" cx="35%" cy="20%" r="100%"><stop stop-color="#1d344f"/><stop offset="1" stop-color="#12253c"/></radialGradient></defs>
+<g transform="translate(24 20)">
+<rect x="8" y="8" width="384" height="234" rx="10" fill="url(#room)" stroke="#9eb9c8" stroke-width="2"/>
+<path d="M250 8V96M250 118V242M250 130H392" fill="none" stroke="#9eb9c8" stroke-width="2"/>
+<g font-family="Arial,sans-serif" font-size="11" letter-spacing=".6" fill="#a9c3d8"><text x="20" y="232">BUREAU</text><text x="262" y="24">RÉUNION</text><text x="262" y="232">LOCAL TECHNIQUE</text></g>
+<path d="M70 53V120H322V190M170 53V120M70 183V120M170 183V120" stroke="#aec9d4" fill="none" stroke-width="1.5"/>
+<g fill="#253e57" stroke="#819fb6"><rect x="40" y="40" width="60" height="26" rx="7"/><rect x="140" y="40" width="60" height="26" rx="7"/><rect x="40" y="170" width="60" height="26" rx="7"/><rect x="140" y="170" width="60" height="26" rx="7"/><rect x="285" y="45" width="72" height="40" rx="20"/></g>
+<rect x="290" y="190" width="64" height="20" rx="5" fill="#31546a"/><path d="M298 200h6M310 200h6M322 200h6M334 200h6" stroke="#9de1e3" stroke-width="3"/>
+<g font-family="Arial,sans-serif" font-size="12" fill="#c6dced"><text x="304" y="181">switch</text><text x="217" y="178">sonde</text></g>
+<circle cx="232" cy="150" r="13" fill="#04d2f6" fill-opacity=".12" stroke="#0aa6bb"/><circle cx="232" cy="150" r="5" fill="#08b0b3"/>
+<g fill="#a6ce77"><circle cx="70" cy="53" r="5"/><circle cx="170" cy="53" r="5"/><circle cx="70" cy="183" r="5"/><circle cx="170" cy="183" r="5"/></g><path d="M321 71V190" fill="none" stroke="#ffae82" stroke-width="2"/><circle cx="321" cy="65" r="16" fill="#e84e0e" fill-opacity=".25"/><circle cx="321" cy="65" r="6" fill="#ffae82"/><text x="321" y="106" text-anchor="middle" font-family="monospace" font-size="12" fill="#ffc3a3">3A:F1:…:9C</text><text x="12" y="263" font-family="Arial,sans-serif" font-size="13" fill="#c6dced">Absent du référentiel · port non disponible</text>
+</g></svg>

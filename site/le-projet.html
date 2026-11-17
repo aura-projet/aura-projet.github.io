@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Le projet AURA · Du réseau aux ondes</title>
+  <meta name="description" content="Comment AURA fonctionne : écoute Wi-Fi, collecte filaire, corrélation ondes/réseau et alertes expliquées. Les scénarios visés et l’outil module par module.">
+  <meta name="theme-color" content="#070e20">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/scene-3d.css">
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/constellation.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/hero.js" type="module"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner glass">
+    <a class="nav__logo" href="index.html" aria-label="AURA, accueil">
+      <img src="assets/img/logo.svg" alt="" width="26" height="26" loading="lazy">
+      <span>AURA</span>
+    </a>
+    <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav__menu" id="menu" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="le-projet.html" class="is-active" aria-current="page">Le projet</a>
+      <a href="demo.html">Démo</a>
+      <a href="comparatif.html">Comparatif</a>
+      <a href="faq.html">FAQ</a>
+      <a href="equipe.html">Équipe</a>
+      <a class="nav__cta js-magnetic" href="suggestions.html">Proposer une idée</a>
+    </nav>
+  </div>
+</header>
+
+<div class="aura-field" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="constellation" aria-hidden="true"></canvas>
+<main id="contenu">
+
+<!-- ============ EN-TÊTE DE PAGE ============ -->
+<section class="hero hero--page">
+  <div class="hero__inner">
+    <nav class="crumbs" aria-label="Fil d’ariane"><a href="index.html">Accueil</a><i>/</i><span>Le projet</span></nav>
+    <p class="hero__kicker">La démarche</p>
+    <h1 data-reveal>Du réseau aux ondes,<br>les indices se croisent.</h1>
+    <p class="hero__sub" data-reveal data-delay="0.1">AURA rapproche les observations du réseau filaire et du Wi-Fi pour aider l’administrateur à comprendre ce qui se passe — sans rien installer sur les postes.</p>
+    <div class="hero__actions" data-reveal data-delay="0.18">
+      <a class="btn btn--primary js-magnetic" href="demo.html">Voir la démonstration <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a class="btn btn--glass" href="#fonctionnement">Lire le fonctionnement</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FONCTIONNEMENT ============ -->
+<section class="section how" id="fonctionnement">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Cinq temps,<br>une même lecture.</h2><p class="section__lead">Nous rapprochons les observations du réseau filaire et du Wi-Fi pour aider l’administrateur à comprendre ce qui se passe.</p>
+    </header>
+
+    <div class="how__layout">
+      <div class="how__visual glass" data-reveal>
+        <div class="scene-3d scene-3d--overview">
+        <canvas id="network-canvas" data-network-scene="overview" aria-hidden="true"></canvas>
+        <svg class="how-svg step-1" id="how-svg" viewBox="0 0 640 520" role="img" aria-labelledby="how-svg-title">
+          <title id="how-svg-title">Schéma de principe : sonde Wi-Fi, serveur AURA et alertes. La localisation sur le switch est un objectif à venir.</title>
+          <defs>
+            <radialGradient id="g-core" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#7BEBFF"/>
+              <stop offset="100%" stop-color="#08B0B3"/>
+            </radialGradient>
+            <linearGradient id="g-aura" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#04D2F6"/>
+              <stop offset="55%" stop-color="#08B0B3"/>
+              <stop offset="100%" stop-color="#E84E0E"/>
+            </linearGradient>
+          </defs>
+          <g class="g s3"><path class="flow" d="M150 130 C 230 130, 250 200, 300 210"/></g>
+          <g class="g s2 s3"><path class="flow" d="M320 370 L 320 262"/></g>
+          <g class="g s4"><path class="cable" d="M150 400 L 280 400"/><text x="215" y="388" class="svg-label svg-label--accent" text-anchor="middle">port à identifier</text></g>
+          <g class="g s2"><path class="cable cable--plain" d="M360 400 L 470 400"/></g>
+          <g class="g s5"><path class="flow flow--alert" d="M360 200 C 420 180, 450 140, 500 130"/></g>
+          <g class="g s1 waves"><circle cx="110" cy="120" r="40"/><circle cx="110" cy="120" r="40"/><circle cx="110" cy="120" r="40"/></g>
+          <g class="g s1 s3 node"><rect x="78" y="100" width="64" height="44" rx="12" class="box"/><rect x="122" y="70" width="5" height="32" rx="2.5" class="ant"/><circle cx="96" cy="122" r="5" class="led"/><text x="110" y="170" text-anchor="middle" class="svg-label">Sonde Wi-Fi</text></g>
+          <g class="g s2 s3 s5 node"><circle cx="320" cy="210" r="52" class="core-ring"/><circle cx="320" cy="210" r="40" fill="url(#g-core)"/><text x="320" y="216" text-anchor="middle" class="svg-core">AURA</text><text x="320" y="290" text-anchor="middle" class="svg-label">NetAlertX + moteur AURA</text></g>
+          <g class="g s2 s4 node"><rect x="280" y="380" width="80" height="40" rx="8" class="box"/><g class="ports"><rect x="290" y="404" width="8" height="8" rx="1"/><rect x="302" y="404" width="8" height="8" rx="1"/><rect x="314" y="404" width="8" height="8" rx="1" class="port-hot"/><rect x="326" y="404" width="8" height="8" rx="1"/><rect x="338" y="404" width="8" height="8" rx="1"/></g><text x="320" y="446" text-anchor="middle" class="svg-label">Switch · SNMP à venir</text></g>
+          <g class="g s1 s4 node rogue"><rect x="80" y="384" width="66" height="34" rx="10" class="box box--rogue"/><rect x="92" y="358" width="4" height="28" rx="2" class="ant ant--rogue"/><rect x="130" y="358" width="4" height="28" rx="2" class="ant ant--rogue"/><text x="113" y="446" text-anchor="middle" class="svg-label svg-label--danger">Borne inconnue</text></g>
+          <g class="g s2 node"><rect x="470" y="380" width="70" height="44" rx="6" class="box"/><rect x="460" y="424" width="90" height="6" rx="3" class="box"/><path d="M494 402 l7 7 l14 -14" class="check"/><text x="505" y="456" text-anchor="middle" class="svg-label">Poste connu</text></g>
+          <g class="g s5 node phone"><rect x="500" y="70" width="70" height="128" rx="14" class="box"/><rect x="508" y="84" width="54" height="34" rx="6" class="notif"/><rect x="514" y="92" width="34" height="5" rx="2.5" class="notif-line"/><rect x="514" y="103" width="24" height="5" rx="2.5" class="notif-line"/><text x="535" y="222" text-anchor="middle" class="svg-label">Tableau de bord</text></g>
+        </svg>
+        </div>
+        <div class="how__caption" id="how-caption" aria-live="polite">1 / 5 · Écouter</div>
+        <p class="scene-3d-note">Schéma animé pour expliquer le projet. Les flux sont illustratifs.</p>
+      </div>
+
+      <ol class="how__steps">
+        <li class="how__step is-active" data-step="1">
+          <span class="how__num">01</span>
+          <h3>Écouter les ondes</h3>
+          <p>Une sonde Raspberry Pi, équipée d'un dongle Wi-Fi en mode monitor, écoute les trames de gestion avec Kismet. Elle recense les bornes, les SSID et les adresses MAC autour d'elle, en 2,4&nbsp;GHz. Elle ne fait qu'écouter&nbsp;: elle n'émet rien et ne lit aucun contenu.</p>
+        </li>
+        <li class="how__step" data-step="2">
+          <span class="how__num">02</span>
+          <h3>Recenser le réseau</h3>
+          <p>NetAlertX recense les appareils présents sur le réseau filaire. Chaque appareil est comparé à un référentiel connu&nbsp;/&nbsp;inconnu, alimenté par import CSV ou par un mode apprentissage.</p>
+        </li>
+        <li class="how__step" data-step="3">
+          <span class="how__num">03</span>
+          <h3>Croiser les événements</h3>
+          <p>AURA rapproche les événements Wi-Fi et réseau qui surviennent dans un même intervalle de temps. Si un poste quitte le réseau au moment où une nouvelle borne apparaît, cela peut indiquer un partage de connexion. Ces indices restent à vérifier.</p>
+        </li>
+        <li class="how__step" data-step="4">
+          <span class="how__num">04</span>
+          <h3>Localiser sur le switch <span class="tag">Objectif à venir</span></h3>
+          <p>Nous prévoyons de lire les tables MAC des switchs en SNMP pour retrouver un port physique. Cette étape n'est pas en place : aujourd'hui, AURA ne connaît pas le port de l'appareil.</p>
+        </li>
+        <li class="how__step" data-step="5">
+          <span class="how__num">05</span>
+          <h3>Alerter, et expliquer</h3>
+          <p>L'alerte reste probable : l'administrateur voit les indices et la règle qui l'a déclenchée. La gravité est calculée par les règles. Moins de cinq minutes entre l'événement et l'alerte reste notre objectif, pas une garantie actuelle.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCÉNARIOS ============ -->
+<section class="section scenarios" id="scenarios">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Ce que nous cherchons<br>à repérer.</h2>
+      <p class="section__lead">Un appareil de plus, une borne inattendue… Voici quatre situations qui méritent l’attention d’un administrateur. Les scènes ci-dessous sont des illustrations, pas les observations d’un réseau réel.</p>
+    </header>
+    <div class="bento bento--scenarios">
+      <article class="cell glass scenario scenario--1" data-reveal>
+        <div class="scene-3d"><canvas data-network-scene="unknown" aria-hidden="true"></canvas><img class="scenario__art" src="assets/img/scenario-inconnu.svg" alt="Illustration : un nouvel appareil est relié au réseau" width="460" height="300" loading="lazy"></div>
+        <div class="scenario__text"><span class="tag">Priorité 1</span><h3>Un appareil que personne n’a déclaré</h3><p>Il vient de se brancher, mais il n’est pas dans le référentiel. NetAlertX le repère ; l’administrateur peut ensuite le reconnaître ou le laisser à vérifier dans AURA.</p></div>
+      </article>
+      <article class="cell glass scenario scenario--2" data-reveal data-delay="0.08">
+        <div class="scene-3d"><canvas data-network-scene="rogue" aria-hidden="true"></canvas><img class="scenario__art" src="assets/img/scenario-borne.svg" alt="Illustration : une borne Wi-Fi inconnue apparaît près de la sonde" width="460" height="300" loading="lazy"></div>
+        <div class="scenario__text"><span class="tag">Priorité 2</span><h3>Une borne Wi-Fi inattendue</h3><p>La sonde observe une borne non déclarée dans les locaux. Retrouver le port de switch auquel elle serait reliée reste un objectif : cette localisation n’est pas encore disponible.</p></div>
+      </article>
+      <article class="cell glass scenario scenario--3" data-reveal>
+        <div class="scene-3d"><canvas data-network-scene="tether" aria-hidden="true"></canvas><img class="scenario__art" src="assets/img/scenario-partage.svg" alt="Illustration : un poste quitte le réseau tandis qu’une borne apparaît" width="460" height="300" loading="lazy"></div>
+        <div class="scenario__text"><span class="tag">Corrélation</span><h3>Un partage de connexion possible</h3><p>Un poste quitte le réseau au moment où une nouvelle borne apparaît. AURA rapproche ces indices pour attirer l’attention de l’administrateur, sans en faire une preuve.</p></div>
+      </article>
+      <article class="cell glass scenario scenario--4" data-reveal data-delay="0.08">
+        <div class="scene-3d"><canvas data-network-scene="switch" aria-hidden="true"></canvas><img class="scenario__art" src="assets/img/scenario-switch.svg" alt="Illustration : plusieurs appareils derrière un switch non déclaré" width="460" height="300" loading="lazy"></div>
+        <div class="scenario__text"><span class="tag">Sur données simulées</span><h3>Un petit switch ajouté sous un bureau</h3><p>Plusieurs adresses MAC arrivent derrière un même port. Cette règle dépend de la lecture SNMP ; nous la testons pour l’instant uniquement avec des données simulées.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUDIT PERMANENT ============ -->
+<section class="section audit" id="audit">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Un audit permanent,<br>sans rien installer sur les postes.</h2>
+      <p class="section__lead">AURA observe en continu et sans agent. Il ne lit aucun contenu : il regarde ce qui apparaît, ce qui émet et ce qui change, puis prévient quand quelque chose mérite un coup d’œil.</p>
+    </header>
+    <div class="bento audit-grid">
+      <article class="cell glass audit-item" data-reveal><h3>Nouveaux appareils filaires</h3><p>Tout équipement qui se branche sur le réseau est repéré et comparé au référentiel.</p></article>
+      <article class="cell glass audit-item" data-reveal data-delay="0.06"><h3>Bornes et clients Wi-Fi</h3><p>La sonde recense les SSID, les bornes et les clients autour d’elle, en écoute seule.</p></article>
+      <article class="cell glass audit-item" data-reveal data-delay="0.12"><h3>Corrélations dans le temps</h3><p>Un poste qui disparaît pendant qu’une borne apparaît : AURA rapproche ces indices.</p></article>
+      <article class="cell glass audit-item" data-reveal data-delay="0.18"><h3>Écarts avec l’habituel</h3><p>Un appareil vu la nuit, une MAC jamais déclarée : les écarts remontent pour vérification.</p></article>
+    </div>
+    <p class="audit-note">Portée actuelle&nbsp;: écoute Wi-Fi en 2,4&nbsp;GHz uniquement, et localisation précise sur le port de switch encore à venir. Les alertes restent «&nbsp;probables&nbsp;»&nbsp;: c’est l’administrateur qui tranche.</p>
+  </div>
+</section>
+
+<!-- ============ L'OUTIL EN MODULES ============ -->
+<section class="section tool" id="outil">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">L’outil AURA,<br>module par module.</h2>
+      <p class="section__lead">AURA n’est pas un bloc unique : c’est un petit nombre de modules qui se complètent. Certains fonctionnent déjà, d’autres sont des objectifs que nous annonçons clairement.</p>
+    </header>
+    <div class="bento modules">
+      <article class="cell glass module" data-reveal><span class="module__num">01</span><h3>Sonde Wi-Fi</h3><p>Un Raspberry Pi avec un dongle en mode monitor écoute les trames de gestion via Kismet, en 2,4&nbsp;GHz. AURA lit son API REST.</p><span class="tag tag--ok">En place</span></article>
+      <article class="cell glass module" data-reveal data-delay="0.06"><span class="module__num">02</span><h3>Collecte filaire</h3><p>NetAlertX recense les appareils du réseau filaire (ARP, DHCP, SNMP) et garde leur historique. Nous nous appuyons dessus, sans le réécrire.</p><span class="tag tag--ok">En place</span></article>
+      <article class="cell glass module" data-reveal data-delay="0.12"><span class="module__num">03</span><h3>Référentiel connu / inconnu</h3><p>Chaque appareil est comparé à un référentiel, avec un mode apprentissage pour distinguer ce qui est habituel de ce qui l’est moins.</p><span class="tag tag--progress">En cours</span></article>
+      <article class="cell glass module" data-reveal><span class="module__num">04</span><h3>Corrélation ondes / réseau</h3><p>Un moteur de règles rapproche un événement Wi-Fi et un événement réseau proches dans le temps pour signaler une situation probable.</p><span class="tag tag--progress">En cours</span></article>
+      <article class="cell glass module" data-reveal data-delay="0.06"><span class="module__num">05</span><h3>Localisation sur le switch</h3><p>Lire la table MAC d’un switch en SNMP pour retrouver le port physique d’un appareil. Nous nous inspirons de Netdisco.</p><span class="tag">Objectif à venir</span></article>
+      <article class="cell glass module" data-reveal data-delay="0.12"><span class="module__num">06</span><h3>Explication &amp; alertes</h3><p>Une IA reformule l’alerte en langage clair ; la gravité, elle, est calculée par les règles. Notifications par mail et Telegram.</p><span class="tag tag--progress">En cours</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPEL À L'ACTION ============ -->
+<section class="section page-cta" id="suite">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Place à la pratique.</h2>
+      <p class="section__lead">Le plus simple pour comprendre AURA, c’est de le voir à l’œuvre sur un tableau de bord simulé.</p>
+    </header>
+    <div class="hero__actions" data-reveal>
+      <a class="btn btn--primary js-magnetic" href="demo.html">Ouvrir la démonstration <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a class="btn btn--glass" href="comparatif.html">Comparer à l’existant</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="assets/img/logo.svg" alt="" width="22" height="22" loading="lazy">
+      <span>AURA · Analyse Unifiée du Réseau et des Antennes</span>
+    </div>
+    <nav class="footer__links" aria-label="Liens de pied de page">
+      <a href="suggestions.html">Améliorations et suggestions</a>
+      <a href="faq.html">Questions fréquentes</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mentions-legales.html#confidentialite">Confidentialité</a>
+    </nav>
+    <p class="footer__legal">Projet tutoré BUT R&amp;T, IUT de Valence · <span id="year">2026</span> · Sans mesure d’audience. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
+  </div>
+  <p class="footer__giant" aria-hidden="true">AURA</p>
+</footer>
+</body>
+</html>

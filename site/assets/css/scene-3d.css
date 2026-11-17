@@ -1,0 +1,18 @@
+/* Scoped progressive enhancement. Load after style.css. */
+.scene-3d { position: relative; isolation: isolate; min-width: 0; height: clamp(330px, 34vw, 410px); overflow: hidden; }
+.scene-3d > canvas, #hero-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; pointer-events: none; touch-action: auto; opacity: 0; }
+.scene-3d.is-3d-rendered > canvas, .hero__stage.is-rendered #hero-canvas { opacity: 1; }
+/* Never hide copy, captions or controls. Hide only the retained visual fallback. */
+.scene-3d__labels { display: none; position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.is-3d-rendered > .scene-3d__labels { display: block; }
+.scene-3d__node { position: absolute; transform: translate(-50%, -50%); color: #c8eef1; background: #102538ed; padding: 3px 5px; font: 600 11px/1.2 system-ui, sans-serif; white-space: nowrap; }
+.scene-3d__notice { position: absolute; left: 12px; top: 12px; color: #9abac7; font: 400 11px/1.3 system-ui, sans-serif; }
+@media (max-width: 380px) { .scene-3d__node { font-size: 10px; padding-inline: 3px; } }
+.scene-3d.is-3d-rendered > .scenario__art,
+.scene-3d.is-3d-rendered > #how-svg,
+.scene-3d.is-3d-rendered > .hero__fallback { visibility: hidden; }
+.scene-3d > .scenario__art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.scene-3d > #how-svg { width: 100%; height: 100%; }
+.scene-3d-note { max-width: 45ch; margin: 10px auto 0; text-align: center; font: 12px/1.6 var(--font); color: var(--ink-2); }
+@media (max-width: 600px) { .scene-3d { height: 330px; } }
+@media print { .scene-3d__labels { display: none !important; } .scene-3d > canvas, #hero-canvas { display: none; } .scene-3d.is-3d-rendered > .scenario__art, .scene-3d.is-3d-rendered > #how-svg, .hero__stage.is-rendered .hero__fallback { display: block; visibility: visible; } }

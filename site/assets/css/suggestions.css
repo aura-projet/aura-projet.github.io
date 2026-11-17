@@ -1,0 +1,74 @@
+/* Page-local overrides: shared assets and local fonts remain untouched. */
+.suggestions-page { --ink: #f0f6ff; --muted: #a9b9d0; --link: #04d2f6; color-scheme: dark; color: #f0f6ff; background: var(--paper); }
+.suggestions-page ::selection { color: #08183c; background: #04d2f6; }
+.suggestions-page :focus-visible { outline: 3px solid #04d2f6; outline-offset: 4px; }
+
+.suggestions-page .skip { background: #04d2f6; color: #08183c; }
+.suggestions-page .suggestions-main { padding-block: 156px 88px; }
+.suggestions-page .suggestions-layout { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: clamp(32px,5vw,76px); align-items: start; }
+.suggestions-page .suggestions-intro h1 { font-size: clamp(36px,4.5vw,62px); line-height: 1.08; letter-spacing: -.04em; }
+.suggestions-page .suggestions-intro h1 span { color: #04d2f6; }
+.suggestions-page .suggestions-lead { font-size: 19px; line-height: 1.65; margin-top: 26px; }
+.suggestions-page .suggestions-intro h2 { font-size: 23px; margin: 42px 0 14px; }
+.suggestions-page .suggestions-intro p, .suggestions-page .suggestions-prompts { max-width: 65ch; }
+.suggestions-page .suggestions-intro p:not(.suggestions-lead), .suggestions-page .suggestions-prompts { color: #a9b9d0; }
+.suggestions-page .suggestions-prompts { padding-left: 22px; margin: 0; }
+.suggestions-page .suggestions-prompts li + li { margin-top: 12px; }
+.suggestions-page .suggestions-caution { margin: 28px 0 18px; padding-top: 24px; border-top: 1px solid #39506e; }
+.suggestions-page .suggestions-panel { min-width: 0; padding: clamp(22px,3vw,36px); border: 1px solid #39506e; border-radius: 28px; background: rgba(18,41,78,.82); box-shadow: 0 20px 44px -28px rgba(0,0,0,.65); backdrop-filter: blur(16px); }
+.suggestions-page .suggestions-panel h2 { font-size: 28px; margin-bottom: 10px; }
+.suggestions-page .suggestions-help { color: #a9b9d0; font-size: 14px; line-height: 1.6; }
+.suggestion-form fieldset { padding: 0; margin: 28px 0 0; border: 0; min-width: 0; }
+.suggestion-form .suggestion-field { margin-bottom: 24px; }
+.suggestion-form label { display: block; font-weight: 600; margin-bottom: 8px; }
+.suggestion-form label span { font-weight: 400; }
+.suggestion-form .suggestions-help { margin-bottom: 10px; }
+.suggestion-form input:not([type="checkbox"]), .suggestion-form textarea, .suggestion-form select, .suggestions-page #suggestion-copy-text { width: 100%; min-width: 0; border: 1px solid #60738e; border-radius: 10px; color: #f0f6ff; background: #0a1d3d; padding: 12px 14px; font: inherit; caret-color: #04d2f6; box-shadow: none; transition: none; animation: none; }
+.suggestion-form select, .suggestion-form input:not([type="checkbox"]) { min-height: 48px; }
+.suggestion-form textarea, .suggestions-page #suggestion-copy-text { resize: vertical; min-height: 150px; }
+.suggestion-form input:focus, .suggestion-form textarea:focus, .suggestion-form select:focus { border-color: #04d2f6; }
+.suggestion-form [aria-invalid="true"] { border-color: #ffb7af !important; }
+.suggestions-page .suggestion-error { color: #ffb7af; font-size: 14px; line-height: 1.5; }
+.suggestion-form .suggestion-error:not(:empty) { margin-top: 8px; }
+.suggestion-form .suggestion-count { text-align: right; color: #a9b9d0; font-size: 12px; margin-top: 5px; font-variant-numeric: tabular-nums; }
+.suggestion-form .suggestion-consent { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.65; cursor: pointer; }
+.suggestion-form input[type="checkbox"] { flex: 0 0 20px; width: 20px; height: 20px; margin: 3px 0 0; accent-color: #04d2f6; }
+.suggestion-form .suggestion-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.suggestion-form .suggestion-protection { border-top: 1px solid #39506e; padding-top: 24px; margin-bottom: 24px; }
+.suggestions-page h3 { font-size: 17px; line-height: 1.4; letter-spacing: -.02em; margin-bottom: 12px; }
+.suggestion-form #suggestion-captcha { width: 100%; min-width: 0; margin-bottom: 12px; }
+.suggestion-form .captcha-home__label { display: block; font-weight: 600; margin-bottom: 10px; line-height: 1.5; }
+.suggestion-form .captcha-home__row { display: flex; gap: 12px; align-items: stretch; flex-wrap: wrap; }
+.suggestion-form #captcha-answer { flex: 1 1 150px; width: auto; min-width: 0; }
+.suggestion-form .captcha-home__row .suggestion-text-button { flex: 0 0 auto; min-height: 48px; white-space: nowrap; text-align: center; }
+.suggestions-page .suggestion-submit, .suggestions-page .suggestion-text-button { min-height: 48px; font: 600 15px/1.5 var(--font); border-radius: 999px; padding: 12px 20px; }
+.suggestions-page .suggestion-submit { width: 100%; background: #04d2f6; color: #08183c; border: 1px solid #04d2f6; }
+.suggestions-page .suggestion-submit:hover:not(:disabled) { background: #77e7fa; }
+.suggestions-page .suggestion-submit:disabled { background: #284560; color: #c5d4e3; border-color: #52677e; cursor: not-allowed; }
+.suggestions-page .suggestion-text-button { background: transparent; color: #04d2f6; border: 1px solid #60738e; text-align: left; }
+.suggestions-page .suggestion-text-button:hover:not(:disabled) { background: #173958; }
+.suggestions-page .suggestion-text-button:disabled { color: #a9b9d0; cursor: not-allowed; }
+.suggestions-page .suggestion-status { color: #f0f6ff; margin-top: 14px; font-size: 14px; overflow-wrap: anywhere; }
+.suggestions-page .suggestion-status[data-error="true"] { color: #ffb7af; }
+.suggestions-page .suggestion-alternative { border-top: 1px solid #39506e; padding-top: 24px; margin-top: 24px; }
+.suggestions-page .suggestion-alternative-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 12px; }
+.suggestions-page #suggestion-copy-text { margin-top: 12px; }
+.suggestions-page .footer { background: #06132f; color: #f0f6ff; }
+.suggestions-page .footer__links a { color: #a9b9d0; }
+@media (max-width: 860px) {
+  .suggestions-page .suggestions-layout { grid-template-columns: 1fr; gap: 40px; }
+  .suggestions-page .suggestions-main { padding-top: 130px; }
+  .suggestions-page .suggestions-intro h1 { font-size: clamp(36px,7vw,54px); }
+}
+@media (max-width: 560px) {
+  .suggestions-page .suggestions-main { width: calc(100% - 32px); padding-bottom: 56px; }
+  .suggestions-page .suggestions-panel { padding: 20px 16px; border-radius: 22px; }
+  .suggestions-page .nav__menu a:not(.nav__cta) { display: none; }
+  .suggestions-page .nav__menu { display: flex; }
+  .suggestions-page .nav__inner { gap: 10px; padding-left: 16px; }
+  .suggestions-page .nav__menu .nav__cta { padding-inline: 14px; }
+  .suggestions-page .suggestions-lead { font-size: 17px; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .suggestions-page .suggestions-panel { background: #10264b; backdrop-filter: none; }
+}

@@ -1,349 +1,312 @@
-/* AURA · script principal du site.
-   Chargé sans "defer" pour poser la classe .js avant le premier rendu
-   (évite un flash des éléments animés). Le reste attend le DOM. */
+/* AURA · interactions locales. Les données de démonstration sont fictives. */
 document.documentElement.classList.add('js');
-
 (function () {
   'use strict';
+  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- Configuration partagée (assets/data/config.json) ---------- */
   function loadConfig() {
     return fetch('assets/data/config.json', { cache: 'no-cache' })
-      .then(function (r) { return r.ok ? r.json() : {}; })
+      .then(function (response) { return response.ok ? response.json() : {}; })
+      .then(function (cfg) { return cfg && typeof cfg === 'object' && !Array.isArray(cfg) ? cfg : {}; })
       .catch(function () { return {}; });
   }
-
   function applyConfig(cfg) {
-    // Adresse de support : lien mailto si elle est renseignée.
     document.querySelectorAll('[data-config="supportEmail"]').forEach(function (el) {
-      if (!cfg.supportEmail) return;
-      el.textContent = '';
-      var a = document.createElement('a');
-      a.href = 'mailto:' + cfg.supportEmail;
-      a.textContent = cfg.supportEmail;
-      el.appendChild(a);
+      if (typeof cfg.supportEmail !== 'string' || !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(cfg.supportEmail)) return;
+      var link = document.createElement('a');
+      link.href = 'mailto:' + cfg.supportEmail; link.textContent = cfg.supportEmail;
+      el.textContent = ''; el.appendChild(link);
     });
-
-    // Réseaux sociaux : seuls ceux qui ont une URL sont affichés.
-    var socials = (cfg.socials || []).filter(function (s) { return s.url; });
+    var socials = Array.isArray(cfg.socials) ? cfg.socials.filter(function (social) {
+      if (!social || typeof social.url !== 'string') return false;
+      try { return /^https?:$/.test(new URL(social.url).protocol); } catch (error) { return false; }
+    }) : [];
     document.querySelectorAll('[data-socials]').forEach(function (el) {
       if (!socials.length) return;
       el.textContent = '';
-      socials.forEach(function (s) {
-        var a = document.createElement('a');
-        a.href = s.url;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.textContent = s.label;
-        el.appendChild(a);
+      socials.forEach(function (social) {
+        var link = document.createElement('a'); link.href = social.url;
+        link.target = '_blank'; link.rel = 'noopener noreferrer';
+        link.textContent = typeof social.label === 'string' ? social.label : new URL(social.url).hostname;
+        el.appendChild(link);
       });
     });
   }
 
-  /* ---------- Navigation ---------- */
   function initNav() {
     var nav = document.getElementById('nav');
     var burger = document.getElementById('burger');
     var menu = document.getElementById('menu');
     if (nav) {
-      var onScroll = function () { nav.classList.toggle('is-scrolled', window.scrollY > 10); };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
+      function scrollState() { nav.classList.toggle('is-scrolled', window.scrollY > 10); }
+      window.addEventListener('scroll', scrollState, { passive: true }); scrollState();
     }
-    if (burger && menu) {
-      burger.addEventListener('click', function () {
-        var open = burger.getAttribute('aria-expanded') === 'true';
-        burger.setAttribute('aria-expanded', String(!open));
-        menu.classList.toggle('is-open', !open);
-      });
-      menu.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () {
-          burger.setAttribute('aria-expanded', 'false');
-          menu.classList.remove('is-open');
+    if (!burger || !menu) return;
+    function mobile() { return window.getComputedStyle(burger).display !== 'none'; }
+    function open() { return burger.getAttribute('aria-expanded') === 'true'; }
+    function setMenu(value, returnFocus) {
+      burger.setAttribute('aria-expanded', String(value));
+      burger.setAttribute('aria-label', value ? 'Fermer le menu' : 'Ouvrir le menu');
+      menu.classList.toggle('is-open', value);
+      menu.inert = mobile() && !value;
+      if (returnFocus) burger.focus();
+    }
+    burger.addEventListener('click', function () {
+      var next = !open(); setMenu(next, false);
+      if (next) {
+        var first = menu.querySelector('a[href], button:not([disabled])');
+        if (first) requestAnimationFrame(function () {
+          if (open() && mobile()) first.focus();
         });
-      });
-    }
-  }
-
-  /* ---------- Apparition au défilement ---------- */
-  function initReveal() {
-    var items = document.querySelectorAll('.reveal, .milestone');
-    if (!('IntersectionObserver' in window)) {
-      items.forEach(function (el) { el.classList.add('is-visible'); });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-    items.forEach(function (el, i) {
-      if (el.classList.contains('milestone')) el.style.transitionDelay = (i % 9) * 0.06 + 's';
-      io.observe(el);
+      }
     });
-  }
-
-  /* ---------- Texte qui s'allume mot à mot ---------- */
-  function initScrub() {
-    var el = document.getElementById('scrub');
-    if (!el) return;
-    var highlight = ['agent.', 'inventaire.', 'réseau.'];
-    var words = el.textContent.trim().split(/\s+/);
-    el.textContent = '';
-    var spans = words.map(function (w, i) {
-      var s = document.createElement('span');
-      s.className = 'w' + (highlight.indexOf(w) !== -1 ? ' hl' : '');
-      s.textContent = w;
-      el.appendChild(s);
-      if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
-      return s;
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setMenu(false, mobile()); });
     });
-    if (reduceMotion) { spans.forEach(function (s) { s.classList.add('on'); }); return; }
-
-    var ticking = false;
-    function update() {
-      ticking = false;
-      var r = el.getBoundingClientRect();
-      var vh = window.innerHeight;
-      // 0 quand le haut du texte arrive à 85 % de l'écran, 1 quand le bas passe à 35 %.
-      var start = vh * 0.85, end = vh * 0.35;
-      var p = (start - r.top) / (start - end + r.height);
-      p = Math.max(0, Math.min(1, p));
-      var n = Math.round(p * spans.length);
-      spans.forEach(function (s, i) { s.classList.toggle('on', i < n); });
-    }
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    document.addEventListener('keydown', function (event) {
+      if (!open() || !mobile()) return;
+      if (event.key === 'Escape') { event.preventDefault(); setMenu(false, true); return; }
+      if (event.key !== 'Tab') return;
+      var focusable = [burger].concat(Array.prototype.slice.call(menu.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]')))
+        .filter(function (el) { return el.getClientRects().length > 0; });
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      var active = document.activeElement;
+      if (event.shiftKey && (active === first || focusable.indexOf(active) === -1)) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && (active === last || focusable.indexOf(active) === -1)) {
+        event.preventDefault(); first.focus();
+      }
+    });
+    document.addEventListener('click', function (event) {
+      if (open() && !menu.contains(event.target) && !burger.contains(event.target)) setMenu(false, false);
+    });
+    window.addEventListener('resize', function () {
+      if (!mobile()) setMenu(false, false);
+      else menu.inert = !open();
     }, { passive: true });
+    setMenu(false, false);
+  }
+
+  function initMotionControls() {
+    var button = document.getElementById('motion-toggle');
+    var userPaused = false;
+    function update() {
+      var paused = userPaused || motion.matches;
+      window.AURA_MOTION_PAUSED = paused;
+      document.documentElement.classList.toggle('is-motion-paused', paused);
+      if (button) {
+        button.setAttribute('aria-pressed', String(paused));
+        button.disabled = motion.matches;
+        button.textContent = motion.matches ? 'Animations réduites selon vos préférences' : paused ? 'Reprendre les animations' : 'Mettre les animations en pause';
+      }
+      document.dispatchEvent(new CustomEvent('aura:motion', { detail: { paused: paused } }));
+    }
+    if (button) button.addEventListener('click', function () { userPaused = !userPaused; update(); });
+    if (motion.addEventListener) motion.addEventListener('change', update);
     update();
   }
 
-  /* ---------- Compteurs animés ---------- */
-  function initCounters() {
-    var counters = document.querySelectorAll('.count');
-    if (!counters.length) return;
-    function run(el) {
-      var to = parseInt(el.getAttribute('data-to'), 10) || 0;
-      if (reduceMotion || to === 0) { el.textContent = to; return; }
-      var t0 = null, dur = 1400;
-      function step(t) {
-        if (!t0) t0 = t;
-        var k = Math.min(1, (t - t0) / dur);
-        el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
-        if (k < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
+  function initReading() {
+    if (!('IntersectionObserver' in window)) return;
+    var statement = document.querySelector('.statement');
+    if (statement) {
+      new IntersectionObserver(function (entries, observer) {
+        if (entries[0].isIntersecting) { statement.classList.add('is-in-view'); observer.disconnect(); }
+      }, { threshold: 0.6 }).observe(statement);
     }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+    var links = Array.prototype.slice.call(document.querySelectorAll('#menu a[href^="#"]'));
+    var sections = links.map(function (link) { return document.getElementById(link.hash.slice(1)); }).filter(Boolean);
+    var queued = false;
+    function update() {
+      queued = false;
+      var current = null;
+      sections.forEach(function (section) {
+        var rect = section.getBoundingClientRect();
+        if (rect.top <= innerHeight * .4 && rect.bottom > 116) current = section.id;
       });
-    }, { threshold: 0.6 });
-    counters.forEach(function (c) { io.observe(c); });
+      links.forEach(function (link) {
+        if (link.hash === '#' + current) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    function schedule() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    update();
   }
 
-  /* ---------- Fonctionnement : schéma piloté par l'étape visible ---------- */
   function initHow() {
-    var svg = document.getElementById('how-svg');
+    var svg = document.getElementById('how-svg') || document.querySelector('.how-svg');
     var caption = document.getElementById('how-caption');
-    var steps = document.querySelectorAll('.how__step');
+    var steps = Array.prototype.slice.call(document.querySelectorAll('.how__step[data-step]'));
     if (!svg || !steps.length) return;
-    var names = ['Écouter', 'Recenser', 'Croiser', 'Localiser', 'Alerter'];
-    function setStep(n) {
-      svg.setAttribute('class', 'how-svg step-' + n);
-      steps.forEach(function (s) { s.classList.toggle('is-active', s.getAttribute('data-step') === String(n)); });
-      if (caption) caption.textContent = n + ' / 5 · ' + names[n - 1];
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) setStep(parseInt(e.target.getAttribute('data-step'), 10));
+    var current = null, queued = false;
+    function update() {
+      queued = false;
+      var line = window.innerHeight * 0.45, nearest = steps[0], distance = Infinity;
+      steps.forEach(function (step) {
+        var rect = step.getBoundingClientRect();
+        var delta = line < rect.top ? rect.top - line : line > rect.bottom ? line - rect.bottom : 0;
+        if (delta < distance) { nearest = step; distance = delta; }
       });
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-    steps.forEach(function (s) { io.observe(s); });
+      var n = nearest.getAttribute('data-step');
+      if (n === current) return;
+      current = n;
+      Array.prototype.slice.call(svg.classList).forEach(function (name) { if (/^step-\d+$/.test(name)) svg.classList.remove(name); });
+      svg.classList.add('step-' + n);
+      document.dispatchEvent(new CustomEvent('aura:step', { detail: { step: Number(n) } }));
+      steps.forEach(function (step) {
+        var active = step === nearest; step.classList.toggle('is-active', active);
+        if (active) step.setAttribute('aria-current', 'step'); else step.removeAttribute('aria-current');
+      });
+      var title = nearest.querySelector('h3');
+      if (caption) caption.textContent = n + ' / ' + steps.length + (title ? ' · ' + title.textContent.trim() : '');
+    }
+    function requestUpdate() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate, { passive: true });
+    window.addEventListener('load', requestUpdate, { once: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(requestUpdate);
+    update();
   }
 
-  /* ---------- Carrousel des scénarios ---------- */
+  function initStrip() {
+    var strip = document.getElementById('strip');
+    var button = document.getElementById('strip-pause');
+    if (!strip || !button) return;
+    var track = strip.querySelector('.strip__track');
+    var userPaused = false, visible = true;
+    function update() {
+      var paused = userPaused || motion.matches || Boolean(window.AURA_MOTION_PAUSED);
+      strip.classList.toggle('is-paused', paused);
+      if (track) track.style.animationPlayState = paused || document.hidden || !visible ? 'paused' : 'running';
+      button.setAttribute('aria-pressed', String(paused));
+      button.disabled = motion.matches;
+      var label = motion.matches ? 'Défilement arrêté : mouvement réduit' : paused ? 'Reprendre le défilement' : 'Mettre le défilement en pause';
+      button.setAttribute('aria-label', label); button.textContent = label;
+    }
+    button.addEventListener('click', function () { userPaused = !userPaused; update(); });
+    document.addEventListener('visibilitychange', update);
+    document.addEventListener('aura:motion', update);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; update(); }).observe(strip);
+    }
+    if (motion.addEventListener) motion.addEventListener('change', update);
+    update();
+  }
+
+  function initDemo() {
+    var feed = document.getElementById('feed'), next = document.getElementById('demo-next');
+    if (!feed) return;
+    // One deterministic inventory drives both tables and counters. Known includes offline devices.
+    var inventory;
+    var index = 0;
+    function resetInventory() {
+      inventory = {
+        compta: { known: true, state: 'online' }, accueil: { known: true, state: 'online' },
+        imp: { known: true, state: 'online' }, nas: { known: true, state: 'online' },
+        new1: { known: false, state: 'waiting' }, new2: { known: false, state: 'waiting' },
+        ap1: { known: true, state: 'online' }, ap2: { known: true, state: 'online' },
+        ap3: { known: false, state: 'unknown', alert: true }, ap4: { known: false, state: 'waiting' },
+        cl1: { known: true, state: 'online' }
+      };
+    }
+    var labels = { online: 'Connu', offline: 'Hors ligne', waiting: 'Non observé', unknown: 'À qualifier', probable: 'Partage probable' };
+    function rowFor(id) {
+      return document.querySelector('#tbl-lan [data-row="' + id + '"], #tbl-wifi [data-row="' + id + '"]');
+    }
+    function cellLabel(id, column, fallback) {
+      var row = rowFor(id);
+      return row && row.cells && row.cells[column] ? row.cells[column].textContent.trim() : fallback;
+    }
+    var new1Mac = cellLabel('new1', 1, '02:00:00:00:00:21');
+    var new2Mac = cellLabel('new2', 1, '02:00:00:00:00:22');
+    var ap3Name = cellLabel('ap3', 0, 'borne de démonstration');
+    function sync() {
+      var known = 0, unknown = 0, alerts = 0;
+      Object.keys(inventory).forEach(function (id) {
+        var item = inventory[id];
+        if (item.state !== 'waiting') { if (item.known) known++; else unknown++; }
+        if (item.alert) alerts++;
+        var row = rowFor(id);
+        if (!row) return;
+        row.setAttribute('data-state', item.state);
+        row.classList.toggle('is-offline', item.state === 'offline');
+        row.classList.toggle('is-alert', Boolean(item.alert));
+        row.classList.toggle('is-pending', item.state === 'waiting');
+        var status = row.querySelector('[data-status], .st, .status, .state, .pill, .badge, .tag');
+        if (!status && row.cells && row.cells.length) status = row.cells[row.cells.length - 1];
+        if (status) {
+          status.textContent = labels[item.state];
+          status.setAttribute('data-state', item.state);
+          ['ok', 'warn', 'bad', 'off', 'muted'].forEach(function (name) {
+            status.classList.remove('st--' + name, 'status--' + name);
+          });
+          var tone = item.state === 'waiting' || item.state === 'offline' ? 'off' : item.alert ? 'warn' : 'ok';
+          status.classList.add('st', 'st--' + tone);
+        }
+      });
+      [['kpi-known', known], ['kpi-unknown', unknown], ['kpi-alerts', alerts]].forEach(function (pair) {
+        var el = document.getElementById(pair[0]); if (el) el.textContent = String(pair[1]);
+      });
+      document.dispatchEvent(new CustomEvent('aura:demo-update', { detail: { step: index } }));
+    }
+    function push(entry) {
+      var li = document.createElement('li'); li.className = 'feed__item';
+      var severity = document.createElement('i'); severity.className = 'sev sev--' + entry.sev; severity.setAttribute('aria-hidden', 'true');
+      var body = document.createElement('div');
+      var title = document.createElement('strong'); title.textContent = entry.title;
+      var detail = document.createElement('span'); detail.textContent = entry.detail;
+      body.appendChild(title); body.appendChild(detail);
+      var time = document.createElement('time'); time.dateTime = entry.time; time.textContent = 'Démo · ' + entry.time;
+      li.appendChild(severity); li.appendChild(body); li.appendChild(time);
+      feed.insertBefore(li, feed.firstChild);
+      while (feed.children.length > 3) feed.removeChild(feed.lastChild);
+    }
+    function initial() {
+      resetInventory(); index = 0; feed.textContent = '';
+      push({ sev: 'low', title: 'Référentiel chargé', detail: 'Jeu fictif : sept équipements connus. Aucune donnée du réseau réel.', time: '10:00' });
+      push({ sev: 'low', title: 'Inventaire de démonstration', detail: 'Les observations filaires et radio sont regroupées ici.', time: '10:02' });
+      push({ sev: 'mid', title: 'Borne non déclarée probable', detail: 'SSID fictif « ' + ap3Name + ' » · Wi-Fi 2,4 GHz · à vérifier.', time: '10:04' });
+      sync();
+      if (next) { next.textContent = 'Simuler un événement'; next.setAttribute('aria-label', 'Simuler le prochain événement fictif'); }
+    }
+    var events = [
+      { sev: 'high', time: '10:05', title: 'Nouvel appareil à qualifier', detail: 'MAC fictive ' + new1Mac + ' · observation LAN · emplacement non déterminé.', apply: function () { inventory.new1.state = 'unknown'; inventory.new1.alert = true; } },
+      { sev: 'mid', time: '10:06', title: 'Partage de connexion probable', detail: 'PC-COMPTA hors ligne et nouvelle borne 2,4 GHz : corrélation à vérifier, pas une preuve.', apply: function () { inventory.compta.state = 'offline'; inventory.ap4.state = 'probable'; inventory.ap4.alert = true; } },
+      { sev: 'high', time: '10:07', title: 'Deuxième appareil à qualifier', detail: 'MAC fictive ' + new2Mac + ' · absent du référentiel · vérification administrateur nécessaire.', apply: function () { inventory.new2.state = 'unknown'; inventory.new2.alert = true; } },
+      { sev: 'low', time: '10:08', title: 'Appareil validé dans la simulation', detail: 'L’administrateur fictif reconnaît ' + new1Mac + '. L’alerte associée est clôturée.', apply: function () { inventory.new1.state = 'online'; inventory.new1.known = true; inventory.new1.alert = false; } }
+    ];
+    initial();
+    document.addEventListener('aura:demo-reset', initial);
+    if (next) next.addEventListener('click', function () {
+      if (index >= events.length) { initial(); return; }
+      var event = events[index++]; event.apply(); sync(); push(event);
+      next.textContent = index >= events.length ? 'Rejouer la démonstration' : 'Simuler un événement';
+      next.setAttribute('aria-label', index >= events.length ? 'Rejouer la démonstration fictive depuis le début' : 'Simuler le prochain événement fictif');
+    });
+  }
+
   function initCarousel() {
     var track = document.getElementById('carousel');
     if (!track) return;
-    document.querySelectorAll('[data-carousel]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
+    document.querySelectorAll('[data-carousel]').forEach(function (button) {
+      button.addEventListener('click', function () {
         var card = track.querySelector('.card');
         var step = card ? card.getBoundingClientRect().width + 22 : 400;
-        track.scrollBy({ left: btn.getAttribute('data-carousel') === 'next' ? step : -step, behavior: 'smooth' });
+        track.scrollBy({ left: button.getAttribute('data-carousel') === 'next' ? step : -step, behavior: motion.matches ? 'auto' : 'smooth' });
       });
     });
   }
-
-  /* ---------- Parallaxe légère (sonde) ---------- */
-  function initParallax() {
-    var els = document.querySelectorAll('.parallax');
-    if (!els.length || reduceMotion) return;
-    var ticking = false;
-    function update() {
-      ticking = false;
-      els.forEach(function (el) {
-        var r = el.parentElement.getBoundingClientRect();
-        var center = r.top + r.height / 2 - window.innerHeight / 2;
-        var speed = parseFloat(el.getAttribute('data-speed')) || 0;
-        el.style.transform = 'translate3d(0,' + (center * speed).toFixed(1) + 'px,0)';
-      });
-    }
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
-  }
-
-  /* ---------- Démo simulée du tableau de bord (données fictives) ---------- */
-  var FAKE_ALERTS = [
-    { sev: 'high', title: 'Appareil inconnu détecté', detail: 'MAC 3A:F1:…:9C · switch B2, port Gi1/0/14', kpi: 'kpi-unknown' },
-    { sev: 'high', title: 'Borne Wi-Fi non déclarée', detail: 'SSID « Livebox-7F2A » · canal 6 · -48 dBm', kpi: 'kpi-ap' },
-    { sev: 'mid',  title: 'Partage de connexion probable', detail: 'PC-COMPTA-03 a quitté le réseau · AP « iPhone de… » apparu', kpi: 'kpi-alerts' },
-    { sev: 'mid',  title: 'Plusieurs MAC sur un même port', detail: '5 adresses derrière Gi1/0/22 en 40 s', kpi: 'kpi-alerts' },
-    { sev: 'low',  title: 'Appareil validé', detail: 'Imprimante RDC passée en « connu »', kpi: 'kpi-known' },
-    { sev: 'low',  title: 'Mode apprentissage', detail: '3 appareils vus tous les jours ouvrés → connus', kpi: 'kpi-known' },
-    { sev: 'mid',  title: 'Appareil vu la nuit', detail: 'MAC 72:0B:…:11 actif à 02 h 14 → suspect', kpi: 'kpi-unknown' }
-  ];
-
-  function initDemo() {
-    var feed = document.getElementById('feed');
-    var graph = document.getElementById('mini-graph');
-    if (!feed || !graph) return;
-
-    // Graphe : un nœud central (AURA) et des appareils autour.
-    var NS = 'http://www.w3.org/2000/svg';
-    var cx = 200, cy = 125, nodes = [];
-    var linesG = document.createElementNS(NS, 'g');
-    var nodesG = document.createElementNS(NS, 'g');
-    graph.appendChild(linesG); graph.appendChild(nodesG);
-    for (var i = 0; i < 18; i++) {
-      var a = (i / 18) * Math.PI * 2 + (i % 2) * 0.17;
-      var rad = 62 + (i % 3) * 28;
-      nodes.push({ x: cx + Math.cos(a) * rad * 1.45, y: cy + Math.sin(a) * rad * 0.9, a: a, rad: rad });
-    }
-    nodes.forEach(function (n) {
-      var l = document.createElementNS(NS, 'line');
-      l.setAttribute('x1', cx); l.setAttribute('y1', cy); l.setAttribute('x2', n.x); l.setAttribute('y2', n.y);
-      linesG.appendChild(l);
-      var c = document.createElementNS(NS, 'circle');
-      c.setAttribute('cx', n.x); c.setAttribute('cy', n.y); c.setAttribute('r', 5);
-      c.setAttribute('class', 'n n-ok');
-      nodesG.appendChild(c);
-      n.el = c; n.line = l;
-    });
-    var core = document.createElementNS(NS, 'circle');
-    core.setAttribute('cx', cx); core.setAttribute('cy', cy); core.setAttribute('r', 13);
-    core.setAttribute('class', 'n n-core');
-    nodesG.appendChild(core);
-    var halo = document.createElementNS(NS, 'circle');
-    halo.setAttribute('r', 6); halo.setAttribute('class', 'halo');
-    halo.setAttribute('cx', -50); halo.setAttribute('cy', -50);
-    nodesG.appendChild(halo);
-
-    // Légère respiration du graphe.
-    if (!reduceMotion) {
-      var t0 = performance.now();
-      (function float(t) {
-        var k = (t - t0) / 1000;
-        nodes.forEach(function (n, j) {
-          var x = n.x + Math.sin(k * 0.8 + j) * 3, y = n.y + Math.cos(k * 0.7 + j * 1.3) * 3;
-          n.el.setAttribute('cx', x.toFixed(1)); n.el.setAttribute('cy', y.toFixed(1));
-          n.line.setAttribute('x2', x.toFixed(1)); n.line.setAttribute('y2', y.toFixed(1));
-          if (n.flag) { halo.setAttribute('cx', x.toFixed(1)); halo.setAttribute('cy', y.toFixed(1)); }
-        });
-        requestAnimationFrame(float);
-      })(t0);
-    }
-
-    function clock(offsetMin) {
-      var d = new Date(Date.now() - offsetMin * 60000);
-      return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
-    }
-
-    function push(alert, offsetMin, animateKpi) {
-      var li = document.createElement('li');
-      li.className = 'feed__item';
-      var sev = document.createElement('i'); sev.className = 'sev sev--' + alert.sev;
-      var body = document.createElement('div');
-      var st = document.createElement('strong'); st.textContent = alert.title;
-      var sp = document.createElement('span'); sp.textContent = alert.detail;
-      body.appendChild(st); body.appendChild(sp);
-      var tm = document.createElement('time'); tm.textContent = clock(offsetMin || 0);
-      li.appendChild(sev); li.appendChild(body); li.appendChild(tm);
-      feed.insertBefore(li, feed.firstChild);
-      while (feed.children.length > 5) feed.removeChild(feed.lastChild);
-
-      // Le graphe reflète l'alerte : un nœud change de couleur.
-      nodes.forEach(function (n) { n.flag = false; });
-      var target = nodes[Math.floor(Math.random() * nodes.length)];
-      var cls = alert.sev === 'high' ? 'n-bad' : alert.sev === 'mid' ? 'n-warn' : 'n-ok';
-      target.el.setAttribute('class', 'n ' + cls);
-      if (alert.sev === 'high') { target.flag = true; halo.setAttribute('cx', target.x); halo.setAttribute('cy', target.y); }
-      else { halo.setAttribute('cx', -50); halo.setAttribute('cy', -50); }
-
-      if (animateKpi && alert.kpi) {
-        var k = document.getElementById(alert.kpi);
-        if (k) {
-          k.textContent = String(parseInt(k.textContent, 10) + 1);
-          k.classList.remove('bump'); void k.offsetWidth; k.classList.add('bump');
-        }
-      }
-    }
-
-    // État initial, puis une alerte toutes les 3,5 s quand la démo est visible.
-    push(FAKE_ALERTS[5], 41); push(FAKE_ALERTS[4], 26); push(FAKE_ALERTS[3], 14); push(FAKE_ALERTS[2], 9); push(FAKE_ALERTS[0], 2);
-    var idx = 0, timer = null;
-    function tick() { push(FAKE_ALERTS[idx++ % FAKE_ALERTS.length], 0, true); }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting && !timer && !reduceMotion) timer = setInterval(tick, 3500);
-        if (!e.isIntersecting && timer) { clearInterval(timer); timer = null; }
-      });
-    }, { threshold: 0.25 });
-    io.observe(feed);
-  }
-
-  /* ---------- Feuille de route : barre d'avancement ---------- */
-  function initRoadmap() {
-    var items = document.querySelectorAll('.milestone');
-    var bar = document.getElementById('progress-bar');
-    var label = document.getElementById('progress-label');
-    if (!items.length || !bar) return;
-    var done = 0, doing = 0;
-    items.forEach(function (m) {
-      var s = m.getAttribute('data-status');
-      if (s === 'done') done++;
-      if (s === 'doing') doing++;
-    });
-    var pct = Math.round(((done + doing * 0.5) / items.length) * 100);
-    var io = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) { bar.style.width = pct + '%'; io.disconnect(); }
-    }, { threshold: 0.5 });
-    io.observe(bar.parentElement);
-    if (label) label.textContent = done + ' objectif' + (done > 1 ? 's' : '') + ' atteint' + (done > 1 ? 's' : '') +
-      ', ' + doing + ' en cours, sur ' + items.length + '.';
-  }
-
-  /* ---------- Démarrage ---------- */
-  document.addEventListener('DOMContentLoaded', function () {
-    var year = document.getElementById('year');
-    if (year) year.textContent = new Date().getFullYear();
-    initNav();
-    initReveal();
-    initScrub();
-    initCounters();
-    initHow();
-    initCarousel();
-    initParallax();
-    initDemo();
-    initRoadmap();
+  function start() {
+    var year = document.getElementById('year'); if (year) year.textContent = new Date().getFullYear();
+    initMotionControls(); initNav(); initReading(); initHow(); initStrip(); initDemo(); initCarousel();
     loadConfig().then(function (cfg) {
       window.AURA_CONFIG = cfg;
       applyConfig(cfg);
       document.dispatchEvent(new CustomEvent('aura:config', { detail: cfg }));
     });
-  });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+  else start();
 })();

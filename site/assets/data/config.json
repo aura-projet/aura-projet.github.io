@@ -1,13 +1,12 @@
 {
-  "_lisez_moi": "Fichier de configuration unique du site. Modifier ici, puis relancer `python3 tools/generate_qr.py` pour mettre à jour les QR codes. Voir docs/site-web.md.",
+  "_lisez_moi": "Fichier de configuration unique du site. L'adresse Proton a été suspendue : une adresse de contact via Brevo sera ajoutée ici une fois le domaine vérifié (SPF/DKIM). Le formulaire utilise désormais un captcha maison, sans service externe. Voir docs/site-web.md.",
 
   "siteUrl": "https://aura-projet.github.io/",
 
-  "supportEmail": "aura-support-ptut@proton.me",
+  "supportEmail": "",
 
-  "satisfaction": {
-    "endpoint": "",
-    "externalFormUrl": ""
+  "suggestions": {
+    "endpoint": ""
   },
 
   "socials": [

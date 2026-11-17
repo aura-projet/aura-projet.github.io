@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>L’équipe AURA · Quatre étudiants, un projet</title>
+  <meta name="description" content="L’équipe derrière AURA : quatre étudiants du BUT3 Réseaux & Télécommunications de l’IUT de Valence, leurs rôles, et comment nous contacter.">
+  <meta name="theme-color" content="#070e20">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/constellation.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner glass">
+    <a class="nav__logo" href="index.html" aria-label="AURA, accueil">
+      <img src="assets/img/logo.svg" alt="" width="26" height="26" loading="lazy">
+      <span>AURA</span>
+    </a>
+    <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav__menu" id="menu" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="le-projet.html">Le projet</a>
+      <a href="demo.html">Démo</a>
+      <a href="comparatif.html">Comparatif</a>
+      <a href="faq.html">FAQ</a>
+      <a href="equipe.html" class="is-active" aria-current="page">Équipe</a>
+      <a class="nav__cta js-magnetic" href="suggestions.html">Proposer une idée</a>
+    </nav>
+  </div>
+</header>
+
+<div class="aura-field" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="constellation" aria-hidden="true"></canvas>
+<main id="contenu">
+
+<!-- ============ EN-TÊTE DE PAGE ============ -->
+<section class="hero hero--page">
+  <div class="hero__inner">
+    <nav class="crumbs" aria-label="Fil d’ariane"><a href="index.html">Accueil</a><i>/</i><span>Équipe</span></nav>
+    <p class="hero__kicker">Qui fait AURA</p>
+    <h1 data-reveal>Une équipe de quatre étudiants<br>pour construire AURA.</h1>
+    <p class="hero__sub" data-reveal data-delay="0.1">BUT Réseaux &amp; Télécommunications, parcours cybersécurité, IUT de Valence, promotion 2026-2027.</p>
+  </div>
+</section>
+
+<!-- ============ ÉQUIPE ============ -->
+<section class="section team" id="equipe">
+  <div class="container">
+    <div class="bento bento--team">
+      <article class="cell glass member" data-reveal>
+        <div class="orb orb--1" aria-hidden="true">YL</div>
+        <h3>Yanis Lameche</h3>
+        <p class="member__role">Chef de projet</p>
+        <p>Planning, collecte NetAlertX, back-end, sonde Wi-Fi, documentation technique et pitch.</p>
+      </article>
+      <article class="cell glass member" data-reveal data-delay="0.06">
+        <div class="orb orb--2" aria-hidden="true">BF</div>
+        <h3>Baptiste Faure--Streiff</h3>
+        <p class="member__role">Sécurité &amp; infrastructure</p>
+        <p>Durcissement, analyse de risque, VM serveur, capteur infrarouge et communication.</p>
+      </article>
+      <article class="cell glass member" data-reveal data-delay="0.12">
+        <div class="orb orb--3" aria-hidden="true">MP</div>
+        <h3>Mahé Peligry</h3>
+        <p class="member__role">IA, design &amp; RGPD</p>
+        <p>API vers l'IA, charte graphique et maquettes, cadre légal, guide utilisateur et tests d'ergonomie.</p>
+      </article>
+      <article class="cell glass member" data-reveal data-delay="0.18">
+        <div class="orb orb--4" aria-hidden="true">MP</div>
+        <h3>Mathys Pannetier</h3>
+        <p class="member__role">Interface &amp; conception</p>
+        <p>Tableau de bord web, boîtiers imprimés en 3D, montage vidéo et communication.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="container contact__layout">
+    <div data-reveal>
+      <h2 class="section__title">Une idée pour<br>faire avancer AURA&nbsp;?</h2><p class="section__lead">Vous avez une idée pour AURA ou un passage du site n’est pas clair ? Dites-nous ce qui vous aiderait et dans quelle situation.</p><a class="btn btn--primary js-magnetic" href="suggestions.html">Proposer une amélioration <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+    </div>
+    <div class="contact__cards" data-reveal data-delay="0.1">
+      <div class="contact__card glass">
+        <img src="assets/img/icon-mail.svg" alt="" width="36" height="36" loading="lazy">
+        <div>
+          <h3>Support</h3>
+          <p class="contact__value" data-config="supportEmail" data-empty="Adresse de contact bientôt disponible">Adresse de contact bientôt disponible</p>
+        </div>
+      </div>
+      <div class="contact__card glass">
+        <img src="assets/img/icon-share.svg" alt="" width="36" height="36" loading="lazy">
+        <div>
+          <h3>Réseaux sociaux</h3>
+          <div class="socials" data-socials data-empty="Nos réseaux arrivent très bientôt.">Nos réseaux arrivent très bientôt.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partners" aria-label="Établissements"><div class="container"><ul class="partners__logos"><li><img src="assets/img/brand/iut-valence.png" srcset="assets/img/brand/iut-valence-256.webp 256w, assets/img/brand/iut-valence.png 420w" sizes="(max-width: 560px) calc((100vw - 72px) / 2), (max-width: 860px) calc((100vw - 144px) / 4), 240px" alt="IUT de Valence" width="420" height="100" loading="lazy"></li><li><img src="assets/img/brand/but-rt.png" srcset="assets/img/brand/but-rt-256.webp 256w, assets/img/brand/but-rt.png 420w" sizes="(max-width: 560px) calc((100vw - 72px) / 2), (max-width: 860px) calc((100vw - 144px) / 4), 240px" alt="BUT Réseaux et Télécommunications" width="420" height="99" loading="lazy"></li><li><img src="assets/img/brand/uga.png" srcset="assets/img/brand/uga-256.webp 256w, assets/img/brand/uga.png 360w" sizes="(max-width: 560px) calc((100vw - 72px) / 2), (max-width: 860px) calc((100vw - 144px) / 4), 240px" alt="Université Grenoble Alpes" width="360" height="240" loading="lazy"></li><li><img src="assets/img/brand/greta.png" srcset="assets/img/brand/greta-256.webp 256w, assets/img/brand/greta.png 360w" sizes="(max-width: 560px) calc((100vw - 72px) / 2), (max-width: 860px) calc((100vw - 144px) / 4), 240px" alt="GRETA" width="360" height="156" loading="lazy"></li></ul><p>Projet tutoré BUT3 Réseaux &amp; Télécommunications, parcours cybersécurité · IUT de Valence, Université Grenoble Alpes · 2026–2027</p></div></section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="assets/img/logo.svg" alt="" width="22" height="22" loading="lazy">
+      <span>AURA · Analyse Unifiée du Réseau et des Antennes</span>
+    </div>
+    <nav class="footer__links" aria-label="Liens de pied de page">
+      <a href="suggestions.html">Améliorations et suggestions</a>
+      <a href="faq.html">Questions fréquentes</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mentions-legales.html#confidentialite">Confidentialité</a>
+    </nav>
+    <p class="footer__legal">Projet tutoré BUT R&amp;T, IUT de Valence · <span id="year">2026</span> · Sans mesure d’audience. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
+  </div>
+  <p class="footer__giant" aria-hidden="true">AURA</p>
+</footer>
+</body>
+</html>

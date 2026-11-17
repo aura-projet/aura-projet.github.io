@@ -3,144 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'self'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Votre avis · AURA</title>
-  <meta name="description" content="Questionnaire de satisfaction sur le projet AURA, sans données d'identification demandées.">
-  <meta name="theme-color" content="#f5f5f7">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#070e20">
+  <meta http-equiv="refresh" content="0; url=suggestions.html">
+  <link rel="canonical" href="https://aura-projet.github.io/suggestions.html">
+  <title>Améliorations et suggestions · AURA</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/satisfaction.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#contenu">Aller au contenu</a>
-<header class="nav nav--simple is-scrolled" id="nav">
-  <div class="nav__inner">
-    <a class="nav__logo" href="index.html" aria-label="AURA, accueil">
-      <img src="assets/img/logo.svg" alt="" width="26" height="26"><span>AURA</span>
-    </a>
-    <nav class="nav__menu" aria-label="Navigation">
-      <a href="index.html#fonctionnement">Fonctionnement</a>
-      <a href="index.html#scenarios">Scénarios</a>
-      <a class="nav__cta" href="index.html">Retour au site</a>
-    </nav>
-  </div>
-</header>
-
-<main class="page page--light" id="contenu">
-  <div class="container">
-    <section id="survey-wrap">
-      <header class="page__head">
-        <p class="eyebrow eyebrow--dark">Questionnaire de satisfaction</p>
-        <h1 class="page__title">Votre avis sur <span class="gradient-text">AURA</span>.</h1>
-        <p class="page__lead">Cinq questions, trente secondes. Nous ne demandons ni nom ni adresse mail.</p>
-      </header>
-
-      <form class="survey" id="survey" novalidate hidden>
-        <fieldset class="q">
-          <legend>Quelle note donneriez-vous au projet&nbsp;? <span class="q__hint">Obligatoire</span></legend>
-          <div class="stars" role="radiogroup" aria-label="Note de 1 à 5 étoiles">
-            <input type="radio" id="s5" name="note" value="5"><label for="s5" title="5 étoiles" aria-label="5 étoiles">★</label>
-            <input type="radio" id="s4" name="note" value="4"><label for="s4" title="4 étoiles" aria-label="4 étoiles">★</label>
-            <input type="radio" id="s3" name="note" value="3"><label for="s3" title="3 étoiles" aria-label="3 étoiles">★</label>
-            <input type="radio" id="s2" name="note" value="2"><label for="s2" title="2 étoiles" aria-label="2 étoiles">★</label>
-            <input type="radio" id="s1" name="note" value="1"><label for="s1" title="1 étoile" aria-label="1 étoile">★</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="q">
-          <legend>Le problème présenté vous parle-t-il&nbsp;?</legend>
-          <div class="pills">
-            <input type="radio" id="p1" name="probleme" value="Oui, tout à fait"><label for="p1">Oui, tout à fait</label>
-            <input type="radio" id="p2" name="probleme" value="Un peu"><label for="p2">Un peu</label>
-            <input type="radio" id="p3" name="probleme" value="Pas vraiment"><label for="p3">Pas vraiment</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="q">
-          <legend>Qu'est-ce qui vous a le plus marqué&nbsp;? <span class="q__hint">Plusieurs choix possibles</span></legend>
-          <div class="pills">
-            <input type="checkbox" id="m1" name="points" value="Sonde Wi-Fi"><label for="m1">La sonde Wi-Fi</label>
-            <input type="checkbox" id="m2" name="points" value="Corrélation ondes / réseau"><label for="m2">La corrélation ondes / réseau</label>
-            <input type="checkbox" id="m3" name="points" value="Localisation sur le switch"><label for="m3">La localisation sur le switch</label>
-            <input type="checkbox" id="m4" name="points" value="Tableau de bord"><label for="m4">Le tableau de bord</label>
-            <input type="checkbox" id="m5" name="points" value="Résumé par IA"><label for="m5">Le résumé par IA</label>
-            <input type="checkbox" id="m6" name="points" value="Le pitch"><label for="m6">Le pitch</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="q">
-          <legend>Recommanderiez-vous AURA à une entreprise&nbsp;?</legend>
-          <div class="scale">
-            <input type="radio" id="n0" name="recommandation" value="0"><label for="n0">0</label>
-            <input type="radio" id="n1" name="recommandation" value="1"><label for="n1">1</label>
-            <input type="radio" id="n2" name="recommandation" value="2"><label for="n2">2</label>
-            <input type="radio" id="n3" name="recommandation" value="3"><label for="n3">3</label>
-            <input type="radio" id="n4" name="recommandation" value="4"><label for="n4">4</label>
-            <input type="radio" id="n5" name="recommandation" value="5"><label for="n5">5</label>
-            <input type="radio" id="n6" name="recommandation" value="6"><label for="n6">6</label>
-            <input type="radio" id="n7" name="recommandation" value="7"><label for="n7">7</label>
-            <input type="radio" id="n8" name="recommandation" value="8"><label for="n8">8</label>
-            <input type="radio" id="n9" name="recommandation" value="9"><label for="n9">9</label>
-            <input type="radio" id="n10" name="recommandation" value="10"><label for="n10">10</label>
-          </div>
-          <div class="scale__ends"><span>Pas du tout</span><span>Sans hésiter</span></div>
-        </fieldset>
-
-        <div class="q">
-          <label class="q__title" for="commentaire">Un commentaire, une idée, une critique&nbsp;?</label>
-          <textarea id="commentaire" name="commentaire" maxlength="600" placeholder="Facultatif. Merci de ne pas indiquer de données personnelles."></textarea>
-          <div class="counter"><span id="count">0</span> / 600</div>
-        </div>
-
-        <!-- Piège à robots : champ invisible qu'un humain ne remplit jamais. -->
-        <div class="hp" aria-hidden="true">
-          <label for="site_web">Ne pas remplir</label>
-          <input type="text" id="site_web" name="site_web" tabindex="-1" autocomplete="off">
-        </div>
-
-        <p class="consent">En envoyant ce questionnaire, vous acceptez que vos réponses soient utilisées par l'équipe AURA pour évaluer et améliorer le projet. Elles sont conservées jusqu'à la fin du projet tutoré (juin 2027). <a href="mentions-legales.html#confidentialite">Détails</a></p>
-
-        <div class="survey__actions">
-          <button class="btn btn--dark" type="submit" id="submit">Envoyer mon avis</button>
-          <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
-        </div>
-      </form>
-    </section>
-
-    <section class="external" id="external" hidden>
-      <div class="q external__card">
-        <p class="external__title">Le questionnaire s'ouvre sur <strong>Framaforms</strong>.</p>
-        <p class="external__text">Framaforms est un service libre et gratuit de l'association française Framasoft. Vos réponses y sont enregistrées pour l'équipe AURA. <a href="mentions-legales.html#confidentialite">Détails</a></p>
-        <div class="survey__actions">
-          <a class="btn btn--dark" id="external-link" href="#" rel="noopener">Ouvrir le questionnaire</a>
-          <p class="form-msg" id="external-msg" role="status" aria-live="polite">Redirection automatique…</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="thanks" id="thanks" hidden tabindex="-1">
-      <div class="thanks__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
-      </div>
-      <h2>Merci&nbsp;!</h2>
-      <p>Votre avis a bien été pris en compte. Il nous aide vraiment à faire avancer AURA.</p>
-      <p><a class="btn btn--dark" href="index.html">Découvrir le projet</a></p>
-    </section>
-  </div>
-</main>
-
-<footer class="footer">
-  <div class="container footer__inner">
-    <div class="footer__brand"><img src="assets/img/logo.svg" alt="" width="22" height="22"><span>AURA</span></div>
-    <nav class="footer__links" aria-label="Liens de pied de page">
-      <a href="index.html">Accueil</a>
-      <a href="mentions-legales.html">Mentions légales</a>
-      <a href="mentions-legales.html#confidentialite">Confidentialité</a>
-    </nav>
-  </div>
-</footer>
+  <main class="page" id="contenu">
+    <div class="container legal">
+      <h1 class="page__title">Vos idées font avancer AURA.</h1>
+      <p class="page__lead">Le questionnaire a été remplacé par un espace d’améliorations et de suggestions.</p>
+      <p><a class="btn btn--primary" href="suggestions.html">Accéder aux suggestions</a></p>
+    </div>
+  </main>
 </body>
 </html>

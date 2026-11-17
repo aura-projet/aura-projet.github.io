@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>AURA face à l’existant · Comparatif, choix et matériel</title>
+  <meta name="description" content="Ce qu’AURA apporte par rapport à NetAlertX seul, un scan Wi-Fi ponctuel ou un NAC commercial. Pourquoi ces choix, le matériel employé et les dépôts qui nous inspirent.">
+  <meta name="theme-color" content="#070e20">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/constellation.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner glass">
+    <a class="nav__logo" href="index.html" aria-label="AURA, accueil">
+      <img src="assets/img/logo.svg" alt="" width="26" height="26" loading="lazy">
+      <span>AURA</span>
+    </a>
+    <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav__menu" id="menu" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="le-projet.html">Le projet</a>
+      <a href="demo.html">Démo</a>
+      <a href="comparatif.html" class="is-active" aria-current="page">Comparatif</a>
+      <a href="faq.html">FAQ</a>
+      <a href="equipe.html">Équipe</a>
+      <a class="nav__cta js-magnetic" href="suggestions.html">Proposer une idée</a>
+    </nav>
+  </div>
+</header>
+
+<div class="aura-field" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="constellation" aria-hidden="true"></canvas>
+<main id="contenu">
+
+<!-- ============ EN-TÊTE DE PAGE ============ -->
+<section class="hero hero--page">
+  <div class="hero__inner">
+    <nav class="crumbs" aria-label="Fil d’ariane"><a href="index.html">Accueil</a><i>/</i><span>Comparatif</span></nav>
+    <p class="hero__kicker">Lecture honnête</p>
+    <h1 data-reveal>AURA face<br>à l’existant.</h1>
+    <p class="hero__sub" data-reveal data-delay="0.1">Plusieurs outils savent déjà faire une partie du travail. Voici, honnêtement, ce qu’AURA apporte par rapport à eux, pourquoi nous faisons ces choix, et sur quel matériel il repose.</p>
+  </div>
+</section>
+
+<!-- ============ COMPARATIF ============ -->
+<section class="section compare-section" id="comparatif">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Le tableau,<br>sans fard.</h2>
+      <p class="section__lead">Les cases « En cours » et « Objectif » signalent ce qui n’est pas encore en place. Nous préférons l’annoncer plutôt que de le survendre.</p>
+    </header>
+    <div class="compare-wrap" tabindex="0" role="region" aria-label="Tableau comparatif entre AURA et des solutions existantes" data-reveal>
+      <table class="compare">
+        <caption class="sr-only">Comparaison d’AURA avec NetAlertX seul, un scan Wi-Fi ponctuel et un contrôle d’accès réseau commercial.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Critère</th>
+            <th scope="col">NetAlertX seul</th>
+            <th scope="col">Scan Wi-Fi ponctuel</th>
+            <th scope="col">NAC commercial</th>
+            <th scope="col" class="compare__aura">AURA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Réseau filaire</th><td class="c-yes">Oui</td><td class="c-no">Non</td><td class="c-yes">Oui</td><td class="compare__aura c-yes">Oui</td></tr>
+          <tr><th scope="row">Écoute Wi-Fi</th><td class="c-no">Non</td><td class="c-part">Ponctuel</td><td class="c-part">Parfois</td><td class="compare__aura c-yes">Oui</td></tr>
+          <tr><th scope="row">Corrélation ondes / réseau</th><td class="c-no">Non</td><td class="c-no">Non</td><td class="c-yes">Oui</td><td class="compare__aura c-part">En cours</td></tr>
+          <tr><th scope="row">Localisation sur le port de switch</th><td class="c-no">Non</td><td class="c-no">Non</td><td class="c-yes">Oui</td><td class="compare__aura c-part">Objectif</td></tr>
+          <tr><th scope="row">Sans agent sur les postes</th><td class="c-yes">Oui</td><td class="c-yes">Oui</td><td class="c-no">Souvent non</td><td class="compare__aura c-yes">Oui</td></tr>
+          <tr><th scope="row">Logiciel libre</th><td class="c-yes">Oui</td><td class="c-part">Variable</td><td class="c-no">Non</td><td class="compare__aura c-yes">Oui</td></tr>
+          <tr><th scope="row">Coût</th><td class="c-yes">Faible</td><td class="c-yes">Faible</td><td class="c-no">Élevé</td><td class="compare__aura c-yes">Matériel seul</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-note">Lecture honnête d’étudiants&nbsp;: un NAC commercial fait déjà beaucoup, mais au prix d’agents sur les postes et d’une licence. AURA vise la corrélation ondes/réseau, en logiciel libre et sans agent.</p>
+  </div>
+</section>
+
+<!-- ============ POURQUOI AURA ============ -->
+<section class="section why-section" id="pourquoi">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Pourquoi AURA,<br>et pas autre chose.</h2>
+      <p class="section__lead">Ce ne sont pas des promesses commerciales, mais les partis pris qui guident notre projet.</p>
+    </header>
+    <div class="bento why">
+      <article class="cell glass why-card" data-reveal><h3>Sans agent sur les postes</h3><p>Rien à installer sur les ordinateurs. AURA observe le réseau et les ondes depuis l’extérieur des machines.</p></article>
+      <article class="cell glass why-card" data-reveal data-delay="0.06"><h3>Les ondes et le réseau, ensemble</h3><p>La plupart des outils voient l’un ou l’autre. AURA rapproche les deux pour donner du sens aux indices.</p></article>
+      <article class="cell glass why-card" data-reveal data-delay="0.12"><h3>Bâti sur du logiciel libre</h3><p>NetAlertX, Kismet, Netdisco&nbsp;: des briques éprouvées, chacune avec sa licence, que nous assemblons.</p></article>
+      <article class="cell glass why-card" data-reveal><h3>Tout reste local</h3><p>Les observations restent chez vous, sur votre serveur. Seule l’explication d’alerte peut passer par une IA externe.</p></article>
+      <article class="cell glass why-card" data-reveal data-delay="0.06"><h3>Des alertes expliquées</h3><p>Chaque alerte montre la règle qui l’a déclenchée et les indices. La gravité est calculée, pas devinée.</p></article>
+      <article class="cell glass why-card" data-reveal data-delay="0.12"><h3>Transparent et documenté</h3><p>Un projet d’étudiants, assumé comme tel&nbsp;: objectifs, limites et code sont écrits noir sur blanc.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LE MATÉRIEL ============ -->
+<section class="section hardware" id="materiel"><div class="container"><header class="section__head" data-reveal><h2 class="section__title">Le matériel qui écoute<br>et rassemble les observations.</h2><p class="section__lead">Du matériel accessible, et des rôles séparés : le Raspberry Pi écoute, le serveur rassemble les observations.</p></header><div class="bento bento--hardware">
+<article class="cell glass hw hw--pi" data-reveal><div class="hw__photo"><img src="assets/img/materiel/raspberry-pi-3bplus.jpg" alt="Raspberry Pi 3B+ utilisé comme sonde" width="525" height="380" loading="lazy"></div><div class="hw__text"><h3>Raspberry Pi 3B+</h3><p>Kismet écoute les trames de gestion. AURA lit son API REST, sans installer d'agent sur les postes.</p><dl class="specs"><div><dt>Processeur</dt><dd>4 cœurs · 1,4 GHz</dd></div><div><dt>Mémoire</dt><dd>1 Go</dd></div><div><dt>Système</dt><dd>Raspberry Pi OS Lite 64 bits</dd></div></dl></div></article>
+<article class="cell glass hw hw--alfa" data-reveal data-delay="0.06"><div class="hw__photo"><img src="assets/img/materiel/alfa-awus036nh.jpg" alt="Dongle USB Alfa AWUS036NH et antenne" width="225" height="225" loading="lazy"></div><div class="hw__text"><h3>Alfa AWUS036NH</h3><p>Ralink RT3070, mode monitor et antenne externe. Capture en <strong>2,4 GHz uniquement</strong>.</p></div></article>
+<article class="cell glass hw hw--switch" data-reveal data-delay="0.12"><div class="hw__photo"><img src="assets/img/materiel/switch-cisco.jpg" srcset="assets/img/materiel/switch-cisco-440.webp 440w, assets/img/materiel/switch-cisco.jpg 900w" sizes="(max-width: 560px) calc(100vw - 106px), 440px" alt="Face avant du switch Cisco Catalyst" width="900" height="405" loading="lazy"></div><div class="hw__text"><h3>Cisco Catalyst</h3><p>Localiser un appareil par la table MAC en SNMP : un objectif à venir, pas encore une fonction disponible.</p></div></article>
+<article class="cell glass hw hw--server" data-reveal><div class="hw__photo hw__photo--shot"><img src="assets/img/materiel/xen-orchestra-aura-serveur-1100.webp" srcset="assets/img/materiel/xen-orchestra-aura-serveur-480.webp 480w, assets/img/materiel/xen-orchestra-aura-serveur-1100.webp 1100w" sizes="(max-width: 560px) calc(100vw - 82px), (max-width: 860px) 50vw, 602px" alt="Machine virtuelle AURA dans Xen Orchestra" width="1400" height="611" loading="lazy"></div><div class="hw__text"><h3>Serveur Debian 12</h3><p>NetAlertX et AURA Core dans une VM, sur XCP-ng et Xen Orchestra.</p><dl class="specs"><div><dt>Ressources</dt><dd>2 vCPU · 4 Go RAM · 20 Go</dd></div><div><dt>Déploiement</dt><dd>Docker</dd></div></dl></div></article>
+</div></div></section>
+
+<!-- ============ BRIQUES LIBRES ============ -->
+<section class="section oss" id="open-source"><div class="container"><header class="section__head" data-reveal><h2 class="section__title">Des briques libres<br>qui travaillent ensemble.</h2><p class="section__lead">Des logiciels libres, leurs API et notre moteur de corrélation. Chaque brique conserve sa licence.</p></header><div class="bento bento--oss">
+<article class="cell glass brick" data-reveal><h3>NetAlertX</h3><p>Surveillance du réseau filaire.</p><span class="lic">GPL 3.0</span></article>
+<article class="cell glass brick" data-reveal data-delay="0.06"><h3>Kismet</h3><p>Écoute Wi-Fi, utilisé par son API comme programme séparé.</p><span class="lic">GPL 2.0</span></article>
+<article class="cell glass brick" data-reveal data-delay="0.12"><h3>Netdisco</h3><p>Source d'inspiration pour la lecture SNMP à venir.</p><span class="lic">BSD 3 clauses</span></article>
+<article class="cell glass brick" data-reveal data-delay="0.18"><h3>D3.js</h3><p>Brique envisagée pour le graphe réseau du dashboard.</p><span class="lic">ISC</span></article>
+<div class="cell cell--ink repos" data-reveal><h3>Le projet, à la source.</h3><a href="https://gitlab.iut-valence.fr/lamechey/aura" rel="noopener noreferrer">Voir le dépôt GitLab IUT <span>Dépôt de référence</span></a><a href="https://github.com/aura-projet" rel="noopener noreferrer">Retrouver AURA sur GitHub <span>Organisation et site vitrine</span></a></div>
+</div></div></section>
+
+<!-- ============ DÉPÔTS QUI NOUS ONT INSPIRÉS ============ -->
+<section class="section inspi-section" id="inspirations">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Les dépôts GitHub<br>qui nous ont inspirés.</h2>
+      <p class="section__lead">Nous ne partons pas de zéro. Voici les projets libres que nous étudions, utilisons ou dont nous reprenons les idées — avec un lien vers leur code.</p>
+    </header>
+    <div class="repo-grid">
+      <a class="cell glass repo-card" href="https://github.com/jokob-sk/NetAlertX" rel="noopener noreferrer" data-reveal>
+        <span class="repo-card__host">github.com/jokob-sk</span>
+        <h3>NetAlertX</h3>
+        <p>Le socle de la surveillance filaire. Nous le prolongeons par des plugins, sans le réécrire.</p>
+        <span class="repo-card__go">Voir le dépôt</span>
+      </a>
+      <a class="cell glass repo-card" href="https://github.com/kismetwireless/kismet" rel="noopener noreferrer" data-reveal data-delay="0.06">
+        <span class="repo-card__host">github.com/kismetwireless</span>
+        <h3>Kismet</h3>
+        <p>L’écoute Wi-Fi sur la sonde. Nous lisons son API REST comme un programme séparé.</p>
+        <span class="repo-card__go">Voir le dépôt</span>
+      </a>
+      <a class="cell glass repo-card" href="https://github.com/netdisco/netdisco" rel="noopener noreferrer" data-reveal data-delay="0.12">
+        <span class="repo-card__host">github.com/netdisco</span>
+        <h3>Netdisco</h3>
+        <p>La lecture SNMP des switchs. Source d’inspiration pour retrouver le port d’un appareil.</p>
+        <span class="repo-card__go">Voir le dépôt</span>
+      </a>
+      <a class="cell glass repo-card" href="https://github.com/merbanan/rtl_433" rel="noopener noreferrer" data-reveal>
+        <span class="repo-card__host">github.com/merbanan</span>
+        <h3>rtl_433</h3>
+        <p>Décodage de signaux radio 433/868&nbsp;MHz en réception seule. Piste « si nous avons le temps ».</p>
+        <span class="repo-card__go">Voir le dépôt</span>
+      </a>
+      <a class="cell glass repo-card" href="https://github.com/d3/d3" rel="noopener noreferrer" data-reveal data-delay="0.06">
+        <span class="repo-card__host">github.com/d3</span>
+        <h3>D3.js</h3>
+        <p>La brique envisagée pour dessiner le graphe réseau du tableau de bord.</p>
+        <span class="repo-card__go">Voir le dépôt</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPEL À L'ACTION ============ -->
+<section class="section page-cta" id="suite">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Une question reste&nbsp;?</h2>
+      <p class="section__lead">La FAQ répond aux questions fréquentes. Sinon, écrivez-nous&nbsp;: nous lisons tout.</p>
+    </header>
+    <div class="hero__actions" data-reveal>
+      <a class="btn btn--primary js-magnetic" href="faq.html">Lire la FAQ <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a class="btn btn--glass" href="suggestions.html">Proposer une idée</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="assets/img/logo.svg" alt="" width="22" height="22" loading="lazy">
+      <span>AURA · Analyse Unifiée du Réseau et des Antennes</span>
+    </div>
+    <nav class="footer__links" aria-label="Liens de pied de page">
+      <a href="suggestions.html">Améliorations et suggestions</a>
+      <a href="faq.html">Questions fréquentes</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mentions-legales.html#confidentialite">Confidentialité</a>
+    </nav>
+    <p class="footer__legal">Projet tutoré BUT R&amp;T, IUT de Valence · <span id="year">2026</span> · Sans mesure d’audience. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
+  </div>
+  <p class="footer__giant" aria-hidden="true">AURA</p>
+</footer>
+</body>
+</html>

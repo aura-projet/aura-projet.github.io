@@ -1,23 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d0d1a"/><stop offset="1" stop-color="#1b1036"/></linearGradient><linearGradient id="aura" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee6d6"/><stop offset=".5" stop-color="#6e7bff"/><stop offset="1" stop-color="#c86bfa"/></linearGradient><filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="6"/></filter></defs>
-  <rect width="320" height="200" fill="url(#bg)"/>
-  <!-- PC portable -->
-  <rect x="40" y="78" width="88" height="56" rx="6" fill="#22222c" stroke="#6e7bff" stroke-width="2"/>
-  <rect x="48" y="86" width="72" height="40" rx="3" fill="#14142a"/>
-  <rect x="28" y="134" width="112" height="9" rx="4.5" fill="#2e2e3a"/>
-  <!-- câble coupé -->
-  <path d="M84 143 V 172 H 40" fill="none" stroke="#4a4a58" stroke-width="3"/>
-  <g stroke="#ff453a" stroke-width="3" stroke-linecap="round"><line x1="28" y1="164" x2="40" y2="180"/><line x1="40" y1="164" x2="28" y2="180"/></g>
-  <!-- liaison Wi-Fi vers le téléphone -->
-  <path d="M130 100 C 170 70, 200 70, 228 92" fill="none" stroke="url(#aura)" stroke-width="3" stroke-dasharray="6 6"/>
-  <!-- téléphone point d'accès -->
-  <rect x="228" y="70" width="44" height="80" rx="9" fill="#22222c" stroke="#c86bfa" stroke-width="2"/>
-  <rect x="234" y="80" width="32" height="58" rx="4" fill="#1a1230"/>
-  <g fill="none" stroke="#c86bfa" stroke-linecap="round" stroke-width="2.5">
-    <path d="M241 104a13 13 0 0 1 18 0"/><path d="M236 98a21 21 0 0 1 28 0" opacity=".6"/>
-  </g>
-  <circle cx="250" cy="111" r="2.5" fill="#c86bfa"/>
-  <!-- Internet -->
-  <path d="M234 42a14 14 0 0 1 26 -6a12 12 0 0 1 20 10h0a10 10 0 0 1 -2 20h-44a12 12 0 0 1 0 -24z" fill="#2a2a36" transform="translate(-4 -18)"/>
-  <path d="M250 66 V 60" stroke="#ff453a" stroke-width="2" stroke-dasharray="3 3"/>
-  <text x="160" y="186" text-anchor="middle" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="#86868b">sortie Internet sans pare-feu</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 300" width="460" height="300">
+<title>Corrélation entre départ filaire et apparition d’une borne</title>
+<defs><radialGradient id="room" cx="35%" cy="20%" r="100%"><stop stop-color="#1d344f"/><stop offset="1" stop-color="#12253c"/></radialGradient></defs>
+<g transform="translate(24 20)">
+<rect x="8" y="8" width="384" height="234" rx="10" fill="url(#room)" stroke="#9eb9c8" stroke-width="2"/>
+<path d="M250 8V96M250 118V242M250 130H392" fill="none" stroke="#9eb9c8" stroke-width="2"/>
+<g font-family="Arial,sans-serif" font-size="11" letter-spacing=".6" fill="#a9c3d8"><text x="20" y="232">BUREAU</text><text x="262" y="24">RÉUNION</text><text x="262" y="232">LOCAL TECHNIQUE</text></g>
+<path d="M70 53V120H322V190M170 53V120M70 183V120M170 183V120" stroke="#aec9d4" fill="none" stroke-width="1.5"/>
+<g fill="#253e57" stroke="#819fb6"><rect x="40" y="40" width="60" height="26" rx="7"/><rect x="140" y="40" width="60" height="26" rx="7"/><rect x="40" y="170" width="60" height="26" rx="7"/><rect x="140" y="170" width="60" height="26" rx="7"/><rect x="285" y="45" width="72" height="40" rx="20"/></g>
+<rect x="290" y="190" width="64" height="20" rx="5" fill="#31546a"/><path d="M298 200h6M310 200h6M322 200h6M334 200h6" stroke="#9de1e3" stroke-width="3"/>
+<g font-family="Arial,sans-serif" font-size="12" fill="#c6dced"><text x="304" y="181">switch</text><text x="217" y="178">sonde</text></g>
+<circle cx="232" cy="150" r="13" fill="#04d2f6" fill-opacity=".12" stroke="#0aa6bb"/><circle cx="232" cy="150" r="5" fill="#08b0b3"/>
+<g fill="#a6ce77"><circle cx="70" cy="53" r="5"/><circle cx="70" cy="183" r="5"/><circle cx="170" cy="183" r="5"/></g><path d="M170 53V120" stroke="#192e46" stroke-width="4"/><path d="M170 53V120" stroke="#c2d4df" stroke-dasharray="4 4" stroke-width="2"/><g stroke="#ffae82" fill="none"><circle cx="170" cy="53" r="21"/><circle cx="170" cy="53" r="34" opacity=".4"/></g><circle cx="170" cy="53" r="6" fill="#899eac"/><text x="17" y="94" font-family="monospace" font-size="11" fill="#c6dced">14:02:10 PC quitte le filaire</text><text x="17" y="110" font-family="monospace" font-size="11" fill="#ffc3a3">14:02:31 nouvelle borne Wi-Fi</text><text x="12" y="263" font-family="Arial,sans-serif" font-size="13" fill="#c6dced">Deux indices · partage de connexion probable</text>
+</g></svg>

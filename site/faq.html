@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Questions fréquentes · AURA</title>
+  <meta name="description" content="Vie privée, RGPD, matériel, portée réelle : les réponses claires aux questions qui reviennent sur AURA, projet tutoré BUT Réseaux & Télécoms de l’IUT de Valence.">
+  <meta name="theme-color" content="#070e20">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/constellation.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner glass">
+    <a class="nav__logo" href="index.html" aria-label="AURA, accueil">
+      <img src="assets/img/logo.svg" alt="" width="26" height="26" loading="lazy">
+      <span>AURA</span>
+    </a>
+    <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav__menu" id="menu" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="le-projet.html">Le projet</a>
+      <a href="demo.html">Démo</a>
+      <a href="comparatif.html">Comparatif</a>
+      <a href="faq.html" class="is-active" aria-current="page">FAQ</a>
+      <a href="equipe.html">Équipe</a>
+      <a class="nav__cta js-magnetic" href="suggestions.html">Proposer une idée</a>
+    </nav>
+  </div>
+</header>
+
+<div class="aura-field" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="constellation" aria-hidden="true"></canvas>
+<main id="contenu">
+
+<!-- ============ EN-TÊTE DE PAGE ============ -->
+<section class="hero hero--page">
+  <div class="hero__inner">
+    <nav class="crumbs" aria-label="Fil d’ariane"><a href="index.html">Accueil</a><i>/</i><span>FAQ</span></nav>
+    <p class="hero__kicker">Vos questions</p>
+    <h1 data-reveal>Questions<br>fréquentes.</h1>
+    <p class="hero__sub" data-reveal data-delay="0.1">Les questions qui reviennent quand nous présentons AURA. Si la vôtre n’y est pas, la page de suggestions est là pour ça.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section faq-section" id="faq">
+  <div class="container">
+    <div class="faq">
+      <details class="faq__item" data-reveal>
+        <summary>AURA lit-il le contenu de mes communications&nbsp;?</summary>
+        <p>Non. La sonde écoute uniquement les trames de gestion du Wi-Fi, c’est-à-dire des métadonnées (adresses, noms de bornes, puissance). Elle n’émet rien et ne lit aucun contenu de navigation ou de message.</p>
+      </details>
+      <details class="faq__item" data-reveal>
+        <summary>Faut-il installer un logiciel sur les postes&nbsp;?</summary>
+        <p>Non. AURA fonctionne sans agent. Rien n’est installé sur les ordinateurs des utilisateurs&nbsp;: tout se passe côté réseau et côté sonde.</p>
+      </details>
+      <details class="faq__item" data-reveal>
+        <summary>Et le RGPD dans tout ça&nbsp;?</summary>
+        <p>AURA observe des métadonnées, dans les locaux de l’organisation, sans collecter de contenu. Le cadre légal et les mentions de confidentialité sont suivis par l’équipe&nbsp;; les détails figurent dans nos mentions légales.</p>
+      </details>
+      <details class="faq__item" data-reveal>
+        <summary>AURA capte-t-il le Wi-Fi 5&nbsp;GHz&nbsp;?</summary>
+        <p>Pas pour l’instant. La sonde actuelle écoute en 2,4&nbsp;GHz uniquement. Le 5&nbsp;GHz dépendrait d’un autre matériel et du firmware adapté.</p>
+      </details>
+      <details class="faq__item" data-reveal>
+        <summary>Peut-on savoir sur quel port un appareil est branché&nbsp;?</summary>
+        <p>Pas encore. La localisation sur le port d’un switch, par lecture SNMP, est un objectif que nous annonçons comme tel. Aujourd’hui, AURA ne connaît pas le port physique.</p>
+      </details>
+      <details class="faq__item" data-reveal>
+        <summary>Les adresses MAC aléatoires ne faussent-elles pas tout&nbsp;?</summary>
+        <p>Elles compliquent la détection, c’est vrai. C’est pour cela que nous parlons d’alerte «&nbsp;probable&nbsp;» et que nous croisons plusieurs indices (nom de borne, heure, poste qui disparaît) plutôt qu’un seul.</p>
+      </details>
+      <details class="faq__item" data-reveal>
+        <summary>AURA est-il un produit à vendre&nbsp;?</summary>
+        <p>Non. C’est un projet tutoré du BUT3 Réseaux &amp; Télécommunications (parcours cybersécurité) à l’IUT de Valence. Il n’y a ni offre commerciale, ni tarif.</p>
+      </details>
+      <details class="faq__item" data-reveal>
+        <summary>Quel matériel faut-il&nbsp;?</summary>
+        <p>Un Raspberry Pi 3B+ avec un dongle Wi-Fi en mode monitor pour la sonde, et un petit serveur ou une VM (Debian, Docker) pour NetAlertX et AURA Core. Rien d’exotique.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPEL À L'ACTION ============ -->
+<section class="section page-cta" id="suite">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Votre question<br>n’y est pas&nbsp;?</h2>
+      <p class="section__lead">Dites-nous ce qui vous aiderait et dans quelle situation. Nous lisons chaque message.</p>
+    </header>
+    <div class="hero__actions" data-reveal>
+      <a class="btn btn--primary js-magnetic" href="suggestions.html">Poser une question <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a class="btn btn--glass" href="le-projet.html">Revenir au projet</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="assets/img/logo.svg" alt="" width="22" height="22" loading="lazy">
+      <span>AURA · Analyse Unifiée du Réseau et des Antennes</span>
+    </div>
+    <nav class="footer__links" aria-label="Liens de pied de page">
+      <a href="suggestions.html">Améliorations et suggestions</a>
+      <a href="faq.html">Questions fréquentes</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mentions-legales.html#confidentialite">Confidentialité</a>
+    </nav>
+    <p class="footer__legal">Projet tutoré BUT R&amp;T, IUT de Valence · <span id="year">2026</span> · Sans mesure d’audience. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
+  </div>
+  <p class="footer__giant" aria-hidden="true">AURA</p>
+</footer>
+</body>
+</html>

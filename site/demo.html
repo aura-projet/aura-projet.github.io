@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Démonstration AURA · Tableau de bord simulé</title>
+  <meta name="description" content="Pilotez une démonstration d’AURA : vues filaire, Wi-Fi, cartographie et analyse IA, recherche d’appareils et alertes fictives. Rien n’agit sur un vrai réseau.">
+  <meta name="theme-color" content="#070e20">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dashboard-demo.css">
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/constellation.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/dashboard-demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner glass">
+    <a class="nav__logo" href="index.html" aria-label="AURA, accueil">
+      <img src="assets/img/logo.svg" alt="" width="26" height="26" loading="lazy">
+      <span>AURA</span>
+    </a>
+    <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav__menu" id="menu" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="le-projet.html">Le projet</a>
+      <a href="demo.html" class="is-active" aria-current="page">Démo</a>
+      <a href="comparatif.html">Comparatif</a>
+      <a href="faq.html">FAQ</a>
+      <a href="equipe.html">Équipe</a>
+      <a class="nav__cta js-magnetic" href="suggestions.html">Proposer une idée</a>
+    </nav>
+  </div>
+</header>
+
+<div class="aura-field" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="constellation" aria-hidden="true"></canvas>
+<main id="contenu">
+
+<!-- ============ EN-TÊTE DE PAGE ============ -->
+<section class="hero hero--page">
+  <div class="hero__inner">
+    <nav class="crumbs" aria-label="Fil d’ariane"><a href="index.html">Accueil</a><i>/</i><span>Démonstration</span></nav>
+    <p class="hero__kicker">Simulation locale</p>
+    <h1 data-reveal>Prenez les commandes<br>de la démonstration.</h1>
+    <p class="hero__sub" data-reveal data-delay="0.1">Changez de vue (filaire, Wi-Fi, cartographie, analyse IA, alertes), cherchez un appareil, ouvrez sa fiche ou déclenchez un événement pour voir ce qui change. Les appareils et les alertes sont fictifs : rien ici n’agit sur un vrai réseau.</p>
+  </div>
+</section>
+
+<!-- ============ DÉMO SIMULÉE ============ -->
+<section class="section band demo" id="demo"><div class="container">
+<div class="window" id="demo-window" data-ui="aura-preview" data-reveal>
+  <div class="window__bar">
+    <div class="window__controls" aria-hidden="true">
+      <span class="window__dot window__dot--close"></span>
+      <span class="window__dot window__dot--min"></span>
+      <span class="window__dot window__dot--max"></span>
+    </div>
+    <span class="window__title" id="demo-window-title">AURA · Votre réseau, expliqué</span>
+    <span class="window__tag"><i class="demo-led" aria-hidden="true"></i> Simulation locale</span>
+  </div>
+  <div class="window__body" id="demo-window-body">
+<aside class="side" aria-label="Vues de la démonstration"><span class="side__brand">AURA</span><div class="demo-views" role="group" aria-label="Choisir une vue"><button class="side__item is-on" type="button" data-demo-view="all" aria-pressed="true">Vue d’ensemble</button><button class="side__item" type="button" data-demo-view="lan" aria-pressed="false">Appareils filaires</button><button class="side__item" type="button" data-demo-view="wifi" aria-pressed="false">Wi-Fi</button><button class="side__item" type="button" data-demo-view="map" aria-pressed="false">Cartographie</button><button class="side__item" type="button" data-demo-view="ia" aria-pressed="false">Analyse IA</button><button class="side__item" type="button" data-demo-view="alerts" aria-pressed="false">Alertes</button></div><dl class="side__kpis"><div><dt>Connus</dt><dd id="kpi-known">7</dd></div><div><dt>À qualifier</dt><dd id="kpi-unknown">1</dd></div><div><dt>Alertes simulées</dt><dd id="kpi-alerts">1</dd></div></dl></aside>
+<div class="panes"><div class="pane"><h3 class="pane__title">Réseau filaire <span>NetAlertX</span></h3><div class="table-wrap" tabindex="0" role="region" aria-label="Tableau de démonstration : lan"><table class="grid" id="tbl-lan"><thead><tr><th scope="col">Nom</th><th scope="col">MAC</th><th scope="col">IP</th><th scope="col">Fabricant</th><th scope="col">État</th></tr></thead><tbody><tr data-row="compta"><td>PC-COMPTA-03</td><td>A4:BB:6D:…:21</td><td>192.168.10.31</td><td>Dell</td><td><span class="st st--ok">connu</span></td></tr><tr data-row="accueil"><td>PC-ACCUEIL-01</td><td>A4:BB:6D:…:7E</td><td>192.168.10.12</td><td>Dell</td><td><span class="st st--ok">connu</span></td></tr><tr data-row="imp"><td>IMPRIMANTE-RDC</td><td>00:1B:A9:…:C4</td><td>192.168.10.40</td><td>Brother</td><td><span class="st st--ok">connu</span></td></tr><tr data-row="nas"><td>NAS-SAUVEGARDE</td><td>00:11:32:…:0F</td><td>192.168.10.5</td><td>Synology</td><td><span class="st st--ok">connu</span></td></tr><tr data-row="new1"><td>(sans nom)</td><td>3A:F1:…:9C</td><td>192.168.10.87</td><td>non disponible</td><td><span class="st st--off">Non observé</span></td></tr><tr data-row="new2"><td>(sans nom)</td><td>72:0B:…:11</td><td>192.168.10.93</td><td>MAC aléatoire</td><td><span class="st st--off">Non observé</span></td></tr></tbody></table></div></div><div class="pane"><h3 class="pane__title">Wi-Fi 2,4 GHz <span>Kismet</span></h3><div class="table-wrap" tabindex="0" role="region" aria-label="Tableau de démonstration : wifi"><table class="grid" id="tbl-wifi"><thead><tr><th scope="col">SSID</th><th scope="col">Type</th><th scope="col">Canal</th><th scope="col">dBm</th><th scope="col">Paquets</th><th scope="col">État</th></tr></thead><tbody><tr data-row="ap1"><td>ENTREPRISE</td><td>AP</td><td>1</td><td>-41</td><td>15 624</td><td><span class="st st--ok">connu</span></td></tr><tr data-row="ap2"><td>ENTREPRISE-INVITES</td><td>AP</td><td>11</td><td>-52</td><td>9 207</td><td><span class="st st--ok">connu</span></td></tr><tr data-row="ap3"><td>Livebox-7F2A</td><td>AP</td><td>6</td><td>-48</td><td>1 318</td><td><span class="st st--warn">À qualifier</span></td></tr><tr data-row="ap4"><td>(SSID masqué)</td><td>AP</td><td>13</td><td>-77</td><td>284</td><td><span class="st st--off">Non observé</span></td></tr><tr data-row="cl1"><td>ENTREPRISE</td><td>Client</td><td>1</td><td>-63</td><td>2 951</td><td><span class="st st--ok">connu</span></td></tr></tbody></table></div></div><div class="pane pane--map" id="pane-map" hidden><h3 class="pane__title">Cartographie <span>Plan fictif</span></h3><div class="map"><svg class="map__plan" viewBox="0 0 640 372" role="img" aria-labelledby="map-title map-desc"><title id="map-title">Plan fictif des locaux avec appareils situés</title><desc id="map-desc">Positions illustratives : postes connus, sonde Wi-Fi, switch et borne inconnue. Aucune localisation réelle.</desc><g class="map__rooms"><rect x="16" y="16" width="300" height="160" rx="12"/><rect x="332" y="16" width="292" height="160" rx="12"/><rect x="16" y="196" width="200" height="160" rx="12"/><rect x="232" y="196" width="200" height="160" rx="12"/><rect x="448" y="196" width="176" height="160" rx="12"/></g><g class="map__labels"><text x="28" y="40">Bureau comptabilité</text><text x="344" y="40">Open space</text><text x="28" y="220">Accueil</text><text x="244" y="220">Local technique</text><text x="460" y="220">Salle de réunion</text></g><g class="map__node map__node--ok"><circle cx="96" cy="110" r="9"/><text x="96" y="140">PC-COMPTA</text></g><g class="map__node map__node--ok"><circle cx="230" cy="110" r="9"/><text x="230" y="140">NAS</text></g><g class="map__node map__node--ok"><circle cx="470" cy="100" r="9"/><text x="470" y="130">Imprimante</text></g><g class="map__node map__node--ok"><circle cx="560" cy="120" r="9"/><text x="560" y="150">PC-BUREAU</text></g><g class="map__node map__node--ok"><circle cx="96" cy="286" r="9"/><text x="96" y="316">PC-ACCUEIL</text></g><g class="map__node map__node--switch"><rect x="312" y="270" width="40" height="24" rx="5"/><text x="332" y="320">Switch</text></g><g class="map__node map__node--probe"><g class="map__waves"><circle cx="420" cy="100" r="26"/><circle cx="420" cy="100" r="40"/></g><circle cx="420" cy="100" r="11"/><text x="420" y="66">Sonde Wi-Fi</text></g><g class="map__node map__node--rogue"><circle cx="536" cy="286" r="11"/><text x="536" y="316">Borne inconnue</text></g></svg><ul class="map__legend"><li class="map__k map__k--ok">Appareil connu</li><li class="map__k map__k--probe">Sonde Wi-Fi</li><li class="map__k map__k--switch">Switch</li><li class="map__k map__k--rogue">Inconnu à vérifier</li></ul></div><p class="demo-note-inline">Retrouver le port de switch exact d’un appareil (lecture SNMP) reste un objectif. Ces positions sont fictives et illustratives.</p></div><div class="pane pane--ia" id="pane-ia" hidden><h3 class="pane__title">Analyse par IA <span>Texte illustratif</span></h3><div class="ia"><article class="ia__card"><header class="ia__head"><i class="sev sev--mid" aria-hidden="true"></i><strong>Borne Wi-Fi non déclarée, probable</strong></header><p>En clair : une borne « Livebox-7F2A » émet en 2,4 GHz dans les locaux mais ne figure pas au référentiel. Elle peut être un partage de connexion ou un équipement oublié. L’administrateur devrait vérifier qui l’a installée avant de conclure.</p><dl class="ia__meta"><div><dt>Gravité</dt><dd>Moyenne · fixée par les règles</dd></div><div><dt>Indice</dt><dd>SSID absent du référentiel</dd></div><div><dt>À faire</dt><dd>Identifier puis qualifier</dd></div></dl></article><article class="ia__card"><header class="ia__head"><i class="sev sev--high" aria-hidden="true"></i><strong>Partage de connexion, à vérifier</strong></header><p>En clair : un poste connu a quitté le réseau filaire au moment où une nouvelle borne Wi-Fi est apparue. Ce rapprochement dans le temps évoque un partage de connexion, sans le prouver. Les deux événements sont datés pour faciliter le contrôle.</p><dl class="ia__meta"><div><dt>Gravité</dt><dd>Élevée · fixée par les règles</dd></div><div><dt>Indice</dt><dd>Poste hors ligne + borne au même instant</dd></div><div><dt>À faire</dt><dd>Recouper avec le planning du poste</dd></div></dl></article></div><p class="demo-note-inline">L’IA reformule l’alerte en langage clair pour l’administrateur. Elle ne décide pas de la gravité : ce sont les règles d’AURA qui la calculent. Exemple fictif.</p></div><div class="pane pane--feed"><h3 class="pane__title">Alertes <span>Règles AURA</span></h3><ul class="feed" id="feed" aria-live="polite" aria-label="Alertes fictives"><li class="feed__item"><i class="sev sev--mid" aria-hidden="true"></i><div><strong>Borne non déclarée probable</strong><span>SSID fictif « Livebox-7F2A » · Wi-Fi 2,4 GHz · à vérifier.</span></div><time datetime="10:04">Démo · 10:04</time></li><li class="feed__item"><i class="sev sev--low" aria-hidden="true"></i><div><strong>Inventaire de démonstration</strong><span>Les observations filaires et radio sont regroupées ici.</span></div><time datetime="10:02">Démo · 10:02</time></li><li class="feed__item"><i class="sev sev--low" aria-hidden="true"></i><div><strong>Référentiel chargé</strong><span>Jeu fictif : sept équipements connus. Aucune donnée du réseau réel.</span></div><time datetime="10:00">Démo · 10:00</time></li></ul><button class="demo-next" id="demo-next" type="button">Simuler l'événement suivant</button></div></div></div></div>
+<p class="demo__note">Les règles déterminent la gravité des alertes, pas une IA. L’administrateur vérifie les indices et décide de la suite.</p></div></section>
+
+<!-- ============ APPEL À L'ACTION ============ -->
+<section class="section page-cta" id="suite">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Envie d’aller plus loin&nbsp;?</h2>
+      <p class="section__lead">La démo montre le résultat. Les pages Projet et Comparatif expliquent comment et pourquoi.</p>
+    </header>
+    <div class="hero__actions" data-reveal>
+      <a class="btn btn--primary js-magnetic" href="le-projet.html">Comprendre le fonctionnement <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <a class="btn btn--glass" href="comparatif.html">Voir le comparatif</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="assets/img/logo.svg" alt="" width="22" height="22" loading="lazy">
+      <span>AURA · Analyse Unifiée du Réseau et des Antennes</span>
+    </div>
+    <nav class="footer__links" aria-label="Liens de pied de page">
+      <a href="suggestions.html">Améliorations et suggestions</a>
+      <a href="faq.html">Questions fréquentes</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mentions-legales.html#confidentialite">Confidentialité</a>
+    </nav>
+    <p class="footer__legal">Projet tutoré BUT R&amp;T, IUT de Valence · <span id="year">2026</span> · Sans mesure d’audience. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
+  </div>
+  <p class="footer__giant" aria-hidden="true">AURA</p>
+</footer>
+</body>
+</html>

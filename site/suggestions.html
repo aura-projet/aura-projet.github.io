@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Suggestions et améliorations · AURA</title>
+  <meta name="description" content="Proposez une amélioration pour AURA : usage, interface, fonctionnalité ou documentation.">
+  <meta name="theme-color" content="#070e20">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/suggestions.css">
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/suggestions.js" defer></script>
+</head>
+<body class="suggestions-page">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="nav nav--simple is-scrolled" id="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="index.html" aria-label="AURA, accueil"><img src="assets/img/logo.svg" alt="" width="26" height="26"><span>AURA</span></a>
+    <nav class="nav__menu" aria-label="Navigation"><a href="le-projet.html">Le projet</a><a class="nav__cta" href="index.html">Retour au site</a></nav>
+  </div>
+</header>
+<main class="suggestions-main container" id="contenu">
+  <div class="suggestions-layout">
+    <section class="suggestions-intro" aria-labelledby="suggestions-title">
+      <h1 id="suggestions-title">Une idée pour<br>améliorer <span>AURA&nbsp;?</span></h1>
+      <p class="suggestions-lead">Que changeriez-vous dans AURA ou dans sa présentation ? Vous pouvez partir d’un problème rencontré ou d’une information que vous n’avez pas trouvée.</p>
+      <h2>Pour partir d’un cas concret</h2>
+      <ul class="suggestions-prompts">
+        <li>« Pour comprendre une alerte, j’aimerais voir… »</li>
+        <li>« Pour un administrateur, ce serait plus simple si… »</li>
+        <li>« Dans la présentation du projet, il manque… »</li>
+      </ul>
+      <h2>Et ensuite&nbsp;?</h2>
+      <p>Vos suggestions nous aident à choisir les prochaines améliorations du projet. Nous ne pourrons pas toutes les réaliser. Si vous laissez votre adresse e-mail, nous pourrons vous demander des précisions, mais nous ne pouvons pas garantir une réponse à chaque message.</p>
+      <p class="suggestions-caution">N’indiquez ni mot de passe, ni adresse IP ou MAC réelle, ni information confidentielle sur votre réseau.</p>
+    </section>
+    <section class="suggestions-panel" aria-labelledby="form-title">
+      <h2 id="form-title">Votre suggestion</h2>
+      <p class="suggestions-help">Tous les champs sont obligatoires, sauf l’adresse e-mail.</p>
+      <form class="suggestion-form" id="suggestion-form" novalidate>
+        <fieldset id="suggestion-fields">
+          <legend class="sr-only">Détails de la suggestion</legend>
+          <div class="suggestion-field">
+            <label for="suggestion-type">Type de suggestion</label>
+            <select id="suggestion-type" name="type" required aria-describedby="type-error">
+              <option value="">Choisir un type</option>
+              <option value="usage">Usage et besoins</option>
+              <option value="interface">Interface et accessibilité</option>
+              <option value="fonctionnalite">Fonctionnalité</option>
+              <option value="documentation">Présentation et documentation</option>
+              <option value="autre">Autre amélioration</option>
+            </select>
+            <p class="suggestion-error" id="type-error"></p>
+          </div>
+          <div class="suggestion-field">
+            <label for="suggestion-subject">Sujet</label>
+            <p class="suggestions-help" id="subject-help">De 5 à 120 caractères. Par exemple : « Clarifier le niveau d’une alerte ».</p>
+            <input id="suggestion-subject" name="subject" type="text" required minlength="5" maxlength="120" aria-describedby="subject-help subject-error">
+            <p class="suggestion-error" id="subject-error"></p>
+          </div>
+          <div class="suggestion-field">
+            <label for="suggestion-detail">Votre idée en détail</label>
+            <p class="suggestions-help" id="detail-help">De 20 à 2 000 caractères. Expliquez dans quelle situation vous utiliseriez cette amélioration et ce qu’elle vous aiderait à faire.</p>
+            <textarea id="suggestion-detail" name="message" rows="7" required minlength="20" maxlength="2000" aria-describedby="detail-help detail-error"></textarea>
+            <p class="suggestion-count"><span id="suggestion-count">0</span> / 2 000 caractères</p>
+            <p class="suggestion-error" id="detail-error"></p>
+          </div>
+          <div class="suggestion-field">
+            <label for="suggestion-email">Adresse e-mail <span>(facultative)</span></label>
+            <p class="suggestions-help" id="email-help">Seulement si vous acceptez d’être recontacté au sujet de cette idée.</p>
+            <input id="suggestion-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="email-help email-error">
+            <p class="suggestion-error" id="email-error"></p>
+          </div>
+          <div class="suggestion-honeypot" aria-hidden="true">
+            <label for="suggestion-website">Laisser ce champ vide</label><input id="suggestion-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="suggestion-field">
+            <label class="suggestion-consent" for="suggestion-consent"><input id="suggestion-consent" name="consent" type="checkbox" required aria-describedby="privacy-help consent-error"><span>J’accepte que l’équipe AURA utilise ma suggestion et, si je la fournis, mon adresse e-mail pour améliorer le projet et me recontacter à ce sujet.</span></label>
+            <p class="suggestions-help" id="privacy-help">La vérification anti-robot se fait sur cette page, sans service externe. L’envoi, lorsqu’il est configuré, transmet votre message à Formspree. <a href="mentions-legales.html#confidentialite">Informations de confidentialité</a>.</p>
+            <p class="suggestion-error" id="consent-error"></p>
+          </div>
+        </fieldset>
+        <section class="suggestion-protection" aria-labelledby="protection-title">
+          <h3 id="protection-title">Vérification anti-robot</h3>
+          <div class="captcha-home" id="suggestion-captcha">
+            <label class="captcha-home__label" for="captcha-answer" id="captcha-question">Petit calcul de vérification…</label>
+            <div class="captcha-home__row">
+              <input id="captcha-answer" name="captcha" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" aria-describedby="captcha-status" required>
+              <button class="suggestion-text-button" id="captcha-refresh" type="button">Autre question</button>
+            </div>
+          </div>
+          <p class="suggestions-help" id="captcha-status" role="status" aria-live="polite">Répondez à la question pour activer l’envoi.</p>
+        </section>
+        <button class="suggestion-submit" id="suggestion-submit" type="submit" disabled aria-describedby="captcha-status suggestion-status">Envoyer ma suggestion</button>
+        <p id="suggestion-status" class="suggestion-status" role="status" aria-live="polite" tabindex="-1"></p>
+      </form>
+      <noscript><p class="suggestion-error">JavaScript est nécessaire à la vérification anti-robot. Aucun envoi n’est possible ici sans cette vérification.</p></noscript>
+      <section class="suggestion-alternative" aria-labelledby="alternative-title">
+        <h3 id="alternative-title">Une autre façon de partager votre idée</h3>
+        <p class="suggestions-help">Vous pouvez aussi copier votre suggestion ou préparer un e-mail. Ces options n’utilisent pas la vérification anti-robot du formulaire. Copier le texte ne transmet rien. Si vous préparez un e-mail, vérifiez-le puis envoyez-le depuis votre messagerie.</p>
+        <div class="suggestion-alternative-actions"><button class="suggestion-text-button" id="suggestion-copy" type="button" disabled>Copier ma suggestion</button><button class="suggestion-text-button" id="suggestion-mail" type="button" hidden>Préparer un e-mail (sans CAPTCHA)</button></div>
+        <p class="suggestions-help" id="alternative-status" role="status" aria-live="polite"></p>
+        <textarea id="suggestion-copy-text" rows="6" readonly hidden aria-label="Texte à sélectionner et copier manuellement"></textarea>
+      </section>
+    </section>
+  </div>
+</main>
+<footer class="footer"><div class="container footer__inner"><div class="footer__brand"><img src="assets/img/logo.svg" alt="" width="22" height="22"><span>AURA</span></div><nav class="footer__links" aria-label="Liens de pied de page"><a href="index.html">Accueil</a><a href="mentions-legales.html">Mentions légales</a><a href="mentions-legales.html#confidentialite">Confidentialité</a></nav></div></footer>
+</body>
+</html>

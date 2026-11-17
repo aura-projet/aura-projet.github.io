@@ -1,5 +1,6 @@
 # Publie le site vitrine AURA (dossier site/) sur GitHub Pages.
 # Prérequis (une seule fois) : Settings > Pages > Source = "GitHub Actions".
+# Source réglée sur « GitHub Actions » : ce workflow sert site/ à la racine.
 # Voir docs/site-web.md.
 name: Site web (GitHub Pages)
 

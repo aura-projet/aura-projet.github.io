@@ -451,3 +451,97 @@ html:not(.js) #constellation { display: none; }
 .page-cta .section__head { margin-inline: auto; }
 .page-cta .hero__actions { justify-content: center; }
 @media (max-width: 720px) { .hero--page h1 { max-width: none; } }
+
+/* ============================================================= *
+ *  Raffinements : barre verre liquide translucide, couleurs      *
+ *  AURA (pas que du bleu), bandeau sobre, pied au logo, slider.  *
+ * ============================================================= */
+
+/* --- Barre : verre liquide translucide, légèrement blanc (Apple §12) --- */
+.nav__inner {
+  color-scheme: dark;
+  background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.04)), rgba(11,20,42,.40);
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.24), inset 0 -1px 2px rgba(0,0,0,.25), 0 16px 40px -22px rgba(0,0,0,.9);
+  -webkit-backdrop-filter: blur(22px) saturate(1.7);
+  backdrop-filter: blur(22px) saturate(1.7);
+}
+.nav.is-scrolled .nav__inner {
+  background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.03)), rgba(8,16,34,.70);
+  border-color: rgba(255,255,255,.2);
+}
+.nav__logo { color: #f3f8ff; }
+.nav__menu a { color: #d2e1f1; }
+.nav__menu a:not(.nav__cta):hover,
+.nav__menu a[aria-current="location"],
+.nav__menu a.is-active,
+.nav__menu a[aria-current="page"] { color: var(--aura-cyan); text-decoration-color: var(--aura-cyan); }
+.nav__menu .nav__cta { background: var(--aura-cyan); color: var(--night); }
+.nav__cta:hover { background: #7fe9fb; }
+.nav :focus-visible { outline-color: var(--aura-cyan); }
+.nav__burger span { background: #e8f1fb; }
+@media (max-width: 860px) {
+  .nav__menu { background: rgba(10,18,38,.9); border: 1px solid rgba(255,255,255,.14); -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px); }
+  .nav__menu a { color: #e6eefb; border-bottom-color: rgba(255,255,255,.1); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .nav .nav__inner, .nav.is-scrolled .nav__inner { background: #0c1730; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@supports not (backdrop-filter: blur(1px)) { .nav .nav__inner { background: #0c1730; } }
+
+/* --- Bandeau défilant : plus sobre, pastilles multicolores AURA --- */
+.strip__track span { font-size: clamp(30px, 4.6vw, 58px); color: #86a6bd; }
+.strip__track i { width: 14px; height: 14px; background: var(--aura-cyan); }
+.strip__track i:nth-of-type(3n+2) { background: var(--iut-orange); }
+.strip__track i:nth-of-type(3n+3) { background: var(--aura-teal); }
+@media (max-width: 560px) { .strip__track span { font-size: 30px; } .strip__track i { width: 10px; height: 10px; } }
+
+/* --- Couleurs AURA : accents cyan / teal / orange / violet --- */
+.hero__kicker::before { background: linear-gradient(90deg, var(--aura-cyan), var(--iut-orange)); opacity: .9; }
+.why-card::before, .audit-item::before { content: ""; display: block; width: 38px; height: 3px; border-radius: 3px; margin-bottom: 18px; background: var(--aura-cyan); }
+.why .why-card:nth-child(3n+2)::before, .audit-grid .audit-item:nth-child(2)::before { background: var(--iut-orange); }
+.why .why-card:nth-child(3n)::before, .audit-grid .audit-item:nth-child(3)::before { background: var(--aura-teal); }
+.audit-grid .audit-item:nth-child(4)::before { background: #c56cf0; }
+
+/* --- Pied de page : logo officiel au lieu du grand mot AURA --- */
+.footer__giant { display: none; }
+.footer { padding-bottom: 44px; }
+.footer__logo { display: block; margin: 24px auto 0; width: clamp(168px, 20vw, 228px); height: auto; opacity: .97; }
+
+/* --- Slider « Le projet » : cartes glissables, physique Apple --- */
+.how--slider .how__layout { display: block; }
+.how--slider .how__visual { position: static; top: auto; margin: 0 auto 40px; max-width: 760px; }
+.slider { position: relative; }
+.slider__viewport { overflow: hidden; border-radius: var(--radius); cursor: grab; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+.slider__viewport:focus-visible { outline: 3px solid var(--aura-cyan); outline-offset: 4px; }
+.slider__viewport.is-dragging { cursor: grabbing; }
+.slider__track { display: flex; gap: 0; margin: 0; padding: 2px; list-style: none; will-change: transform; }
+.slide { flex: 0 0 100%; min-width: 0; padding: 6px; box-sizing: border-box; }
+@media (min-width: 720px) { .slide { flex-basis: 50%; } }
+@media (min-width: 1080px) { .slide { flex-basis: 33.333%; } }
+.slide__card { height: 100%; border-radius: var(--radius-s); padding: 30px 28px; display: flex; flex-direction: column; gap: 14px; transition: border-color .4s var(--ease), transform .4s var(--ease); }
+.slide__top { display: flex; align-items: center; gap: 16px; }
+.slide__num { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; font: 600 15px var(--font); color: var(--night); background: var(--aura-cyan); flex: 0 0 auto; box-shadow: 0 6px 18px -8px currentColor; }
+.slide:nth-child(2) .slide__num { background: var(--aura-teal); }
+.slide:nth-child(3) .slide__num { background: #5b8def; }
+.slide:nth-child(4) .slide__num { background: var(--iut-orange); color: #fff; }
+.slide:nth-child(5) .slide__num { background: #c56cf0; color: #fff; }
+.slide__card h3 { font-size: 21px; line-height: 1.14; }
+.slide__card h3 .tag { display: table; margin-top: 10px; }
+.slide__card p { color: var(--ink-2); font-size: 15.5px; margin: 0; }
+.slide.is-active .slide__card { border-color: rgba(168,235,245,.45); transform: translateY(-4px); }
+.slider__controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 30px; }
+.slider__btn { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line); background: rgba(21,42,68,.72); color: var(--ink); transition: transform .25s var(--ease), border-color .25s, opacity .25s; }
+.slider__btn:hover:not(:disabled) { border-color: #a8ebf5; transform: translateY(-2px); }
+.slider__btn:active:not(:disabled) { transform: scale(.94); }
+.slider__btn:disabled { opacity: .3; cursor: not-allowed; }
+.slider__btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.slider__dots { display: flex; align-items: center; gap: 11px; }
+.slider__dot { width: 9px; height: 9px; border-radius: 50%; border: 0; padding: 0; background: #3a5273; transition: transform .3s var(--ease), background .3s; }
+.slider__dot.is-on { background: var(--aura-cyan); transform: scale(1.4); }
+.slider__progress { margin: 18px 0 0; text-align: center; font: 500 13px/1.4 var(--mono); color: var(--ink-2); letter-spacing: .04em; }
+html:not(.js) .slider__controls, html:not(.js) .slider__progress { display: none; }
+html:not(.js) .slider__viewport { overflow: visible; }
+html:not(.js) .slider__track { flex-wrap: wrap; }
+html:not(.js) .slide { flex-basis: 100%; }
+@media (prefers-reduced-motion: reduce) { .slide.is-active .slide__card { transform: none; } }

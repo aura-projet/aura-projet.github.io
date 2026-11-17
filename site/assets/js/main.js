@@ -179,7 +179,7 @@ document.documentElement.classList.add('js');
     function update() {
       var paused = userPaused || motion.matches || Boolean(window.AURA_MOTION_PAUSED);
       strip.classList.toggle('is-paused', paused);
-      if (track) track.style.animationPlayState = paused || document.hidden || !visible ? 'paused' : 'running';
+      if (track) track.style.animationPlayState = paused || document.hidden ? 'paused' : 'running';
       button.setAttribute('aria-pressed', String(paused));
       button.disabled = motion.matches;
       var label = motion.matches ? 'Défilement arrêté : mouvement réduit' : paused ? 'Reprendre le défilement' : 'Mettre le défilement en pause';

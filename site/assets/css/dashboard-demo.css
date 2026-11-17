@@ -87,6 +87,12 @@
 .map__k--probe::before { background: #0a86ad; }
 .map__k--switch::before { background: #46617b; }
 .map__k--rogue::before { background: #d1490c; }
+.map__fence { fill: none; stroke: #7b96b3; stroke-width: 1.6; stroke-dasharray: 3 7; stroke-linecap: round; }
+.map__fov { fill: url(#therm); pointer-events: none; }
+.map__cam rect { fill: #17324f; stroke: #e3571a; stroke-width: 1.5; }
+.map__cam-lens { fill: #ff8a4c; }
+.map__k--cam::before { background: #e3571a; }
+.map__k--fence::before { background: transparent; border: 1.5px dashed #7b96b3; }
 /* Analyse par IA (texte illustratif) */
 .ia { display: grid; gap: 14px; }
 .ia__card { border: 1px solid #c3d6e0; border-radius: 12px; background: #fff; padding: 18px 20px; }

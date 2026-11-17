@@ -15,6 +15,7 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/constellation.js" defer></script>
   <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/slider.js" defer></script>
   <script src="assets/js/hero.js" type="module"></script>
 </head>
 <body>
@@ -60,10 +61,10 @@
 </section>
 
 <!-- ============ FONCTIONNEMENT ============ -->
-<section class="section how" id="fonctionnement">
+<section class="section how how--slider" id="fonctionnement">
   <div class="container">
     <header class="section__head" data-reveal>
-      <h2 class="section__title">Cinq temps,<br>une même lecture.</h2><p class="section__lead">Nous rapprochons les observations du réseau filaire et du Wi-Fi pour aider l’administrateur à comprendre ce qui se passe.</p>
+      <h2 class="section__title">Cinq temps,<br>une même lecture.</h2><p class="section__lead">Faites glisser les étapes — au doigt sur mobile, à la souris ou aux flèches sur ordinateur. Le schéma suit l’étape active.</p>
     </header>
 
     <div class="how__layout">
@@ -101,33 +102,23 @@
         <p class="scene-3d-note">Schéma animé pour expliquer le projet. Les flux sont illustratifs.</p>
       </div>
 
-      <ol class="how__steps">
-        <li class="how__step is-active" data-step="1">
-          <span class="how__num">01</span>
-          <h3>Écouter les ondes</h3>
-          <p>Une sonde Raspberry Pi, équipée d'un dongle Wi-Fi en mode monitor, écoute les trames de gestion avec Kismet. Elle recense les bornes, les SSID et les adresses MAC autour d'elle, en 2,4&nbsp;GHz. Elle ne fait qu'écouter&nbsp;: elle n'émet rien et ne lit aucun contenu.</p>
-        </li>
-        <li class="how__step" data-step="2">
-          <span class="how__num">02</span>
-          <h3>Recenser le réseau</h3>
-          <p>NetAlertX recense les appareils présents sur le réseau filaire. Chaque appareil est comparé à un référentiel connu&nbsp;/&nbsp;inconnu, alimenté par import CSV ou par un mode apprentissage.</p>
-        </li>
-        <li class="how__step" data-step="3">
-          <span class="how__num">03</span>
-          <h3>Croiser les événements</h3>
-          <p>AURA rapproche les événements Wi-Fi et réseau qui surviennent dans un même intervalle de temps. Si un poste quitte le réseau au moment où une nouvelle borne apparaît, cela peut indiquer un partage de connexion. Ces indices restent à vérifier.</p>
-        </li>
-        <li class="how__step" data-step="4">
-          <span class="how__num">04</span>
-          <h3>Localiser sur le switch <span class="tag">Objectif à venir</span></h3>
-          <p>Nous prévoyons de lire les tables MAC des switchs en SNMP pour retrouver un port physique. Cette étape n'est pas en place : aujourd'hui, AURA ne connaît pas le port de l'appareil.</p>
-        </li>
-        <li class="how__step" data-step="5">
-          <span class="how__num">05</span>
-          <h3>Alerter, et expliquer</h3>
-          <p>L'alerte reste probable : l'administrateur voit les indices et la règle qui l'a déclenchée. La gravité est calculée par les règles. Moins de cinq minutes entre l'événement et l'alerte reste notre objectif, pas une garantie actuelle.</p>
-        </li>
-      </ol>
+      <div class="slider" data-slider>
+        <div class="slider__viewport" data-slider-viewport tabindex="0" aria-roledescription="carrousel" aria-label="Étapes du fonctionnement d’AURA">
+          <ol class="slider__track" data-slider-track>
+            <li class="slide" data-step="1"><div class="cell glass slide__card"><div class="slide__top"><span class="slide__num">01</span><h3>Écouter les ondes</h3></div><p>Une sonde Raspberry Pi, équipée d'un dongle Wi-Fi en mode monitor, écoute les trames de gestion avec Kismet. Elle recense les bornes, les SSID et les adresses MAC autour d'elle, en 2,4&nbsp;GHz. Elle ne fait qu'écouter&nbsp;: elle n'émet rien et ne lit aucun contenu.</p></div></li>
+            <li class="slide" data-step="2"><div class="cell glass slide__card"><div class="slide__top"><span class="slide__num">02</span><h3>Recenser le réseau</h3></div><p>NetAlertX recense les appareils présents sur le réseau filaire. Chaque appareil est comparé à un référentiel connu&nbsp;/&nbsp;inconnu, alimenté par import CSV ou par un mode apprentissage.</p></div></li>
+            <li class="slide" data-step="3"><div class="cell glass slide__card"><div class="slide__top"><span class="slide__num">03</span><h3>Croiser les événements</h3></div><p>AURA rapproche les événements Wi-Fi et réseau qui surviennent dans un même intervalle de temps. Si un poste quitte le réseau au moment où une nouvelle borne apparaît, cela peut indiquer un partage de connexion. Ces indices restent à vérifier.</p></div></li>
+            <li class="slide" data-step="4"><div class="cell glass slide__card"><div class="slide__top"><span class="slide__num">04</span><h3>Localiser sur le switch</h3></div><p><span class="tag">Objectif à venir</span><br>Nous prévoyons de lire les tables MAC des switchs en SNMP pour retrouver un port physique. Cette étape n'est pas en place : aujourd'hui, AURA ne connaît pas le port de l'appareil.</p></div></li>
+            <li class="slide" data-step="5"><div class="cell glass slide__card"><div class="slide__top"><span class="slide__num">05</span><h3>Alerter, et expliquer</h3></div><p>L'alerte reste probable : l'administrateur voit les indices et la règle qui l'a déclenchée. La gravité est calculée par les règles. Moins de cinq minutes entre l'événement et l'alerte reste notre objectif, pas une garantie actuelle.</p></div></li>
+          </ol>
+        </div>
+        <div class="slider__controls">
+          <button class="slider__btn" type="button" data-slider-prev aria-label="Étape précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <div class="slider__dots" data-slider-dots></div>
+          <button class="slider__btn" type="button" data-slider-next aria-label="Étape suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+        <p class="slider__progress" data-slider-progress aria-live="polite">01 / 05 · Écouter les ondes</p>
+      </div>
     </div>
   </div>
 </section>
@@ -224,7 +215,7 @@
     </nav>
     <p class="footer__legal">Projet tutoré BUT R&amp;T, IUT de Valence · <span id="year">2026</span> · Sans mesure d’audience. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
   </div>
-  <p class="footer__giant" aria-hidden="true">AURA</p>
+  <img class="footer__logo" src="assets/img/brand/aura-logo-dark.png" alt="AURA — Analyse Unifiée du Réseau et des Antennes" width="560" height="596" loading="lazy">
 </footer>
 </body>
 </html>

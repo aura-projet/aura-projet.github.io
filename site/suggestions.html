@@ -9,10 +9,12 @@
   <meta name="description" content="Proposez une amélioration pour AURA : usage, interface, fonctionnalité ou documentation.">
   <meta name="theme-color" content="#070e20">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <script src="assets/js/boot.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/suggestions.css">
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/suggestions.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
 </head>
 <body class="suggestions-page">
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -20,6 +22,13 @@
   <div class="nav__inner">
     <a class="nav__logo" href="index.html" aria-label="AURA, accueil"><img src="assets/img/logo.svg" alt="" width="26" height="26"><span>AURA</span></a>
     <nav class="nav__menu" aria-label="Navigation"><a href="le-projet.html">Le projet</a><a class="nav__cta" href="index.html">Retour au site</a></nav>
+    <div class="nav__tools">
+      <button class="nav__tool nav__tool--theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Activer le thème clair" title="Activer le thème clair">
+        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.5v2.3M12 19.2v2.3M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.5 12h2.3M19.2 12h2.3M4.4 19.6 6 18M18 6l1.6-1.6"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.2 8.2 0 1 1 9.7 3.5a6.4 6.4 0 0 0 10.8 10.8Z"/></svg>
+      </button>
+      <button class="nav__tool nav__tool--lang" id="lang-toggle" type="button" aria-label="Switch to English" title="Switch to English"><span class="lang-current" aria-hidden="true">EN</span></button>
+    </div>
   </div>
 </header>
 <main class="suggestions-main container" id="contenu">

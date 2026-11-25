@@ -8,6 +8,14 @@ Rubriques : **Ajouté**, **Modifié**, **Corrigé**, **Supprimé**, **Sécurité
 
 ---
 
+## Accueil et préférences de lecture
+
+- L’accueil présente le cas d’une borne Wi-Fi inconnue à partir d’une capture de la console AURA en mode simulé.
+- La navigation permet de choisir le français ou l’anglais et le thème clair ou sombre. Les choix sont conservés dans le navigateur.
+- La page du projet distingue les fonctions disponibles et les limites du matériel.
+
+---
+
 ## 2026-11-04 · Transfert dans l'organisation aura-projet
 
 ### Ajouté

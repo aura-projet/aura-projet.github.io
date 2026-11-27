@@ -41,6 +41,13 @@
     'Écouter': 'Listen', 'Recenser': 'Inventory', 'Croiser': 'Correlate', 'Alerter': 'Alert',
 
     /* ---- Accueil ---- */
+    'AURA · Repérer les appareils inconnus sur votre réseau': 'AURA · Spot unknown devices on your network',
+    "AURA rapproche les observations du réseau filaire et du Wi-Fi 2,4 GHz. Projet tutoré de BUT Réseaux & Télécommunications à l'IUT de Valence.": 'AURA combines observations from wired networks and 2.4 GHz Wi-Fi. A Networks & Telecommunications student project at IUT de Valence.',
+    'Réseau filaire et Wi-Fi 2,4 GHz': 'Wired network and 2.4 GHz Wi-Fi',
+    'Repérer les appareils inconnus sur votre réseau': 'Spot unknown devices on your network',
+    'AURA rapproche ce qui se connecte au réseau filaire et ce que la sonde capte en Wi‑Fi, sans agent sur les postes.': 'AURA compares wired network connections with what the Wi-Fi sensor picks up, without installing agents on devices.',
+    'Console AURA · Données simulées': 'AURA console · Simulated data',
+    "Sans mesure d'audience": 'No audience tracking',
     'AURA · Le réseau et les ondes, au même endroit': 'AURA · The network and the airwaves, in one place',
     "AURA détecte ce qui se branche et ce qui émet dans vos locaux, sans agent sur les postes. Projet tutoré BUT Réseaux & Télécoms, IUT de Valence.": 'AURA detects what plugs in and what transmits on your premises, with no agent on the machines. Tutored project, BUT Networks & Telecoms, IUT de Valence.',
     'Le réseau et les ondes.': '<span class="rl__i">The network and the airwaves.</span>',
@@ -48,17 +55,46 @@
     "Repérer ce qui se branche. Voir ce qui émet. AURA croise les deux, sans agent sur les postes.": 'Spot what plugs in. See what transmits. AURA cross-checks both, with no agent on the machines.',
     'Découvrir le projet': 'Discover the project',
     'Ouvrir la démo': 'Open the demo',
+    'Voir les technologies': 'Explore the technologies',
+    'Les technologies derrière AURA': 'The technology behind AURA',
+    'Inventaire du réseau filaire': 'Wired network inventory',
+    'Observation Wi-Fi 2,4 GHz': '2.4 GHz Wi-Fi observation',
+    'Support de la sonde Wi-Fi': 'Platform for the Wi-Fi sensor',
+    'Collecte et corrélation': 'Collection and correlation',
+    'API de supervision': 'Monitoring API',
+    'Référentiel et historique': 'Device registry and history',
+    'Appareils reliés': 'Connected devices',
+    'Référentiel AURA': 'AURA device registry',
+    'Signal non déclaré': 'Unregistered signal',
+    'Départ du poste': 'Device leaves',
+    'Apparition de la borne': 'Access point appears',
+    'Switch non déclaré': 'Unregistered switch',
+    'Tableau de bord': 'Dashboard',
+    'Schéma de principe': 'Process diagram',
+    'Emplacement à vérifier': 'Location to verify',
     'Projet tutoré · BUT3 Réseaux & Télécoms · IUT de Valence': 'Tutored project · BUT3 Networks & Telecoms · IUT de Valence',
     'Explorer le projet': 'Explore the project',
     "Un appareil inconnu n'a pas d'agent. Il a pourtant une place sur votre réseau.": 'An unknown device has no agent. Yet it holds a place on your network.',
     'Repérer une borne Wi-Fi inconnue': 'Spot an unknown Wi-Fi access point',
-    'La sonde observe les bornes en 2,4 GHz. La console rassemble les appareils repérés, le signal reçu et les indices qui ont motivé l’alerte.': 'The sensor observes 2.4 GHz access points. The console brings together observed devices, received signal strength and the evidence behind the alert.',
+    "La sonde observe les bornes en 2,4 GHz. La console rassemble les appareils repérés, le signal reçu et les indices qui ont motivé l'alerte.": 'The sensor observes 2.4 GHz access points. The console brings together observed devices, received signal strength and the evidence behind the alert.',
     'Essayer la démonstration': 'Try the demo',
-    'Console AURA en mode démonstration, avec le graphe de supervision et la fiche d’une borne Wi-Fi signalée': 'AURA console in demo mode, showing the monitoring graph and a flagged Wi-Fi access point',
+    "Console AURA en mode démonstration, avec le graphe de supervision et la fiche d'une borne Wi-Fi signalée": 'AURA console in demo mode, showing the monitoring graph and a flagged Wi-Fi access point',
     'Réseau filaire': 'Wired network',
     'Wi-Fi · 2,4 GHz': 'Wi-Fi · 2.4 GHz',
 
     /* ---- Le projet ---- */
+    "Du premier signal à l'alerte": 'From the first signal to the alert',
+    'AURA rapproche les observations du réseau filaire et les relevés Wi-Fi de la sonde.': 'AURA brings wired network observations together with the sensor’s Wi-Fi readings.',
+    'Comment AURA relie les observations': 'How AURA connects observations',
+    'Quatre situations à repérer': 'Four situations to look for',
+    'Les schémas illustrent des situations fictives.': 'The diagrams illustrate fictional situations.',
+    'Un appareil non déclaré': 'An unregistered device',
+    'Un switch non déclaré': 'An unregistered switch',
+    'Un poste quitte le réseau et une borne apparaît peu après. AURA signale un partage de connexion probable.': 'A device leaves the network and an access point appears shortly afterwards. AURA flags likely Wi-Fi hotspot sharing.',
+    'Comparer les outils': 'Compare the tools',
+    "Étapes du fonctionnement d'AURA": 'Steps in the AURA process',
+    'Étape précédente': 'Previous step',
+    'Étape suivante': 'Next step',
     'Le projet AURA · Du réseau aux ondes': 'The AURA project · From network to airwaves',
     "Comment AURA marche, en clair : écoute Wi-Fi, collecte filaire, corrélation ondes/réseau et alertes. Les situations qu'on veut repérer et les briques de l'outil.": 'How AURA works, in plain terms: Wi-Fi listening, wired collection, airwave/network correlation and alerts. The situations we look for and the building blocks of the tool.',
     'La démarche': 'The approach',
@@ -405,7 +441,45 @@
     'Page introuvable · AURA': 'Page not found · AURA',
     'Erreur 404': 'Error 404',
     'Même notre sonde ne trouve pas cette page.': 'Even our probe cannot find this page.',
-    "Retour à l'accueil": 'Back to home'
+    "Retour à l'accueil": 'Back to home',
+
+    /* ---- Accueil : aperçu du tableau de bord ---- */
+    'Écran de supervision, en mode démonstration avec des données simulées.': 'The monitoring screen, in demonstration mode with simulated data.',
+
+    /* ---- Comparatif : partis pris et matériel ---- */
+    'Voici les six choix que nous avons faits au début du projet, et sur lesquels nous ne sommes pas revenus depuis.': 'Here are the six choices we made at the start of the project, and have stuck with since.',
+    'Prix relevés le 27 novembre 2026, TTC et hors livraison. Ils bougent souvent, prenez-les comme un ordre de grandeur.': 'Prices checked on 27 November 2026, including tax and excluding delivery. They move often, so treat them as a rough guide.',
+    'environ 48 €': 'about €48',
+    'environ 35 €': 'about €35',
+    "Prêté par l’IUT": 'Lent by the IUT',
+    "Hébergé par l’IUT": 'Hosted by the IUT',
+
+    /* ---- Comparatif : les briques libres ---- */
+    'Les briques libres': 'The open-source building blocks',
+    'que nous assemblons.': 'that we put together.',
+    'Nous ne partons pas de zéro. Chaque brique garde sa licence et son dépôt ; dépliez-en une pour voir sa place dans la chaîne et son code.': 'We are not starting from scratch. Each block keeps its own licence and repository; open one to see where it sits in the chain and where its code lives.',
+    'Surveillance du réseau filaire': 'Wired network monitoring',
+    'Écoute Wi-Fi sur la sonde': 'Wi-Fi listening on the probe',
+    'Lecture SNMP des switchs': 'Reading switch tables over SNMP',
+    'Radio 433 et 868 MHz, en réception': 'Radio at 433 and 868 MHz, receive only',
+    'Graphe réseau du tableau de bord': 'Network graph for the dashboard',
+    'Le socle du filaire : scans ARP, DHCP et SNMP, historique et notifications. Nous le prolongeons par des plugins plutôt que de le réécrire, et il reste la source des appareils câblés.': 'The backbone for wired devices: ARP, DHCP and SNMP scans, history and notifications. We extend it with plugins rather than rewriting it, and it stays the source for cabled devices.',
+    'Kismet tourne sur le Raspberry Pi et capte les trames de gestion. Nous lisons son API REST comme un programme séparé, ce qui évite de mélanger du code GPL 2 et GPL 3.': 'Kismet runs on the Raspberry Pi and captures management frames. We read its REST API as a separate program, which avoids mixing GPL 2 and GPL 3 code.',
+    'Source d’inspiration, pas une dépendance : nous reprenons sa logique de lecture de la table MAC pour retrouver le port physique d’un appareil, recodée en Python.': 'An inspiration rather than a dependency: we reuse its approach to reading the MAC table to find a device’s physical port, rewritten in Python.',
+    'Piste « si nous avons le temps » : décoder les capteurs radio du bâtiment avec une clé RTL-SDR, en réception seule. Rien n’est émis.': 'A “if we have time” idea: decoding the building’s radio sensors with an RTL-SDR dongle, receive only. Nothing is transmitted.',
+    'Brique envisagée côté interface pour dessiner le graphe des appareils et de leurs liens, une fois la corrélation en place.': 'A block we are considering on the interface side, to draw the graph of devices and their links once correlation is in place.',
+    'Voir le dépôt ↗': 'View the repository ↗',
+
+    /* ---- Équipe : répartition des tâches ---- */
+    'Qui fait quoi,': 'Who does what,',
+    'concrètement.': 'in practice.',
+    'Les 14 tâches du projet, réparties entre nous quatre. Choisissez un prénom pour ne garder que les siennes.': 'The 14 tasks in the project, shared between the four of us. Pick a first name to see only their tasks.',
+    'Tout le monde': 'Everyone',
+    'Aucune tâche pour ce filtre.': 'No task matches this filter.',
+
+    /* ---- Suggestions : copie et messagerie ---- */
+    'Copier ma suggestion et ouvrir ma messagerie': 'Copy my suggestion and open my mail app',
+    'Cette option n’utilise pas la vérification anti-robot. Rien n’est envoyé sans que vous validiez le message dans votre messagerie.': 'This option does not use the anti-robot check. Nothing is sent unless you confirm the message in your mail app.'
   };
 
   var DICT = { en: EN };
@@ -434,7 +508,7 @@
   var SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,a,button,span,strong,em,small,b,legend,summary,label,th,td,caption,figcaption,option,dt,dd,time,blockquote';
   var ATTR_SELECTOR = '[alt],[aria-label],[placeholder],[title]';
   var ATTRS = ['alt', 'aria-label', 'placeholder', 'title'];
-  var SKIP_CLOSEST = 'svg,code,script,style,.footer__legal,.nav__tool';
+  var SKIP_CLOSEST = 'svg,code,script,style,.footer__legal,.nav__tool,#motion-toggle,[data-slider-progress],[data-i18n-managed]';
 
   // Motifs pour les textes dynamiques qui contiennent un nombre ou un nom.
   var PATTERNS = [
@@ -490,7 +564,7 @@
     var af = rootEl.querySelectorAll ? rootEl.querySelectorAll(ATTR_SELECTOR) : [];
     for (var j = 0; j < af.length; j++) attrEls.push(af[j]);
     attrEls.forEach(function (el) {
-      if (el.closest && el.closest('svg,script,style')) return;
+      if (el.closest && el.closest('svg,script,style,[data-i18n-managed]')) return;
       ATTRS.forEach(function (name) {
         if (!el.hasAttribute(name)) return;
         var val = el.getAttribute(name);
@@ -561,6 +635,7 @@
     if (persist) { try { localStorage.setItem('aura-lang', next); } catch (e) {} }
     updateLangButton();
     applying = false;
+    document.dispatchEvent(new CustomEvent('aura:language'));
   }
 
   /* --------------------------------------------------------------------- */
@@ -584,12 +659,12 @@
     var toDark = lang === 'en' ? 'Switch to dark theme' : 'Activer le thème sombre';
     b.setAttribute('aria-label', light ? toDark : toLight);
     b.setAttribute('title', light ? toDark : toLight);
+    var label = b.querySelector('.theme-label');
+    if (label) label.textContent = light ? (lang === 'en' ? 'Dark' : 'Sombre') : (lang === 'en' ? 'Light' : 'Clair');
   }
   function updateLangButton() {
     var b = document.getElementById('lang-toggle');
     if (!b) return;
-    var span = b.querySelector('.lang-current');
-    if (span) span.textContent = lang === 'en' ? 'FR' : 'EN';
     b.setAttribute('aria-label', lang === 'en' ? 'Passer au français' : 'Switch to English');
     b.setAttribute('title', lang === 'en' ? 'Passer au français' : 'Switch to English');
     updateThemeButton();
@@ -602,6 +677,13 @@
     var themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) themeBtn.addEventListener('click', function () {
       setTheme(currentTheme() === 'light' ? 'dark' : 'light', true);
+      // Relance l'animation de l'icône à chaque bascule.
+      themeBtn.classList.remove('vient-de-basculer');
+      void themeBtn.offsetWidth;
+      themeBtn.classList.add('vient-de-basculer');
+    });
+    if (themeBtn) themeBtn.addEventListener('animationend', function () {
+      themeBtn.classList.remove('vient-de-basculer');
     });
     var langBtn = document.getElementById('lang-toggle');
     if (langBtn) langBtn.addEventListener('click', function () {

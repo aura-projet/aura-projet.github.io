@@ -12,6 +12,7 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <script src="assets/js/boot.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/identite.css">
   <script src="assets/js/main.js"></script>
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/constellation.js" defer></script>
@@ -32,7 +33,7 @@
     <nav class="nav__menu" id="menu" aria-label="Navigation principale">
       <a href="index.html">Accueil</a>
       <a href="le-projet.html">Le projet</a>
-      <a href="demo.html">Démo</a>
+
       <a href="comparatif.html" class="is-active" aria-current="page">Comparatif</a>
       <a href="faq.html">FAQ</a>
       <a href="equipe.html">Équipe</a>
@@ -40,10 +41,14 @@
     </nav>
     <div class="nav__tools">
       <button class="nav__tool nav__tool--theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Activer le thème clair" title="Activer le thème clair">
-        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.5v2.3M12 19.2v2.3M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.5 12h2.3M19.2 12h2.3M4.4 19.6 6 18M18 6l1.6-1.6"/></svg>
-        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.2 8.2 0 1 1 9.7 3.5a6.4 6.4 0 0 0 10.8 10.8Z"/></svg>
+        <span class="icon-papi icon-sun theme-light" aria-hidden="true"></span>
+        <span class="icon-papi icon-moon theme-dark" aria-hidden="true"></span>
+        <span class="theme-label" aria-hidden="true">Clair</span>
       </button>
-      <button class="nav__tool nav__tool--lang" id="lang-toggle" type="button" aria-label="Switch to English" title="Switch to English"><span class="lang-current" aria-hidden="true">EN</span></button>
+      <button class="nav__tool nav__tool--lang" id="lang-toggle" type="button" aria-label="Switch to English" title="Switch to English">
+        <img class="flag-gb" src="/assets/img/flags/gb.svg" alt="" width="24" height="18">
+        <img class="flag-fr" src="/assets/img/flags/fr.svg" alt="" width="24" height="18">
+      </button>
     </div>
   </div>
 </header>
@@ -56,7 +61,6 @@
 <section class="hero hero--page">
   <div class="hero__inner">
     <nav class="crumbs" aria-label="Fil d’ariane"><a href="index.html">Accueil</a><i>/</i><span>Comparatif</span></nav>
-    <p class="hero__kicker">Lecture honnête</p>
     <h1 data-reveal>AURA face<br>à l’existant.</h1>
     <p class="hero__sub" data-reveal data-delay="0.1">Plusieurs outils savent déjà faire une partie du travail. Voici, honnêtement, ce qu’AURA apporte par rapport à eux, pourquoi nous faisons ces choix, et sur quel matériel il repose.</p>
   </div>
@@ -92,7 +96,6 @@
         </tbody>
       </table>
     </div>
-    <p class="compare-note">Lecture honnête d’étudiants&nbsp;: un NAC commercial fait déjà beaucoup, mais au prix d’agents sur les postes et d’une licence. AURA vise la corrélation ondes/réseau, en logiciel libre et sans agent.</p>
   </div>
 </section>
 
@@ -101,74 +104,124 @@
   <div class="container">
     <header class="section__head" data-reveal>
       <h2 class="section__title">Pourquoi AURA,<br>et pas autre chose.</h2>
-      <p class="section__lead">Ce ne sont pas des promesses commerciales, mais les partis pris qui guident notre projet.</p>
+      <p class="section__lead">Voici les six choix que nous avons faits au début du projet, et sur lesquels nous ne sommes pas revenus depuis.</p>
     </header>
     <div class="bento why">
-      <article class="cell glass why-card" data-reveal><h3>Sans agent sur les postes</h3><p>Rien à installer sur les ordinateurs. AURA observe le réseau et les ondes depuis l’extérieur des machines.</p></article>
-      <article class="cell glass why-card" data-reveal data-delay="0.06"><h3>Les ondes et le réseau, ensemble</h3><p>La plupart des outils voient l’un ou l’autre. AURA rapproche les deux pour donner du sens aux indices.</p></article>
-      <article class="cell glass why-card" data-reveal data-delay="0.12"><h3>Bâti sur du logiciel libre</h3><p>NetAlertX, Kismet, Netdisco&nbsp;: des briques éprouvées, chacune avec sa licence, que nous assemblons.</p></article>
-      <article class="cell glass why-card" data-reveal><h3>Tout reste local</h3><p>Les observations restent chez vous, sur votre serveur. Seule l’explication d’alerte peut passer par une IA externe.</p></article>
-      <article class="cell glass why-card" data-reveal data-delay="0.06"><h3>Des alertes expliquées</h3><p>Chaque alerte montre la règle qui l’a déclenchée et les indices. La gravité est calculée, pas devinée.</p></article>
-      <article class="cell glass why-card" data-reveal data-delay="0.12"><h3>Transparent et documenté</h3><p>Un projet d’étudiants, assumé comme tel&nbsp;: objectifs, limites et code sont écrits noir sur blanc.</p></article>
+      <article class="cell glass why-card why-card--agent" data-reveal>
+        <div class="why-art" aria-hidden="true"><svg viewBox="0 0 120 56" role="presentation"><g class="wa-posts"><rect x="10" y="20" width="22" height="16" rx="3"/><path d="M16 36v4h10v-4"/><rect x="49" y="20" width="22" height="16" rx="3"/><path d="M55 36v4h10v-4"/><rect x="88" y="20" width="22" height="16" rx="3"/><path d="M94 36v4h10v-4"/></g><g class="wa-scan"><path d="M4 12h112"/><circle class="wa-eye" cx="4" cy="12" r="4"/></g></svg></div>
+        <h3>Sans agent sur les postes</h3><p>Rien à installer sur les ordinateurs. AURA observe le réseau et les ondes depuis l’extérieur des machines.</p>
+      </article>
+      <article class="cell glass why-card why-card--fusion" data-reveal data-delay="0.06">
+        <div class="why-art" aria-hidden="true"><svg viewBox="0 0 120 56" role="presentation"><path class="wa-wave" d="M4 16c8-9 16 9 24 0s16 9 24 0"/><path class="wa-wire" d="M4 44h28l12-12h8"/><path class="wa-join" d="M56 16h14l12 12h0M56 32h14"/><circle class="wa-core" cx="96" cy="28" r="9"/><circle class="wa-core-dot" cx="96" cy="28" r="3.2"/></svg></div>
+        <h3>Les ondes et le réseau, ensemble</h3><p>La plupart des outils voient l’un ou l’autre. AURA rapproche les deux pour donner du sens aux indices.</p>
+      </article>
+      <article class="cell glass why-card why-card--libre" data-reveal data-delay="0.12">
+        <div class="why-art" aria-hidden="true"><svg viewBox="0 0 120 56" role="presentation"><rect class="wa-brick wa-brick--1" x="12" y="38" width="34" height="12" rx="2.5"/><rect class="wa-brick wa-brick--2" x="50" y="38" width="34" height="12" rx="2.5"/><rect class="wa-brick wa-brick--3" x="31" y="22" width="34" height="12" rx="2.5"/><rect class="wa-brick wa-brick--4" x="69" y="22" width="34" height="12" rx="2.5"/><rect class="wa-brick wa-brick--5" x="50" y="6" width="34" height="12" rx="2.5"/></svg></div>
+        <h3>Bâti sur du logiciel libre</h3><p>NetAlertX, Kismet, Netdisco&nbsp;: des briques éprouvées, chacune avec sa licence, que nous assemblons.</p>
+      </article>
+      <article class="cell glass why-card why-card--local" data-reveal>
+        <div class="why-art" aria-hidden="true"><svg viewBox="0 0 120 56" role="presentation"><path class="wa-house" d="M26 26 48 10l22 16v20a2 2 0 0 1-2 2H28a2 2 0 0 1-2-2z"/><circle class="wa-orbit wa-orbit--1" cx="58" cy="32" r="2.8"/><circle class="wa-orbit wa-orbit--2" cx="38" cy="32" r="2.8"/><path class="wa-out" d="M76 28h26"/><path class="wa-out-head" d="m96 22 6 6-6 6"/></svg></div>
+        <h3>Tout reste local</h3><p>Les observations restent chez vous, sur votre serveur. Seule l’explication d’alerte peut passer par une IA externe.</p>
+      </article>
+      <article class="cell glass why-card why-card--alerte" data-reveal data-delay="0.06">
+        <div class="why-art" aria-hidden="true"><svg viewBox="0 0 120 56" role="presentation"><path class="wa-rule" d="M8 44h18l8-14 8 22 8-30 8 22h12"/><path class="wa-tri" d="M86 16l16 28H70z"/><path class="wa-bang" d="M86 26v8"/><circle class="wa-bang-dot" cx="86" cy="38.5" r="1.6"/></svg></div>
+        <h3>Des alertes expliquées</h3><p>Chaque alerte montre la règle qui l’a déclenchée et les indices. La gravité est calculée, pas devinée.</p>
+      </article>
+      <article class="cell glass why-card why-card--doc" data-reveal data-delay="0.12">
+        <div class="why-art" aria-hidden="true"><svg viewBox="0 0 120 56" role="presentation"><path class="wa-page" d="M34 6h34l18 18v28a2 2 0 0 1-2 2H34a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path class="wa-fold" d="M68 6v18h18"/><path class="wa-line wa-line--1" d="M42 30h30"/><path class="wa-line wa-line--2" d="M42 38h34"/><path class="wa-line wa-line--3" d="M42 46h22"/></svg></div>
+        <h3>Transparent et documenté</h3><p>Un projet d’étudiants, assumé comme tel&nbsp;: objectifs, limites et code sont écrits noir sur blanc.</p>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- ============ LE MATÉRIEL ============ -->
-<section class="section hardware" id="materiel"><div class="container"><header class="section__head" data-reveal><h2 class="section__title">Le matériel qui écoute<br>et rassemble les observations.</h2><p class="section__lead">Du matériel accessible, et des rôles séparés : le Raspberry Pi écoute, le serveur rassemble les observations.</p></header><div class="bento bento--hardware">
-<article class="cell glass hw hw--pi" data-reveal><div class="hw__photo"><img src="assets/img/materiel/raspberry-pi-3bplus.jpg" alt="Raspberry Pi 3B+ utilisé comme sonde" width="525" height="380" loading="lazy"></div><div class="hw__text"><h3>Raspberry Pi 3B+</h3><p>Kismet écoute les trames de gestion. AURA lit son API REST, sans installer d'agent sur les postes.</p><dl class="specs"><div><dt>Processeur</dt><dd>4 cœurs · 1,4 GHz</dd></div><div><dt>Mémoire</dt><dd>1 Go</dd></div><div><dt>Système</dt><dd>Raspberry Pi OS Lite 64 bits</dd></div></dl></div></article>
-<article class="cell glass hw hw--alfa" data-reveal data-delay="0.06"><div class="hw__photo"><img src="assets/img/materiel/alfa-awus036nh.jpg" alt="Dongle USB Alfa AWUS036NH et antenne" width="225" height="225" loading="lazy"></div><div class="hw__text"><h3>Alfa AWUS036NH</h3><p>Ralink RT3070, mode monitor et antenne externe. Capture en <strong>2,4 GHz uniquement</strong>.</p></div></article>
-<article class="cell glass hw hw--switch" data-reveal data-delay="0.12"><div class="hw__photo"><img src="assets/img/materiel/switch-cisco.jpg" srcset="assets/img/materiel/switch-cisco-440.webp 440w, assets/img/materiel/switch-cisco.jpg 900w" sizes="(max-width: 560px) calc(100vw - 106px), 440px" alt="Face avant du switch Cisco Catalyst" width="900" height="405" loading="lazy"></div><div class="hw__text"><h3>Cisco Catalyst</h3><p>Localiser un appareil par la table MAC en SNMP : un objectif à venir, pas encore une fonction disponible.</p></div></article>
-<article class="cell glass hw hw--server" data-reveal><div class="hw__photo hw__photo--shot"><img src="assets/img/materiel/xen-orchestra-aura-serveur-1100.webp" srcset="assets/img/materiel/xen-orchestra-aura-serveur-480.webp 480w, assets/img/materiel/xen-orchestra-aura-serveur-1100.webp 1100w" sizes="(max-width: 560px) calc(100vw - 82px), (max-width: 860px) 50vw, 602px" alt="Machine virtuelle AURA dans Xen Orchestra" width="1400" height="611" loading="lazy"></div><div class="hw__text"><h3>Serveur Debian 12</h3><p>NetAlertX et AURA Core dans une VM, sur XCP-ng et Xen Orchestra.</p><dl class="specs"><div><dt>Ressources</dt><dd>2 vCPU · 4 Go RAM · 20 Go</dd></div><div><dt>Déploiement</dt><dd>Docker</dd></div></dl></div></article>
+<section class="section hardware" id="materiel"><div class="container"><header class="section__head" data-reveal><h2 class="section__title">Le matériel qui écoute<br>et rassemble les observations.</h2><p class="section__lead">Du matériel accessible, et des rôles séparés : le Raspberry Pi écoute, le serveur rassemble les observations.</p></header><p class="hw__note">Prix relevés le 27 novembre 2026, TTC et hors livraison. Ils bougent souvent, prenez-les comme un ordre de grandeur.</p>
+<div class="bento bento--hardware">
+<article class="cell glass hw hw--pi" data-reveal><div class="hw__photo"><img src="assets/img/materiel/raspberry-pi-3bplus.jpg" alt="Raspberry Pi 3B+ utilisé comme sonde" width="525" height="380" loading="lazy"></div><div class="hw__text"><h3>Raspberry Pi 3B+</h3><p>Kismet écoute les trames de gestion. AURA lit son API REST, sans installer d'agent sur les postes.</p><p class="hw__achat"><span class="hw__prix">environ 48 €</span> <a href="https://www.kubii.com/fr/cartes-nano-ordinateurs/2119-raspberry-pi-3-modele-b-1-gb-kubii-5056561800318.html" rel="noopener noreferrer">Kubii</a> <a href="https://www.amazon.fr/s?k=raspberry+pi+3+model+b%2B" rel="noopener noreferrer">Amazon</a></p><dl class="specs"><div><dt>Processeur</dt><dd>4 cœurs · 1,4 GHz</dd></div><div><dt>Mémoire</dt><dd>1 Go</dd></div><div><dt>Système</dt><dd>Raspberry Pi OS Lite 64 bits</dd></div></dl></div></article>
+<article class="cell glass hw hw--alfa" data-reveal data-delay="0.06"><div class="hw__photo"><img src="assets/img/materiel/alfa-awus036nh.jpg" alt="Dongle USB Alfa AWUS036NH et antenne" width="225" height="225" loading="lazy"></div><div class="hw__text"><h3>Alfa AWUS036NH</h3><p>Ralink RT3070, mode monitor et antenne externe. Capture en <strong>2,4 GHz uniquement</strong>.</p><p class="hw__achat"><span class="hw__prix">environ 35 €</span> <a href="https://www.avenir-informatique.eu/boutique/adaptateurs-usb/14-alfa-network-awus036nh-carte-usb-wifi-b-g-n-2000mw-antenne-5dbi.html" rel="noopener noreferrer">Avenir-Informatique</a> <a href="https://www.amazon.fr/s?k=alfa+awus036nh" rel="noopener noreferrer">Amazon</a></p></div></article>
+<article class="cell glass hw hw--switch" data-reveal data-delay="0.12"><div class="hw__photo"><img src="assets/img/materiel/switch-cisco.jpg" srcset="assets/img/materiel/switch-cisco-440.webp 440w, assets/img/materiel/switch-cisco.jpg 900w" sizes="(max-width: 560px) calc(100vw - 106px), 440px" alt="Face avant du switch Cisco Catalyst" width="900" height="405" loading="lazy"></div><div class="hw__text"><h3>Cisco Catalyst</h3><p>Localiser un appareil par la table MAC en SNMP : un objectif à venir, pas encore une fonction disponible.</p><p class="hw__achat"><span class="hw__prix hw__prix--iut">Prêté par l’IUT</span></p></div></article>
+<article class="cell glass hw hw--server" data-reveal><div class="hw__photo hw__photo--shot"><img src="assets/img/materiel/xen-orchestra-aura-serveur-1100.webp" srcset="assets/img/materiel/xen-orchestra-aura-serveur-480.webp 480w, assets/img/materiel/xen-orchestra-aura-serveur-1100.webp 1100w" sizes="(max-width: 560px) calc(100vw - 82px), (max-width: 860px) 50vw, 602px" alt="Machine virtuelle AURA dans Xen Orchestra" width="1400" height="611" loading="lazy"></div><div class="hw__text"><h3>Serveur Debian 12</h3><p>NetAlertX et AURA Core dans une VM, sur XCP-ng et Xen Orchestra.</p><p class="hw__achat"><span class="hw__prix hw__prix--iut">Hébergé par l’IUT</span></p><dl class="specs"><div><dt>Ressources</dt><dd>2 vCPU · 4 Go RAM · 20 Go</dd></div><div><dt>Déploiement</dt><dd>Docker</dd></div></dl></div></article>
 </div></div></section>
 
-<!-- ============ BRIQUES LIBRES ============ -->
-<section class="section oss" id="open-source"><div class="container"><header class="section__head" data-reveal><h2 class="section__title">Des briques libres<br>qui travaillent ensemble.</h2><p class="section__lead">Des logiciels libres, leurs API et notre moteur de corrélation. Chaque brique conserve sa licence.</p></header><div class="bento bento--oss">
-<article class="cell glass brick" data-reveal><h3>NetAlertX</h3><p>Surveillance du réseau filaire.</p><span class="lic">GPL 3.0</span></article>
-<article class="cell glass brick" data-reveal data-delay="0.06"><h3>Kismet</h3><p>Écoute Wi-Fi, utilisé par son API comme programme séparé.</p><span class="lic">GPL 2.0</span></article>
-<article class="cell glass brick" data-reveal data-delay="0.12"><h3>Netdisco</h3><p>Source d'inspiration pour la lecture SNMP à venir.</p><span class="lic">BSD 3 clauses</span></article>
-<article class="cell glass brick" data-reveal data-delay="0.18"><h3>D3.js</h3><p>Brique envisagée pour le graphe réseau du dashboard.</p><span class="lic">ISC</span></article>
-<div class="cell cell--ink repos" data-reveal><h3>Le projet, à la source.</h3><a href="https://gitlab.iut-valence.fr/lamechey/aura" rel="noopener noreferrer">Voir le dépôt GitLab IUT <span>Dépôt de référence</span></a><a href="https://github.com/aura-projet" rel="noopener noreferrer">Retrouver AURA sur GitHub <span>Organisation et site vitrine</span></a></div>
-</div></div></section>
-
-<!-- ============ DÉPÔTS QUI NOUS ONT INSPIRÉS ============ -->
-<section class="section inspi-section" id="inspirations">
+<!-- ============ LES BRIQUES LIBRES ============ -->
+<section class="section oss" id="open-source">
   <div class="container">
     <header class="section__head" data-reveal>
-      <h2 class="section__title">Les dépôts GitHub<br>qui nous ont inspirés.</h2>
-      <p class="section__lead">Nous ne partons pas de zéro. Voici les projets libres que nous étudions, utilisons ou dont nous reprenons les idées — avec un lien vers leur code.</p>
+      <h2 class="section__title">Les briques libres<br>que nous assemblons.</h2>
+      <p class="section__lead">Nous ne partons pas de zéro. Chaque brique garde sa licence et son dépôt&nbsp;; dépliez-en une pour voir sa place dans la chaîne et son code.</p>
     </header>
-    <div class="repo-grid">
-      <a class="cell glass repo-card" href="https://github.com/jokob-sk/NetAlertX" rel="noopener noreferrer" data-reveal>
-        <span class="repo-card__host">github.com/jokob-sk</span>
-        <h3>NetAlertX</h3>
-        <p>Le socle de la surveillance filaire. Nous le prolongeons par des plugins, sans le réécrire.</p>
-        <span class="repo-card__go">Voir le dépôt</span>
-      </a>
-      <a class="cell glass repo-card" href="https://github.com/kismetwireless/kismet" rel="noopener noreferrer" data-reveal data-delay="0.06">
-        <span class="repo-card__host">github.com/kismetwireless</span>
-        <h3>Kismet</h3>
-        <p>L’écoute Wi-Fi sur la sonde. Nous lisons son API REST comme un programme séparé.</p>
-        <span class="repo-card__go">Voir le dépôt</span>
-      </a>
-      <a class="cell glass repo-card" href="https://github.com/netdisco/netdisco" rel="noopener noreferrer" data-reveal data-delay="0.12">
-        <span class="repo-card__host">github.com/netdisco</span>
-        <h3>Netdisco</h3>
-        <p>La lecture SNMP des switchs. Source d’inspiration pour retrouver le port d’un appareil.</p>
-        <span class="repo-card__go">Voir le dépôt</span>
-      </a>
-      <a class="cell glass repo-card" href="https://github.com/merbanan/rtl_433" rel="noopener noreferrer" data-reveal>
-        <span class="repo-card__host">github.com/merbanan</span>
-        <h3>rtl_433</h3>
-        <p>Décodage de signaux radio 433/868&nbsp;MHz en réception seule. Piste « si nous avons le temps ».</p>
-        <span class="repo-card__go">Voir le dépôt</span>
-      </a>
-      <a class="cell glass repo-card" href="https://github.com/d3/d3" rel="noopener noreferrer" data-reveal data-delay="0.06">
-        <span class="repo-card__host">github.com/d3</span>
-        <h3>D3.js</h3>
-        <p>La brique envisagée pour dessiner le graphe réseau du tableau de bord.</p>
-        <span class="repo-card__go">Voir le dépôt</span>
-      </a>
+    <div class="briques">
+      <details class="cell glass brique" name="briques" id="brique-netalertx" data-reveal>
+        <summary class="brique__tete">
+          <span class="brique__logo"><img src="assets/img/tech/netalertx.svg" alt="Logo NetAlertX" width="34" height="34" loading="lazy"></span>
+          <span class="brique__ident"><span class="brique__nom">NetAlertX</span><span class="brique__role">Surveillance du réseau filaire</span></span>
+          <span class="brique__lic">GPL 3.0</span>
+          <span class="brique__fleche" aria-hidden="true"></span>
+        </summary>
+        <div class="brique__corps">
+          <p>Le socle du filaire&nbsp;: scans ARP, DHCP et SNMP, historique et notifications. Nous le prolongeons par des plugins plutôt que de le réécrire, et il reste la source des appareils câblés.</p>
+          <svg class="brique__schema bs--arp" viewBox="0 0 320 70" role="img" aria-label="NetAlertX interroge le réseau filaire et les appareils répondent l’un après l’autre."><rect class="arp-switch" x="10" y="26" width="40" height="20" rx="4"/><rect class="arp-port" x="16" y="39" width="5" height="3.5" rx="1"/><rect class="arp-port" x="25" y="39" width="5" height="3.5" rx="1"/><rect class="arp-port" x="34" y="39" width="5" height="3.5" rx="1"/><rect class="arp-port" x="43" y="39" width="5" height="3.5" rx="1"/><path class="arp-bus" d="M50 36H306"/><path class="arp-tige" d="M95 36V22"/><rect class="arp-poste arp-poste--1" x="87" y="11" width="16" height="11" rx="2.5"/><path class="arp-tige" d="M145 36V48"/><rect class="arp-poste arp-poste--2" x="137" y="47" width="16" height="11" rx="2.5"/><path class="arp-tige" d="M195 36V22"/><rect class="arp-poste arp-poste--3" x="187" y="11" width="16" height="11" rx="2.5"/><path class="arp-tige" d="M245 36V48"/><rect class="arp-poste arp-poste--4" x="237" y="47" width="16" height="11" rx="2.5"/><path class="arp-tige" d="M292 36V22"/><rect class="arp-poste arp-poste--5" x="284" y="11" width="16" height="11" rx="2.5"/><circle class="arp-sonde" cx="50" cy="36" r="3.4"/></svg>
+          <a class="brique__depot" href="https://github.com/jokob-sk/NetAlertX" rel="noopener noreferrer">Voir le dépôt ↗ <span>github.com/jokob-sk</span></a>
+        </div>
+      </details>
+      <details class="cell glass brique" name="briques" id="brique-kismet" data-reveal data-delay="0.06">
+        <summary class="brique__tete">
+          <span class="brique__logo"><img src="assets/img/tech/kismet.svg" alt="Logo Kismet" width="34" height="34" loading="lazy"></span>
+          <span class="brique__ident"><span class="brique__nom">Kismet</span><span class="brique__role">Écoute Wi-Fi sur la sonde</span></span>
+          <span class="brique__lic">GPL 2.0</span>
+          <span class="brique__fleche" aria-hidden="true"></span>
+        </summary>
+        <div class="brique__corps">
+          <p>Kismet tourne sur le Raspberry&nbsp;Pi et capte les trames de gestion. Nous lisons son API REST comme un programme séparé, ce qui évite de mélanger du code GPL&nbsp;2 et GPL&nbsp;3.</p>
+          <svg class="brique__schema bs--radio" viewBox="0 0 320 70" role="img" aria-label="Kismet écoute les trames Wi-Fi qui passent et les remonte à la sonde."><path class="ki-mat" d="M44 54V26"/><circle class="ki-tete" cx="44" cy="22" r="3.2"/><path class="ki-pied" d="M34 54h20"/><path class="ki-onde ki-onde--1" d="M52 5 A 26 26 0 0 1 52 38"/><path class="ki-onde ki-onde--2" d="M59 -6 A 46 46 0 0 1 59 50"/><path class="ki-onde ki-onde--3" d="M66 -18 A 66 66 0 0 1 66 62"/><rect class="ki-trame ki-trame--1" x="278" y="12" width="22" height="8" rx="2.5"/><rect class="ki-trame ki-trame--2" x="270" y="34" width="22" height="8" rx="2.5"/><rect class="ki-trame ki-trame--3" x="256" y="54" width="22" height="8" rx="2.5"/></svg>
+          <a class="brique__depot" href="https://github.com/kismetwireless/kismet" rel="noopener noreferrer">Voir le dépôt ↗ <span>github.com/kismetwireless</span></a>
+        </div>
+      </details>
+      <details class="cell glass brique" name="briques" id="brique-netdisco" data-reveal data-delay="0.12">
+        <summary class="brique__tete">
+          <span class="brique__logo"><img src="assets/img/tech/netdisco.svg" alt="Repère Netdisco" width="34" height="34" loading="lazy"></span>
+          <span class="brique__ident"><span class="brique__nom">Netdisco</span><span class="brique__role">Lecture SNMP des switchs</span></span>
+          <span class="brique__lic">BSD 3 clauses</span>
+          <span class="brique__fleche" aria-hidden="true"></span>
+        </summary>
+        <div class="brique__corps">
+          <p>Source d’inspiration, pas une dépendance&nbsp;: nous reprenons sa logique de lecture de la table MAC pour retrouver le port physique d’un appareil, recodée en Python.</p>
+          <svg class="brique__schema bs--ports" viewBox="0 0 320 70" role="img" aria-label="Netdisco lit la table MAC du switch pour retrouver le port physique d’un appareil."><rect class="nd-chassis" x="24" y="40" width="272" height="20" rx="4"/><rect class="nd-port" x="34" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="56" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="78" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="100" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="122" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="144" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="166" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port nd-port--cible" x="188" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="210" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="232" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="254" y="46" width="14" height="8" rx="1.5"/><rect class="nd-port" x="276" y="46" width="14" height="8" rx="1.5"/><rect class="nd-mac" x="40" y="10" width="46" height="14" rx="3.5"/><path class="nd-trait" d="M63 24v12"/></svg>
+          <a class="brique__depot" href="https://github.com/netdisco/netdisco" rel="noopener noreferrer">Voir le dépôt ↗ <span>github.com/netdisco</span></a>
+        </div>
+      </details>
+      <details class="cell glass brique" name="briques" id="brique-rtl433" data-reveal>
+        <summary class="brique__tete">
+          <span class="brique__logo"><img src="assets/img/tech/rtl433.svg" alt="Repère rtl_433" width="34" height="34" loading="lazy"></span>
+          <span class="brique__ident"><span class="brique__nom">rtl_433</span><span class="brique__role">Radio 433 et 868 MHz, en réception</span></span>
+          <span class="brique__lic">GPL 2.0</span>
+          <span class="brique__fleche" aria-hidden="true"></span>
+        </summary>
+        <div class="brique__corps">
+          <p>Piste «&nbsp;si nous avons le temps&nbsp;»&nbsp;: décoder les capteurs radio du bâtiment avec une clé RTL-SDR, en réception seule. Rien n’est émis.</p>
+          <svg class="brique__schema bs--decodage" viewBox="0 0 320 70" role="img" aria-label="rtl_433 transforme un signal radio brut en valeurs lisibles."><path class="rt-brut" d="M8 36c4-13 7 11 11-2s7 15 11 1 7-11 11 3 7-9 11 1 7 7 11-5 7-12 11 2 7 10 11-4 7-9 11 3 7 6 11-2"/><circle class="rt-tete" cx="8" cy="36" r="3"/><path class="rt-fleche" d="M152 36h22M168 30l6 6-6 6"/><path class="rt-carre" d="M188 46v-16h12v16h12v-16h10v16h14v-16h12v16h10v-16h14v16h12v-16h12v16h10"/><rect class="rt-valeur rt-valeur--1" x="188" y="54" width="34" height="6" rx="3"/><rect class="rt-valeur rt-valeur--2" x="230" y="54" width="34" height="6" rx="3"/><rect class="rt-valeur rt-valeur--3" x="272" y="54" width="34" height="6" rx="3"/></svg>
+          <a class="brique__depot" href="https://github.com/merbanan/rtl_433" rel="noopener noreferrer">Voir le dépôt ↗ <span>github.com/merbanan</span></a>
+        </div>
+      </details>
+      <details class="cell glass brique" name="briques" id="brique-d3" data-reveal data-delay="0.06">
+        <summary class="brique__tete">
+          <span class="brique__logo"><img src="assets/img/tech/d3.svg" alt="Logo D3.js" width="34" height="34" loading="lazy"></span>
+          <span class="brique__ident"><span class="brique__nom">D3.js</span><span class="brique__role">Graphe réseau du tableau de bord</span></span>
+          <span class="brique__lic">ISC</span>
+          <span class="brique__fleche" aria-hidden="true"></span>
+        </summary>
+        <div class="brique__corps">
+          <p>Brique envisagée côté interface pour dessiner le graphe des appareils et de leurs liens, une fois la corrélation en place.</p>
+          <svg class="brique__schema bs--graphe" viewBox="0 0 320 70" role="img" aria-label="D3.js range les appareils et leurs liens en un graphe lisible."><path class="d3-lien d3-lien--1" d="M60 20 L112 42"/><path class="d3-lien d3-lien--2" d="M112 42 L158 16"/><path class="d3-lien d3-lien--3" d="M112 42 L176 52"/><path class="d3-lien d3-lien--4" d="M158 16 L224 28"/><path class="d3-lien d3-lien--5" d="M176 52 L252 56"/><path class="d3-lien d3-lien--6" d="M224 28 L276 22"/><path class="d3-lien d3-lien--7" d="M224 28 L252 56"/><circle class="d3-noeud d3-noeud--1" cx="60" cy="20" r="4"/><circle class="d3-noeud d3-noeud--2" cx="112" cy="42" r="5.4"/><circle class="d3-noeud d3-noeud--3" cx="158" cy="16" r="4"/><circle class="d3-noeud d3-noeud--4" cx="176" cy="52" r="4"/><circle class="d3-noeud d3-noeud--5" cx="224" cy="28" r="4"/><circle class="d3-noeud d3-noeud--6" cx="252" cy="56" r="4"/><circle class="d3-noeud d3-noeud--7" cx="276" cy="22" r="4"/></svg>
+          <a class="brique__depot" href="https://github.com/d3/d3" rel="noopener noreferrer">Voir le dépôt ↗ <span>github.com/d3</span></a>
+        </div>
+      </details>
+    </div>
+    <div class="cell cell--ink repos" data-reveal>
+      <h3>Le projet, à la source.</h3>
+      <a href="https://gitlab.iut-valence.fr/lamechey/aura" rel="noopener noreferrer">Voir le dépôt GitLab IUT <span>Dépôt de référence</span></a>
+      <a href="https://github.com/aura-projet" rel="noopener noreferrer">Retrouver AURA sur GitHub <span>Organisation et site vitrine</span></a>
     </div>
   </div>
 </section>

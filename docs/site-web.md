@@ -16,71 +16,65 @@ Historique des modifications : voir [`CHANGELOG.md`](../CHANGELOG.md).
 | Dépôt du site (public) | `aura-projet/aura-projet.github.io`, dans l'organisation GitHub de l'équipe |
 | Dépôt du code (privé) | `Stayx3811/aura-code` : plugins, moteur AURA, documents internes |
 | Hébergement | GitHub Pages, gratuit |
-| Technologies | HTML, CSS et JavaScript « à la main », sans framework ni étape de compilation |
+| Technologies | Accueil généré avec Astro et TypeScript, journal interactif en React, autres pages en HTML statique |
 | Dépendances externes chargées par le navigateur | aucune (pas de CDN, pas de Google Fonts, pas de traceur) |
-| Déploiement | automatique à chaque push sur `main` qui touche `site/` (workflow `.github/workflows/pages.yml`) |
+| Déploiement | GitHub Actions compile le site et publie `dist/` après les changements de la vitrine sur `main` |
 | Questionnaire | hébergé sur Framaforms (Framasoft), voir §6 |
 | Fichier à modifier pour le mail, les réseaux et le questionnaire | `site/assets/data/config.json` |
 
-Le site reprend les codes des pages produit d'Apple : grandes typographies,
-alternance de sections noires et claires, barre de navigation translucide,
-animations déclenchées par le défilement. Toutes les illustrations sont des
-SVG dessinés pour le projet (aucune image récupérée sur Internet, donc aucun
-problème de droits).
+L’accueil reprend le bleu nuit et le corail du brouillon AURA. Le journal
+réunit les indices d’une alerte probable dans une présentation inspirée d’un
+journal réseau. La refonte suit la méthode [unslop](https://heydamir.design/unslop)
+de Damir Sokolovsky (CC BY 4.0).
 
 ## 2. Contenu des pages
 
 | Page | Rôle |
 |---|---|
-| `index.html` | Page principale (détail ci-dessous) |
-| `satisfaction.html` | Point d'entrée du questionnaire, cible du QR code du pitch : prévient la personne puis l'envoie vers Framaforms |
-| `qr.html` | Kit QR codes : affichage, téléchargement SVG/PNG, impression A4 (4 par page). Non référencée par les moteurs de recherche |
+| `index.html` | Accueil, journal simulé et technologies utilisées |
+| `le-projet.html` | Fonctionnement, matériel, limites et scénarios |
+| `demo.html` | Démonstration sur données fictives, accessible par son ancienne adresse |
+| `comparatif.html`, `faq.html`, `equipe.html` | Comparatif, questions fréquentes et équipe |
+| `suggestions.html` | Page de retours sur le projet |
+| `satisfaction.html` | Ancienne adresse du questionnaire qui redirige vers les suggestions |
 | `mentions-legales.html` | Mentions légales, politique de confidentialité, informations RGPD sur le questionnaire |
 | `404.html` | Page d'erreur servie par GitHub Pages pour toute adresse inconnue |
 
-Sections de `index.html`, dans l'ordre :
+L’accueil présente le réseau filaire et le Wi-Fi 2,4 GHz, puis illustre leur
+rapprochement par quatre événements fictifs. Le journal est lisible sans
+JavaScript et se parcourt au clavier une fois React chargé. Les technologies
+utilisées et les établissements figurent sous le journal.
 
-1. **Hero** : animation canvas (la sonde émet des ondes, les appareils
-   s'allument au passage, un appareil inconnu apparaît en rouge). L'animation
-   suit légèrement la souris et se met en pause quand elle n'est plus visible.
-2. **Le problème** : phrase qui s'allume mot à mot pendant le défilement.
-3. **Chiffres clés** : compteurs animés.
-4. **Fonctionnement** : schéma qui reste fixe à l'écran pendant que les cinq
-   étapes défilent (écouter, recenser, croiser, localiser, alerter) ; le schéma
-   met en avant les éléments de l'étape en cours.
-5. **Scénarios** : carrousel horizontal des quatre scénarios de démo.
-6. **Tableau de bord** : fausse fenêtre d'application avec graphe du réseau et
-   flux d'alertes qui défile. Les données sont **fictives** et c'est indiqué
-   sur la page (étiquette « Démo simulée »).
-7. **La sonde** : illustration du boîtier avec effet de parallaxe.
-8. **Sécurité et vie privée**.
-9. **Feuille de route** O0 à O8 avec barre d'avancement.
-10. **Open source** : briques réutilisées et licences.
-11. **Équipe**.
-12. **Votre avis** : QR code et lien vers le questionnaire.
-13. **Contact et support** : mail Proton et réseaux sociaux (lus dans la config).
+Le site conserve le lien d’évitement et les préférences de langue et de thème.
+Les animations de l’accueil et de la page du projet suivent le réglage système
+`prefers-reduced-motion` et le bouton de pause.
 
-Accessibilité : lien d'évitement, navigation au clavier, textes alternatifs,
-contrastes, et respect du réglage système « réduire les animations »
-(`prefers-reduced-motion`) : les animations sont alors désactivées.
+Les polices locales Bricolage Grotesque et Atkinson Hyperlegible Next sont
+fournies sous SIL OFL. Les pictogrammes [Papicons](https://github.com/PapillonApp/Papicons)
+et les drapeaux [flag-icons](https://github.com/lipis/flag-icons) sont fournis
+sous licence MIT. Les marques NetAlertX, Python, FastAPI et SQLite identifient
+les technologies utilisées.
 
 ## 3. Arborescence
 
 ```
+src/
+├── pages/index.astro            accueil
+├── components/Journal.tsx       journal de démonstration
+└── styles/accueil.css           styles de l’accueil
 site/
-├── index.html, satisfaction.html, qr.html, mentions-legales.html, 404.html
+├── le-projet.html, demo.html, équipe et autres pages HTML
 ├── robots.txt
 └── assets/
-    ├── css/style.css            toute la mise en forme (commentée par section)
-    ├── js/main.js               config, menu, animations au défilement, démo simulée, feuille de route
-    ├── js/hero.js               animation canvas du hero
-    ├── js/satisfaction.js       questionnaire (redirection Framaforms ou formulaire intégré)
-    ├── js/qr.js                 page kit QR codes
+    ├── css/style.css            styles des pages statiques
+    ├── js/main.js               menu et interactions des pages statiques
+    ├── js/boot.js, js/i18n.js    langue et thème
     ├── data/config.json         CONFIGURATION (mail, réseaux, questionnaire, URL du site)
     ├── img/                     logo, favicon, sonde, illustrations des scénarios, icônes, image de partage
     └── qr/                      QR codes générés (SVG + PNG + manifest.json) : ne pas modifier à la main
 tools/
 └── generate_qr.py               génère site/assets/qr/ à partir de config.json
+dist/                            résultat du build, non suivi par Git
 docs/site-web.md                 ce document
 .github/workflows/pages.yml      déploiement GitHub Pages
 ```
@@ -128,7 +122,7 @@ cliquer sur « Re-run all jobs ».
 ### 4.3 Changer d'adresse
 
 Si l'adresse change (autre organisation, nom de domaine), mettre à jour
-`siteUrl` dans `config.json` et la balise `og:image` de `index.html`, puis
+`siteUrl` dans `config.json` et l’adresse du site dans `astro.config.mjs`, puis
 régénérer les QR codes (§7) **avant de les imprimer**. Les chemins de
 `404.html` sont absolus depuis la racine (`/assets/…`) : ils restent valables
 tant que le site est servi à la racine du domaine.
@@ -136,13 +130,13 @@ tant que le site est servi à la racine du domaine.
 ### 4.4 Tester en local
 
 ```bash
-cd site
-python3 -m http.server 8000
+npm ci
+npm run check
+npm run dev
 ```
 
-Puis ouvrir <http://localhost:8000>. Ouvrir directement le fichier
-`index.html` (double-clic) ne suffit pas : le navigateur bloque la lecture de
-`config.json` hors serveur web.
+Avec Node.js 24 ou ultérieur, ouvrir <http://localhost:4321>. Pour vérifier le
+site tel qu’il sera publié, exécuter `npm run build` puis `npm run preview`.
 
 ## 5. Configuration : `site/assets/data/config.json`
 

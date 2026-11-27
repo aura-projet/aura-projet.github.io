@@ -1,11 +1,11 @@
 /* AURA · carrousel « Le projet » : glisser fluide, physique façon Apple.
    Suivi 1:1 au pointeur, reprise de vélocité au relâcher, projection d'élan,
    ressort amorti interruptible, résistance aux bords. Flèches, points et
-   clavier. Le schéma suit l'étape active (événement aura:step). 100% local.
+   clavier. Le schéma suit l'étape active. 100% local.
    Respecte prefers-reduced-motion : saut immédiat, sans ressort. */
 (function () {
   'use strict';
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   // Projection d'élan facon iOS (décroissance exponentielle).
   function project(v, d) { d = d || 0.995; return (v / 1000) * d / (1 - d); }
@@ -21,8 +21,7 @@
     var next = root.querySelector('[data-slider-next]');
     var dotsBox = root.querySelector('[data-slider-dots]');
     var progress = root.querySelector('[data-slider-progress]');
-    var caption = document.getElementById('how-caption');
-    var svg = document.getElementById('how-svg');
+    var diagram = document.querySelector('[data-flow-diagram]');
 
     var n = slides.length;
     var index = 0, pos = 0, target = 0, vel = 0, raf = null;
@@ -35,7 +34,6 @@
       slides.forEach(function (s, i) {
         var b = document.createElement('button');
         b.type = 'button'; b.className = 'slider__dot';
-        b.setAttribute('aria-label', 'Aller à l’étape ' + (i + 1));
         b.addEventListener('click', function () { go(i, 0); });
         dotsBox.appendChild(b); dots.push(b);
       });
@@ -68,15 +66,18 @@
       var h3 = active.querySelector('h3');
       var title = h3 ? h3.textContent.trim() : '';
       slides.forEach(function (s, i) { s.classList.toggle('is-active', i === index); });
-      dots.forEach(function (d, i) { d.classList.toggle('is-on', i === index); if (i === index) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+      var english = document.documentElement.lang === 'en';
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('is-on', i === index);
+        dot.setAttribute('aria-label', (english ? 'Go to step ' : 'Aller à l’étape ') + (i + 1));
+        if (i === index) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
+      });
       var mi = maxIndex();
       if (prev) prev.disabled = index <= 0;
       if (next) next.disabled = index >= mi;
       if (progress) progress.textContent = pad(index + 1) + ' / ' + pad(n) + (title ? ' · ' + title : '');
-      if (caption) caption.textContent = (index + 1) + ' / ' + n + (title ? ' · ' + title : '');
-      var sn = Number(active.getAttribute('data-step')); if (!(sn >= 1 && sn <= 5)) sn = Math.min(5, index + 1);
-      document.dispatchEvent(new CustomEvent('aura:step', { detail: { step: sn } }));
-      if (svg) { Array.prototype.slice.call(svg.classList).forEach(function (c) { if (/^step-\d+$/.test(c)) svg.classList.remove(c); }); svg.classList.add('step-' + sn); }
+      if (diagram) diagram.dataset.step = active.dataset.step;
     }
 
     // Ressort critique (amorti, sans dépassement), interruptible.
@@ -91,7 +92,7 @@
     function stop() { if (raf != null) { cancelAnimationFrame(raf); raf = null; } }
     function animateTo(t, v0) {
       target = clamp(t);
-      if (reduce) { stop(); pos = target; vel = 0; setX(pos); return; }
+      if (reduce.matches || window.AURA_MOTION_PAUSED) { stop(); pos = target; vel = 0; setX(pos); return; }
       vel = v0 || 0;
       if (raf == null) raf = requestAnimationFrame(spring);
     }
@@ -137,6 +138,7 @@
     });
 
     var rt;
+    document.addEventListener('aura:language', render);
     window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(measure, 150); }, { passive: true });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
     measure();

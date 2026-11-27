@@ -50,8 +50,6 @@
 .suggestions-page .suggestion-text-button:disabled { color: #a9b9d0; cursor: not-allowed; }
 .suggestions-page .suggestion-status { color: #f0f6ff; margin-top: 14px; font-size: 14px; overflow-wrap: anywhere; }
 .suggestions-page .suggestion-status[data-error="true"] { color: #ffb7af; }
-.suggestions-page .suggestion-alternative { border-top: 1px solid #39506e; padding-top: 24px; margin-top: 24px; }
-.suggestions-page .suggestion-alternative-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 12px; }
 .suggestions-page #suggestion-copy-text { margin-top: 12px; }
 .suggestions-page .footer { background: #06132f; color: #f0f6ff; }
 .suggestions-page .footer__links a { color: #a9b9d0; }
@@ -72,3 +70,6 @@
 @media (prefers-reduced-transparency: reduce) {
   .suggestions-page .suggestions-panel { background: #10264b; backdrop-filter: none; }
 }
+.suggestions-page .suggestion-relais { margin-top: 24px; padding-top: 24px; border-top: 1px solid #39506e; }
+.suggestions-page .suggestion-relais__action { width: 100%; }
+:root[data-theme="light"] .suggestions-page .suggestion-relais { border-top-color: rgba(16,40,80,.16); }

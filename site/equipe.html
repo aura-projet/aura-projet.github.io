@@ -12,10 +12,12 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <script src="assets/js/boot.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/identite.css">
   <script src="assets/js/main.js"></script>
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/constellation.js" defer></script>
   <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/repartition.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -32,7 +34,7 @@
     <nav class="nav__menu" id="menu" aria-label="Navigation principale">
       <a href="index.html">Accueil</a>
       <a href="le-projet.html">Le projet</a>
-      <a href="demo.html">Démo</a>
+
       <a href="comparatif.html">Comparatif</a>
       <a href="faq.html">FAQ</a>
       <a href="equipe.html" class="is-active" aria-current="page">Équipe</a>
@@ -40,10 +42,14 @@
     </nav>
     <div class="nav__tools">
       <button class="nav__tool nav__tool--theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Activer le thème clair" title="Activer le thème clair">
-        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.5v2.3M12 19.2v2.3M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.5 12h2.3M19.2 12h2.3M4.4 19.6 6 18M18 6l1.6-1.6"/></svg>
-        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.2 8.2 0 1 1 9.7 3.5a6.4 6.4 0 0 0 10.8 10.8Z"/></svg>
+        <span class="icon-papi icon-sun theme-light" aria-hidden="true"></span>
+        <span class="icon-papi icon-moon theme-dark" aria-hidden="true"></span>
+        <span class="theme-label" aria-hidden="true">Clair</span>
       </button>
-      <button class="nav__tool nav__tool--lang" id="lang-toggle" type="button" aria-label="Switch to English" title="Switch to English"><span class="lang-current" aria-hidden="true">EN</span></button>
+      <button class="nav__tool nav__tool--lang" id="lang-toggle" type="button" aria-label="Switch to English" title="Switch to English">
+        <img class="flag-gb" src="/assets/img/flags/gb.svg" alt="" width="24" height="18">
+        <img class="flag-fr" src="/assets/img/flags/fr.svg" alt="" width="24" height="18">
+      </button>
     </div>
   </div>
 </header>
@@ -90,6 +96,48 @@
         <p class="member__role">Interface &amp; conception</p>
         <p>Tableau de bord web, boîtiers imprimés en 3D, montage vidéo et communication.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RÉPARTITION DES TÂCHES ============ -->
+<section class="section repartition" id="repartition">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <h2 class="section__title">Qui fait quoi,<br>concrètement.</h2>
+      <p class="section__lead">Les 14 tâches du projet, réparties entre nous quatre. Choisissez un prénom pour ne garder que les siennes.</p>
+    </header>
+    <div class="repart" data-reveal data-i18n-managed>
+      <div class="repart__barre" role="img" aria-label="Répartition des tâches : Yanis 4 sur 14, Baptiste 3 sur 14, Mahé 4 sur 14, Mathys 3 sur 14">
+        <span class="repart__part repart__part--yl" data-membre="yl"><b>Yanis</b><i>4</i></span>
+        <span class="repart__part repart__part--bf" data-membre="bf"><b>Baptiste</b><i>3</i></span>
+        <span class="repart__part repart__part--mh" data-membre="mh"><b>Mahé</b><i>4</i></span>
+        <span class="repart__part repart__part--mt" data-membre="mt"><b>Mathys</b><i>3</i></span>
+      </div>
+      <div class="repart__filtres">
+        <button type="button" class="repart__chip is-actif" data-filtre="tous" aria-pressed="true">Tout le monde</button>
+        <button type="button" class="repart__chip repart__chip--yl" data-filtre="yl" aria-pressed="false">Yanis <span>Chef de projet</span></button>
+        <button type="button" class="repart__chip repart__chip--bf" data-filtre="bf" aria-pressed="false">Baptiste <span>Sécurité &amp; infrastructure</span></button>
+        <button type="button" class="repart__chip repart__chip--mh" data-filtre="mh" aria-pressed="false">Mahé <span>IA, design &amp; RGPD</span></button>
+        <button type="button" class="repart__chip repart__chip--mt" data-filtre="mt" aria-pressed="false">Mathys <span>Interface &amp; conception</span></button>
+      </div>
+      <ul class="repart__taches">
+        <li class="tache tache--yl" data-membre="yl"><span class="tache__dom">Pilotage</span><h3>Planning et suivi</h3><p>Découpage en lots, jalons et point hebdomadaire avec le tuteur.</p><span class="tache__qui">Yanis</span></li>
+        <li class="tache tache--yl" data-membre="yl"><span class="tache__dom">Collecte</span><h3>Plugin NetAlertX</h3><p>Lecture de l’API Kismet et remontée des appareils Wi-Fi dans NetAlertX.</p><span class="tache__qui">Yanis</span></li>
+        <li class="tache tache--yl" data-membre="yl"><span class="tache__dom">Corrélation</span><h3>AURA Core</h3><p>Référentiel connu/inconnu, moteur de règles et API de supervision.</p><span class="tache__qui">Yanis</span></li>
+        <li class="tache tache--yl" data-membre="yl"><span class="tache__dom">Matériel</span><h3>Sonde Wi-Fi</h3><p>Raspberry Pi, dongle en mode monitor et mise en service de Kismet.</p><span class="tache__qui">Yanis</span></li>
+        <li class="tache tache--bf" data-membre="bf"><span class="tache__dom">Sécurité</span><h3>Analyse de risque</h3><p>Menaces couvertes, limites assumées et durcissement du serveur.</p><span class="tache__qui">Baptiste</span></li>
+        <li class="tache tache--bf" data-membre="bf"><span class="tache__dom">Infrastructure</span><h3>VM Debian</h3><p>Machine virtuelle sur le Proxmox de l’IUT, Docker et sauvegardes.</p><span class="tache__qui">Baptiste</span></li>
+        <li class="tache tache--bf" data-membre="bf"><span class="tache__dom">Capteurs</span><h3>Piste infrarouge</h3><p>Capteur Arduino de présence, si le planning le permet.</p><span class="tache__qui">Baptiste</span></li>
+        <li class="tache tache--mh" data-membre="mh"><span class="tache__dom">Conformité</span><h3>Cadre RGPD</h3><p>Base légale, durée de conservation et mentions sur les données observées.</p><span class="tache__qui">Mahé</span></li>
+        <li class="tache tache--mh" data-membre="mh"><span class="tache__dom">IA</span><h3>Explication des alertes</h3><p>Appel à une API externe qui rédige, pendant que les règles calculent la gravité.</p><span class="tache__qui">Mahé</span></li>
+        <li class="tache tache--mh" data-membre="mh"><span class="tache__dom">Design</span><h3>Charte et maquettes</h3><p>Palette, typographies et maquettes des écrans du tableau de bord.</p><span class="tache__qui">Mahé</span></li>
+        <li class="tache tache--mh" data-membre="mh"><span class="tache__dom">Qualité</span><h3>Tests d’ergonomie</h3><p>Parcours testés auprès d’utilisateurs, guide utilisateur rédigé à partir des retours.</p><span class="tache__qui">Mahé</span></li>
+        <li class="tache tache--mt" data-membre="mt"><span class="tache__dom">Interface</span><h3>Tableau de bord web</h3><p>Six écrans, du graphe réseau à la page des alertes.</p><span class="tache__qui">Mathys</span></li>
+        <li class="tache tache--mt" data-membre="mt"><span class="tache__dom">Fabrication</span><h3>Boîtiers imprimés</h3><p>Modélisation et impression 3D du boîtier de la sonde.</p><span class="tache__qui">Mathys</span></li>
+        <li class="tache tache--mt" data-membre="mt"><span class="tache__dom">Communication</span><h3>Affiche et vidéo</h3><p>Supports de présentation, montage de la démonstration filmée.</p><span class="tache__qui">Mathys</span></li>
+      </ul>
+      <p class="repart__vide" hidden>Aucune tâche pour ce filtre.</p>
     </div>
   </div>
 </section>

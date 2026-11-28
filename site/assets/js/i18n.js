@@ -35,12 +35,76 @@
     'Liens de pied de page': 'Footer links',
     "Fil d'ariane": 'Breadcrumb',
     'Établissements': 'Institutions',
+    /* ---- Relecture n°4 : établissements, répartition, connexion ---- */
+    "Connexion": "Sign in",
+    "IUT de Valence (nouvel onglet)": "IUT de Valence (new tab)",
+    "BUT Réseaux et Télécommunications (nouvel onglet)": "BUT Networks and Telecommunications (new tab)",
+    "Université Grenoble Alpes (nouvel onglet)": "Université Grenoble Alpes (new tab)",
+    "GRETA Ardèche Drôme (nouvel onglet)": "GRETA Ardèche Drôme (new tab)",
+    "Pilotage": "Project management",
+    "Collecte": "Collection",
+    "Matériel": "Hardware",
+    "Sécurité": "Security",
+    "Infrastructure": "Infrastructure",
+    "Capteurs": "Sensors",
+    "Conformité": "Compliance",
+    "IA": "AI",
+    "Design": "Design",
+    "Qualité": "Quality",
+    "Interface": "Interface",
+    "Fabrication": "Manufacturing",
+    "Communication": "Communication",
+    "Connexion · AURA bêta": "Sign in · AURA beta",
+    "Connexion au tableau de bord AURA, version bêta : se connecter, demander un compte au support ou recevoir un nouveau mot de passe.": "Sign in to the AURA dashboard, beta version: sign in, request an account from support or get a new password.",
+    "Espace client": "Customer area",
+    "Version bêta": "Beta version",
+    "Se connecter au tableau de bord.": "Sign in to the<br>dashboard.",
+    "AURA est en version bêta. Pendant cette phase, notre équipe crée les comptes à la main, sur demande, le temps de tester l'outil avec quelques structures.": "AURA is in beta. During this phase, our team creates accounts by hand, on request, while we test the tool with a few organisations.",
+    "Accès au tableau de bord": "Dashboard access",
+    "Choisir une action": "Choose an action",
+    "Se connecter": "Sign in",
+    "Demander un compte": "Request an account",
+    "Mot de passe oublié": "Forgotten password",
+    "Utilisez l'adresse e-mail et le mot de passe que le support AURA vous a envoyés.": "Use the email address and password that AURA support sent you.",
+    "Adresse e-mail": "Email address",
+    "Mot de passe": "Password",
+    "Pas encore de compte ? Demander un accès": "No account yet? Request access",
+    "Mot de passe oublié ?": "Forgot your password?",
+    "Vos identifiants partent directement vers le serveur AURA, en HTTPS. Ce site vitrine ne les lit pas et ne les enregistre pas.": "Your credentials go straight to the AURA server over HTTPS. This showcase site never reads or stores them.",
+    "Pendant la bêta, nous ouvrons les comptes un par un. Laissez-nous votre adresse e-mail : votre demande part au support AURA, qui vous recontacte pour préparer votre accès.": "During the beta, we open accounts one by one. Leave us your email address: your request goes to AURA support, who will get back to you to set up your access.",
+    "Nom et prénom": "Full name",
+    "Le support l'utilise pour vous recontacter.": "Support uses it to get back to you.",
+    "Structure ou entreprise (facultatif)": "Organisation or company (optional)",
+    "Votre besoin en quelques mots (facultatif)": "Your need in a few words (optional)",
+    "Autre calcul": "Another sum",
+    "Site web": "Website",
+    "J'accepte que mon adresse e-mail serve uniquement à traiter cette demande.": "I agree that my email address is used only to handle this request.",
+    "Envoyer la demande au support": "Send the request to support",
+    "Indiquez l'adresse e-mail de votre compte. Nous ouvrons un ticket au support AURA, qui génère un nouveau mot de passe aléatoire et vous l'envoie à cette adresse.": "Enter the email address of your account. We open a ticket with AURA support, who generates a new random password and sends it to that address.",
+    "Adresse e-mail du compte": "Account email address",
+    "Demander un nouveau mot de passe": "Request a new password",
+    "Par sécurité, nous n'indiquons jamais si un compte existe pour une adresse. Le nouveau mot de passe n'est envoyé qu'à l'adresse du compte.": "For security, we never say whether an account exists for an address. The new password is only sent to the account address.",
+    "Comment se passe l'accès ?": "How does access work?",
+    "Vous demandez un compte": "You request an account",
+    "Avec l'adresse e-mail à laquelle nous pourrons vous répondre.": "With the email address where we can reply to you.",
+    "Le support le prépare": "Support sets it up",
+    "Nous vérifions la demande et créons votre compte sur le serveur AURA.": "We check the request and create your account on the AURA server.",
+    "Vous vous connectez ici": "You sign in here",
+    "Vos identifiants arrivent par e-mail. Ils ouvrent votre tableau de bord.": "Your credentials arrive by email. They open your dashboard.",
+    "Le tableau de bord tourne pour l'instant sur le serveur de l'IUT. Tant qu'il n'est pas ouvert sur Internet, la connexion depuis ce site reste fermée.": "For now the dashboard runs on the IUT server. Until it is open to the Internet, signing in from this site stays closed.",
     'BUT Réseaux et Télécommunications': 'BUT Networks and Telecommunications',
     'AURA — Analyse Unifiée du Réseau et des Antennes': 'AURA — Unified Analysis of Network and Antennas',
     /* bandeau défilant (décoratif) */
     'Écouter': 'Listen', 'Recenser': 'Inventory', 'Croiser': 'Correlate', 'Alerter': 'Alert',
 
     /* ---- Accueil ---- */
+    'AURA · Repérer les appareils inconnus sur votre réseau': 'AURA · Spot unknown devices on your network',
+    "AURA rapproche les observations du réseau filaire et du Wi-Fi 2,4 GHz. Projet tutoré de BUT Réseaux & Télécommunications à l'IUT de Valence.": 'AURA combines observations from wired networks and 2.4 GHz Wi-Fi. A Networks & Telecommunications student project at IUT de Valence.',
+    'Réseau filaire et Wi-Fi 2,4 GHz': 'Wired network and 2.4 GHz Wi-Fi',
+    'Repérer les appareils inconnus sur votre réseau': 'Spot unknown devices on your network',
+    'AURA rapproche ce qui se connecte au réseau filaire et ce que la sonde capte en Wi‑Fi, sans agent sur les postes.': 'AURA compares wired network connections with what the Wi-Fi sensor picks up, without installing agents on devices.',
+    'Console AURA · Données simulées': 'AURA console · Simulated data',
+    "Sans mesure d'audience": 'No audience tracking',
     'AURA · Le réseau et les ondes, au même endroit': 'AURA · The network and the airwaves, in one place',
     "AURA détecte ce qui se branche et ce qui émet dans vos locaux, sans agent sur les postes. Projet tutoré BUT Réseaux & Télécoms, IUT de Valence.": 'AURA detects what plugs in and what transmits on your premises, with no agent on the machines. Tutored project, BUT Networks & Telecoms, IUT de Valence.',
     'Le réseau et les ondes.': '<span class="rl__i">The network and the airwaves.</span>',
@@ -48,17 +112,46 @@
     "Repérer ce qui se branche. Voir ce qui émet. AURA croise les deux, sans agent sur les postes.": 'Spot what plugs in. See what transmits. AURA cross-checks both, with no agent on the machines.',
     'Découvrir le projet': 'Discover the project',
     'Ouvrir la démo': 'Open the demo',
+    'Voir les technologies': 'Explore the technologies',
+    'Les technologies derrière AURA': 'The technology behind AURA',
+    'Inventaire du réseau filaire': 'Wired network inventory',
+    'Observation Wi-Fi 2,4 GHz': '2.4 GHz Wi-Fi observation',
+    'Support de la sonde Wi-Fi': 'Platform for the Wi-Fi sensor',
+    'Collecte et corrélation': 'Collection and correlation',
+    'API de supervision': 'Monitoring API',
+    'Référentiel et historique': 'Device registry and history',
+    'Appareils reliés': 'Connected devices',
+    'Référentiel AURA': 'AURA device registry',
+    'Signal non déclaré': 'Unregistered signal',
+    'Départ du poste': 'Device leaves',
+    'Apparition de la borne': 'Access point appears',
+    'Switch non déclaré': 'Unregistered switch',
+    'Tableau de bord': 'Dashboard',
+    'Schéma de principe': 'Process diagram',
+    'Emplacement à vérifier': 'Location to verify',
     'Projet tutoré · BUT3 Réseaux & Télécoms · IUT de Valence': 'Tutored project · BUT3 Networks & Telecoms · IUT de Valence',
     'Explorer le projet': 'Explore the project',
     "Un appareil inconnu n'a pas d'agent. Il a pourtant une place sur votre réseau.": 'An unknown device has no agent. Yet it holds a place on your network.',
     'Repérer une borne Wi-Fi inconnue': 'Spot an unknown Wi-Fi access point',
-    'La sonde observe les bornes en 2,4 GHz. La console rassemble les appareils repérés, le signal reçu et les indices qui ont motivé l’alerte.': 'The sensor observes 2.4 GHz access points. The console brings together observed devices, received signal strength and the evidence behind the alert.',
+    "La sonde observe les bornes en 2,4 GHz. La console rassemble les appareils repérés, le signal reçu et les indices qui ont motivé l'alerte.": 'The sensor observes 2.4 GHz access points. The console brings together observed devices, received signal strength and the evidence behind the alert.',
     'Essayer la démonstration': 'Try the demo',
-    'Console AURA en mode démonstration, avec le graphe de supervision et la fiche d’une borne Wi-Fi signalée': 'AURA console in demo mode, showing the monitoring graph and a flagged Wi-Fi access point',
+    "Console AURA en mode démonstration, avec le graphe de supervision et la fiche d'une borne Wi-Fi signalée": 'AURA console in demo mode, showing the monitoring graph and a flagged Wi-Fi access point',
     'Réseau filaire': 'Wired network',
     'Wi-Fi · 2,4 GHz': 'Wi-Fi · 2.4 GHz',
 
     /* ---- Le projet ---- */
+    "Du premier signal à l'alerte": 'From the first signal to the alert',
+    'AURA rapproche les observations du réseau filaire et les relevés Wi-Fi de la sonde.': 'AURA brings wired network observations together with the sensor’s Wi-Fi readings.',
+    'Comment AURA relie les observations': 'How AURA connects observations',
+    'Quatre situations à repérer': 'Four situations to look for',
+    'Les schémas illustrent des situations fictives.': 'The diagrams illustrate fictional situations.',
+    'Un appareil non déclaré': 'An unregistered device',
+    'Un switch non déclaré': 'An unregistered switch',
+    'Un poste quitte le réseau et une borne apparaît peu après. AURA signale un partage de connexion probable.': 'A device leaves the network and an access point appears shortly afterwards. AURA flags likely Wi-Fi hotspot sharing.',
+    'Comparer les outils': 'Compare the tools',
+    "Étapes du fonctionnement d'AURA": 'Steps in the AURA process',
+    'Étape précédente': 'Previous step',
+    'Étape suivante': 'Next step',
     'Le projet AURA · Du réseau aux ondes': 'The AURA project · From network to airwaves',
     "Comment AURA marche, en clair : écoute Wi-Fi, collecte filaire, corrélation ondes/réseau et alertes. Les situations qu'on veut repérer et les briques de l'outil.": 'How AURA works, in plain terms: Wi-Fi listening, wired collection, airwave/network correlation and alerts. The situations we look for and the building blocks of the tool.',
     'La démarche': 'The approach',
@@ -405,7 +498,45 @@
     'Page introuvable · AURA': 'Page not found · AURA',
     'Erreur 404': 'Error 404',
     'Même notre sonde ne trouve pas cette page.': 'Even our probe cannot find this page.',
-    "Retour à l'accueil": 'Back to home'
+    "Retour à l'accueil": 'Back to home',
+
+    /* ---- Accueil : aperçu du tableau de bord ---- */
+    'Écran de supervision, en mode démonstration avec des données simulées.': 'The monitoring screen, in demonstration mode with simulated data.',
+
+    /* ---- Comparatif : partis pris et matériel ---- */
+    'Voici les six choix que nous avons faits au début du projet, et sur lesquels nous ne sommes pas revenus depuis.': 'Here are the six choices we made at the start of the project, and have stuck with since.',
+    'Prix relevés le 27 novembre 2026, TTC et hors livraison. Ils bougent souvent, prenez-les comme un ordre de grandeur.': 'Prices checked on 27 November 2026, including tax and excluding delivery. They move often, so treat them as a rough guide.',
+    'environ 48 €': 'about €48',
+    'environ 35 €': 'about €35',
+    "Prêté par l’IUT": 'Lent by the IUT',
+    "Hébergé par l’IUT": 'Hosted by the IUT',
+
+    /* ---- Comparatif : les briques libres ---- */
+    'Les briques libres': 'The open-source building blocks',
+    'que nous assemblons.': 'that we put together.',
+    'Nous ne partons pas de zéro. Chaque brique garde sa licence et son dépôt ; dépliez-en une pour voir sa place dans la chaîne et son code.': 'We are not starting from scratch. Each block keeps its own licence and repository; open one to see where it sits in the chain and where its code lives.',
+    'Surveillance du réseau filaire': 'Wired network monitoring',
+    'Écoute Wi-Fi sur la sonde': 'Wi-Fi listening on the probe',
+    'Lecture SNMP des switchs': 'Reading switch tables over SNMP',
+    'Radio 433 et 868 MHz, en réception': 'Radio at 433 and 868 MHz, receive only',
+    'Graphe réseau du tableau de bord': 'Network graph for the dashboard',
+    'Le socle du filaire : scans ARP, DHCP et SNMP, historique et notifications. Nous le prolongeons par des plugins plutôt que de le réécrire, et il reste la source des appareils câblés.': 'The backbone for wired devices: ARP, DHCP and SNMP scans, history and notifications. We extend it with plugins rather than rewriting it, and it stays the source for cabled devices.',
+    'Kismet tourne sur le Raspberry Pi et capte les trames de gestion. Nous lisons son API REST comme un programme séparé, ce qui évite de mélanger du code GPL 2 et GPL 3.': 'Kismet runs on the Raspberry Pi and captures management frames. We read its REST API as a separate program, which avoids mixing GPL 2 and GPL 3 code.',
+    'Source d’inspiration, pas une dépendance : nous reprenons sa logique de lecture de la table MAC pour retrouver le port physique d’un appareil, recodée en Python.': 'An inspiration rather than a dependency: we reuse its approach to reading the MAC table to find a device’s physical port, rewritten in Python.',
+    'Piste « si nous avons le temps » : décoder les capteurs radio du bâtiment avec une clé RTL-SDR, en réception seule. Rien n’est émis.': 'A “if we have time” idea: decoding the building’s radio sensors with an RTL-SDR dongle, receive only. Nothing is transmitted.',
+    'Brique envisagée côté interface pour dessiner le graphe des appareils et de leurs liens, une fois la corrélation en place.': 'A block we are considering on the interface side, to draw the graph of devices and their links once correlation is in place.',
+    'Voir le dépôt ↗': 'View the repository ↗',
+
+    /* ---- Équipe : répartition des tâches ---- */
+    'Qui fait quoi,': 'Who does what,',
+    'concrètement.': 'in practice.',
+    'Les 14 tâches du projet, réparties entre nous quatre. Choisissez un prénom pour ne garder que les siennes.': 'The 14 tasks in the project, shared between the four of us. Pick a first name to see only their tasks.',
+    'Tout le monde': 'Everyone',
+    'Aucune tâche pour ce filtre.': 'No task matches this filter.',
+
+    /* ---- Suggestions : copie et messagerie ---- */
+    'Copier ma suggestion et ouvrir ma messagerie': 'Copy my suggestion and open my mail app',
+    'Cette option n’utilise pas la vérification anti-robot. Rien n’est envoyé sans que vous validiez le message dans votre messagerie.': 'This option does not use the anti-robot check. Nothing is sent unless you confirm the message in your mail app.'
   };
 
   var DICT = { en: EN };
@@ -434,7 +565,7 @@
   var SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,a,button,span,strong,em,small,b,legend,summary,label,th,td,caption,figcaption,option,dt,dd,time,blockquote';
   var ATTR_SELECTOR = '[alt],[aria-label],[placeholder],[title]';
   var ATTRS = ['alt', 'aria-label', 'placeholder', 'title'];
-  var SKIP_CLOSEST = 'svg,code,script,style,.footer__legal,.nav__tool';
+  var SKIP_CLOSEST = 'svg,code,script,style,.footer__legal,.nav__tool,#motion-toggle,[data-slider-progress],[data-i18n-managed]';
 
   // Motifs pour les textes dynamiques qui contiennent un nombre ou un nom.
   var PATTERNS = [
@@ -490,7 +621,7 @@
     var af = rootEl.querySelectorAll ? rootEl.querySelectorAll(ATTR_SELECTOR) : [];
     for (var j = 0; j < af.length; j++) attrEls.push(af[j]);
     attrEls.forEach(function (el) {
-      if (el.closest && el.closest('svg,script,style')) return;
+      if (el.closest && el.closest('svg,script,style,[data-i18n-managed]')) return;
       ATTRS.forEach(function (name) {
         if (!el.hasAttribute(name)) return;
         var val = el.getAttribute(name);
@@ -561,6 +692,7 @@
     if (persist) { try { localStorage.setItem('aura-lang', next); } catch (e) {} }
     updateLangButton();
     applying = false;
+    document.dispatchEvent(new CustomEvent('aura:language'));
   }
 
   /* --------------------------------------------------------------------- */
@@ -584,12 +716,12 @@
     var toDark = lang === 'en' ? 'Switch to dark theme' : 'Activer le thème sombre';
     b.setAttribute('aria-label', light ? toDark : toLight);
     b.setAttribute('title', light ? toDark : toLight);
+    var label = b.querySelector('.theme-label');
+    if (label) label.textContent = light ? (lang === 'en' ? 'Dark' : 'Sombre') : (lang === 'en' ? 'Light' : 'Clair');
   }
   function updateLangButton() {
     var b = document.getElementById('lang-toggle');
     if (!b) return;
-    var span = b.querySelector('.lang-current');
-    if (span) span.textContent = lang === 'en' ? 'FR' : 'EN';
     b.setAttribute('aria-label', lang === 'en' ? 'Passer au français' : 'Switch to English');
     b.setAttribute('title', lang === 'en' ? 'Passer au français' : 'Switch to English');
     updateThemeButton();
@@ -602,6 +734,13 @@
     var themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) themeBtn.addEventListener('click', function () {
       setTheme(currentTheme() === 'light' ? 'dark' : 'light', true);
+      // Relance l'animation de l'icône à chaque bascule.
+      themeBtn.classList.remove('vient-de-basculer');
+      void themeBtn.offsetWidth;
+      themeBtn.classList.add('vient-de-basculer');
+    });
+    if (themeBtn) themeBtn.addEventListener('animationend', function () {
+      themeBtn.classList.remove('vient-de-basculer');
     });
     var langBtn = document.getElementById('lang-toggle');
     if (langBtn) langBtn.addEventListener('click', function () {

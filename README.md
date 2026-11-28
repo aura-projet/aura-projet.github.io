@@ -18,7 +18,8 @@ Ce dépôt ne contient que le site, qui est public. Le code du projet (plugins
 NetAlertX, moteur de corrélation) est dans un dépôt séparé et privé.
 
 ```
-site/                        le site, publié tel quel (HTML, CSS, JavaScript, sans framework)
+src/                         accueil Astro, journal React et styles
+site/                        autres pages HTML et ressources statiques
   assets/data/config.json    mail de support, réseaux sociaux, questionnaire, adresse du site
 tools/generate_qr.py         génère les QR codes à partir de config.json
 docs/site-web.md             documentation complète du site
@@ -29,11 +30,13 @@ CHANGELOG.md                 journal des modifications
 ## Tester en local
 
 ```bash
-cd site
-python3 -m http.server 8000
+npm ci
+npm run dev
 ```
 
-Puis ouvrir <http://localhost:8000>.
+Avec Node.js 24 ou ultérieur, ouvrir <http://localhost:4321>.
+`npm run check` vérifie les types. `npm run build` produit le site dans
+`dist/`, que `npm run preview` permet de consulter avant publication.
 
 ## Modifier le site
 
@@ -43,8 +46,8 @@ Puis ouvrir <http://localhost:8000>.
   pip install segno
   python3 tools/generate_qr.py
   ```
-- Chaque push sur `main` qui touche `site/` republie le site en une à deux
-  minutes (onglet Actions).
+- GitHub Actions compile puis publie le site après chaque mise à jour du
+  code de la vitrine sur `main`.
 - Noter chaque changement dans `CHANGELOG.md`.
 
 Tout le détail (structure, questionnaire Framaforms, QR codes, sécurité) est

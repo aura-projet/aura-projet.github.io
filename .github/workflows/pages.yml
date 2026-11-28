@@ -1,6 +1,6 @@
-# Publie le site vitrine AURA (dossier site/) sur GitHub Pages.
+# Publie le build statique Astro sur GitHub Pages.
 # Prérequis (une seule fois) : Settings > Pages > Source = "GitHub Actions".
-# Source réglée sur « GitHub Actions » : ce workflow sert site/ à la racine.
+# Source réglée sur « GitHub Actions » : ce workflow sert dist/ à la racine.
 # Voir docs/site-web.md.
 name: Site web (GitHub Pages)
 
@@ -9,6 +9,11 @@ on:
     branches: [main]
     paths:
       - "site/**"
+      - "src/**"
+      - "astro.config.mjs"
+      - "tsconfig.json"
+      - "package.json"
+      - "package-lock.json"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -28,14 +33,25 @@ jobs:
     # workflow dans un autre dépôt (dépôt de code privé, fork) ne déploie rien.
     if: github.repository == 'aura-projet/aura-projet.github.io'
     runs-on: ubuntu-latest
+    env:
+      ASTRO_TELEMETRY_DISABLED: "1"
     steps:
       - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: dist
 
   deploy:
     needs: build

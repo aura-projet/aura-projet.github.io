@@ -353,8 +353,22 @@ html.is-motion-paused .hero__content, html.is-motion-paused .how-svg .flow { ani
 .compare__aura { background: #0e2b41; }
 .compare tbody th.compare__aura, .compare td.compare__aura { color: var(--ink); }
 .compare thead th.compare__aura { color: #8bf0ff; }
-.c-yes { color: #bfe9c4; } .c-no { color: #9fb2c7; } .c-part { color: #ffce9e; }
-.compare td.c-yes::before, .compare td.c-no::before, .compare td.c-part::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 8px; vertical-align: middle; background: currentColor; }
+.compare td.c-yes { color: #6fdc9b; } .compare td.c-no { color: #ff8a8a; } .compare td.c-part { color: #ffb45c; }
+.compare td.c-yes, .compare td.c-no, .compare td.c-part { white-space: nowrap; }
+.compare td.c-yes::before, .compare td.c-no::before, .compare td.c-part::before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 9px;
+  vertical-align: -3px;
+  background: currentColor;
+  -webkit-mask: var(--marque) center / contain no-repeat;
+  mask: var(--marque) center / contain no-repeat;
+}
+.compare td.c-yes::before { --marque: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.2 12.6 9.4 17.8 19.8 6.6'/%3E%3C/svg%3E"); }
+.compare td.c-no::before { --marque: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.4 6.4 17.6 17.6M17.6 6.4 6.4 17.6'/%3E%3C/svg%3E"); }
+.compare td.c-part::before { --marque: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.2 12h13.6'/%3E%3C/svg%3E"); }
 .compare-note { margin-top: 24px; font-size: 14px; color: var(--ink-2); max-width: 70ch; }
 /* Pourquoi */
 .why .why-card { grid-column: span 4; padding: 28px 26px; }
@@ -509,7 +523,7 @@ html:not(.js) #constellation { display: none; }
 /* --- Slider « Le projet » : cartes glissables, physique Apple --- */
 .how--slider .how__layout { display: block; }
 .how--slider .how__visual { position: static; top: auto; margin: 0 auto 40px; max-width: 760px; }
-.slider { position: relative; }
+.slider { position: relative; min-width: 0; }
 .slider__viewport { overflow: hidden; border-radius: var(--radius); cursor: grab; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
 .slider__viewport:focus-visible { outline: 3px solid var(--aura-cyan); outline-offset: 4px; }
 .slider__viewport.is-dragging { cursor: grabbing; }
@@ -519,7 +533,7 @@ html:not(.js) #constellation { display: none; }
 @media (min-width: 1080px) { .slide { flex-basis: 33.333%; } }
 .slide__card { height: 100%; border-radius: var(--radius-s); padding: 30px 28px; display: flex; flex-direction: column; gap: 14px; transition: border-color .4s var(--ease), transform .4s var(--ease); }
 .slide__top { display: flex; align-items: center; gap: 16px; }
-.slide__num { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; font: 600 15px var(--font); color: var(--night); background: var(--aura-cyan); flex: 0 0 auto; box-shadow: 0 6px 18px -8px currentColor; }
+.slide__num { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; font: 600 15px var(--aura-chiffres, var(--font)); font-feature-settings: 'ss01', 'ss02'; font-variant-numeric: tabular-nums slashed-zero; letter-spacing: .02em; color: var(--night); background: var(--aura-cyan); flex: 0 0 auto; box-shadow: 0 6px 18px -8px currentColor; }
 .slide:nth-child(2) .slide__num { background: var(--aura-teal); }
 .slide:nth-child(3) .slide__num { background: #5b8def; }
 .slide:nth-child(4) .slide__num { background: var(--iut-orange); color: #fff; }

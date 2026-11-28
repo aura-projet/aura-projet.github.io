@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Connexion · AURA bêta</title>
+  <meta name="description" content="Connexion au tableau de bord AURA, version bêta : se connecter, demander un compte au support ou recevoir un nouveau mot de passe.">
+  <meta name="theme-color" content="#070e20">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <script src="assets/js/boot.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/identite.css">
+  <link rel="stylesheet" href="assets/css/connexion.css">
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/constellation.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/connexion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner glass">
+    <a class="nav__logo" href="index.html" aria-label="AURA, accueil">
+      <img class="logo-clair" src="assets/img/logo.svg" alt="" width="26" height="26"><img class="logo-sombre" src="assets/img/logo-sombre.svg" alt="" width="26" height="26">
+      <span>AURA</span>
+    </a>
+    <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav__menu" id="menu" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="le-projet.html">Le projet</a>
+
+      <a href="comparatif.html">Comparatif</a>
+      <a href="faq.html">FAQ</a>
+      <a href="equipe.html">Équipe</a>
+      <a class="nav__login is-active" href="connexion.html" aria-current="page">Connexion</a><a class="nav__cta js-magnetic" href="suggestions.html">Proposer une idée</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="nav__tool nav__tool--theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Activer le thème clair" title="Activer le thème clair">
+        <span class="icon-papi icon-sun theme-light" aria-hidden="true"></span>
+        <span class="icon-papi icon-moon theme-dark" aria-hidden="true"></span>
+        <span class="theme-label" aria-hidden="true">Clair</span>
+      </button>
+      <button class="nav__tool nav__tool--lang" id="lang-toggle" type="button" aria-label="Switch to English" title="Switch to English">
+        <img class="flag-gb" src="/assets/img/flags/gb.svg" alt="" width="24" height="18">
+        <img class="flag-fr" src="/assets/img/flags/fr.svg" alt="" width="24" height="18">
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="aura-field" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="constellation" aria-hidden="true"></canvas>
+<main id="contenu" class="cx-page">
+
+<!-- ============ EN-TÊTE DE PAGE ============ -->
+<section class="hero hero--page cx-hero">
+  <div class="hero__inner">
+    <nav class="crumbs" aria-label="Fil d’ariane"><a href="index.html">Accueil</a><i>/</i><span>Connexion</span></nav>
+    <div class="cx-hero__haut"><p class="hero__kicker">Espace client</p><span class="cx-beta"><svg class="cx-beta__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg><span>Version bêta</span></span></div>
+    <h1 data-reveal>Se connecter au<br>tableau de bord.</h1>
+    <p class="hero__sub" data-reveal data-delay="0.1">AURA est en version bêta. Pendant cette phase, notre équipe crée les comptes à la main, sur demande, le temps de tester l’outil avec quelques structures.</p>
+  </div>
+</section>
+
+<!-- ============ CONNEXION, DEMANDE DE COMPTE, MOT DE PASSE ============ -->
+<section class="section cx" aria-label="Accès au tableau de bord">
+  <div class="container cx__grille">
+    <div class="cx__carte glass">
+      <div class="cx-onglets" role="tablist" aria-label="Choisir une action" hidden>
+        <button class="cx-onglet" type="button" role="tab" id="onglet-connexion" aria-controls="volet-connexion" aria-selected="true"><svg class="cx-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg><span>Se connecter</span></button>
+        <button class="cx-onglet" type="button" role="tab" id="onglet-demande" aria-controls="volet-demande" aria-selected="false" tabindex="-1"><svg class="cx-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg><span>Demander un compte</span></button>
+        <button class="cx-onglet" type="button" role="tab" id="onglet-oubli" aria-controls="volet-oubli" aria-selected="false" tabindex="-1"><svg class="cx-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg><span>Mot de passe oublié</span></button>
+      </div>
+
+      <section class="cx-volet" id="volet-connexion" role="tabpanel" aria-labelledby="titre-connexion">
+        <h2 id="titre-connexion">Connexion</h2>
+        <p class="cx-intro">Utilisez l’adresse e-mail et le mot de passe que le support AURA vous a envoyés.</p>
+        <form class="cx-form" id="form-connexion" method="post" novalidate>
+          <div class="cx-champ"><label for="cx-email">Adresse e-mail</label><input id="cx-email" name="email" type="email" autocomplete="username" aria-describedby="cx-email-erreur" required maxlength="254" spellcheck="false"><p class="cx-erreur" id="cx-email-erreur" data-i18n-managed></p></div>
+          <div class="cx-champ"><label for="cx-mdp">Mot de passe</label><input id="cx-mdp" name="password" type="password" autocomplete="current-password" aria-describedby="cx-mdp-erreur" required maxlength="128"><p class="cx-erreur" id="cx-mdp-erreur" data-i18n-managed></p></div>
+          <button class="cx-bouton" type="submit" id="cx-envoyer">Se connecter</button>
+          <p class="cx-statut" id="cx-statut" role="status" data-i18n-managed></p>
+        </form>
+        <ul class="cx-liens" role="list">
+          <li><a href="#demande" data-onglet="demande">Pas encore de compte ? Demander un accès</a></li>
+          <li><a href="#oubli" data-onglet="oubli">Mot de passe oublié ?</a></li>
+        </ul>
+        <p class="cx-note"><svg class="cx-note__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Vos identifiants partent directement vers le serveur AURA, en HTTPS. Ce site vitrine ne les lit pas et ne les enregistre pas.</span></p>
+      </section>
+
+      <section class="cx-volet" id="volet-demande" role="tabpanel" aria-labelledby="titre-demande">
+        <h2 id="titre-demande">Demander un compte</h2>
+        <p class="cx-intro">Pendant la bêta, nous ouvrons les comptes un par un. Laissez-nous votre adresse e-mail : votre demande part au support AURA, qui vous recontacte pour préparer votre accès.</p>
+        <form class="cx-form" id="form-demande" novalidate>
+          <div class="cx-champ"><label for="dm-nom">Nom et prénom</label><input id="dm-nom" name="nom" type="text" autocomplete="name" aria-describedby="dm-nom-erreur" required maxlength="80"><p class="cx-erreur" id="dm-nom-erreur" data-i18n-managed></p></div>
+          <div class="cx-champ"><label for="dm-email">Adresse e-mail</label><p class="cx-aide" id="dm-email-aide">Le support l’utilise pour vous recontacter.</p><input id="dm-email" name="email" type="email" autocomplete="email" aria-describedby="dm-email-aide dm-email-erreur" required maxlength="254" spellcheck="false"><p class="cx-erreur" id="dm-email-erreur" data-i18n-managed></p></div>
+          <div class="cx-champ"><label for="dm-structure">Structure ou entreprise (facultatif)</label><input id="dm-structure" name="structure" type="text" autocomplete="organization" aria-describedby="dm-structure-erreur" maxlength="80"><p class="cx-erreur" id="dm-structure-erreur" data-i18n-managed></p></div>
+          <div class="cx-champ"><label for="dm-besoin">Votre besoin en quelques mots (facultatif)</label><textarea id="dm-besoin" name="besoin" rows="3" maxlength="600" aria-describedby="dm-besoin-erreur"></textarea><p class="cx-erreur" id="dm-besoin-erreur" data-i18n-managed></p></div>
+          <div class="cx-champ cx-captcha"><label for="dm-captcha" id="dm-captcha-q" data-i18n-managed>Vérification anti-robot</label><div class="cx-captcha__ligne"><input id="dm-captcha" type="text" inputmode="numeric" autocomplete="off" maxlength="3" aria-describedby="dm-captcha-erreur"><button class="cx-lien" type="button" data-captcha-nouveau="dm">Autre calcul</button></div><p class="cx-erreur" id="dm-captcha-erreur" data-i18n-managed></p></div><div class="cx-pot" aria-hidden="true"><label for="dm-site">Site web</label><input id="dm-site" type="text" tabindex="-1" autocomplete="off"></div>
+          <div class="cx-champ cx-accord"><input id="dm-accord" type="checkbox" aria-describedby="dm-accord-erreur"><label for="dm-accord">J’accepte que mon adresse e-mail serve uniquement à traiter cette demande.</label><p class="cx-erreur" id="dm-accord-erreur" data-i18n-managed></p></div>
+          <button class="cx-bouton" type="submit" id="dm-envoyer">Envoyer la demande au support</button>
+          <p class="cx-statut" id="dm-statut" role="status" data-i18n-managed></p>
+        </form>
+      </section>
+
+      <section class="cx-volet" id="volet-oubli" role="tabpanel" aria-labelledby="titre-oubli">
+        <h2 id="titre-oubli">Mot de passe oublié</h2>
+        <p class="cx-intro">Indiquez l’adresse e-mail de votre compte. Nous ouvrons un ticket au support AURA, qui génère un nouveau mot de passe aléatoire et vous l’envoie à cette adresse.</p>
+        <form class="cx-form" id="form-oubli" novalidate>
+          <div class="cx-champ"><label for="ob-email">Adresse e-mail du compte</label><input id="ob-email" name="email" type="email" autocomplete="email" aria-describedby="ob-email-erreur" required maxlength="254" spellcheck="false"><p class="cx-erreur" id="ob-email-erreur" data-i18n-managed></p></div>
+          <div class="cx-champ cx-captcha"><label for="ob-captcha" id="ob-captcha-q" data-i18n-managed>Vérification anti-robot</label><div class="cx-captcha__ligne"><input id="ob-captcha" type="text" inputmode="numeric" autocomplete="off" maxlength="3" aria-describedby="ob-captcha-erreur"><button class="cx-lien" type="button" data-captcha-nouveau="ob">Autre calcul</button></div><p class="cx-erreur" id="ob-captcha-erreur" data-i18n-managed></p></div><div class="cx-pot" aria-hidden="true"><label for="ob-site">Site web</label><input id="ob-site" type="text" tabindex="-1" autocomplete="off"></div>
+          <button class="cx-bouton" type="submit" id="ob-envoyer">Demander un nouveau mot de passe</button>
+          <p class="cx-statut" id="ob-statut" role="status" data-i18n-managed></p>
+        </form>
+        <p class="cx-note"><svg class="cx-note__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span>Par sécurité, nous n’indiquons jamais si un compte existe pour une adresse. Le nouveau mot de passe n’est envoyé qu’à l’adresse du compte.</span></p>
+      </section>
+    </div>
+
+    <aside class="cx__aside" aria-labelledby="titre-etapes">
+      <h2 id="titre-etapes">Comment se passe l’accès ?</h2>
+      <ol class="cx-etapes">
+        <li><span class="cx-etapes__num" aria-hidden="true">1</span><div><h3>Vous demandez un compte</h3><p>Avec l’adresse e-mail à laquelle nous pourrons vous répondre.</p></div></li>
+        <li><span class="cx-etapes__num" aria-hidden="true">2</span><div><h3>Le support le prépare</h3><p>Nous vérifions la demande et créons votre compte sur le serveur AURA.</p></div></li>
+        <li><span class="cx-etapes__num" aria-hidden="true">3</span><div><h3>Vous vous connectez ici</h3><p>Vos identifiants arrivent par e-mail. Ils ouvrent votre tableau de bord.</p></div></li>
+      </ol>
+      <p class="cx-aside__note">Le tableau de bord tourne pour l’instant sur le serveur de l’IUT. Tant qu’il n’est pas ouvert sur Internet, la connexion depuis ce site reste fermée.</p>
+    </aside>
+  </div>
+</section>
+<section class="etablissements" aria-label="Établissements"><div class="container"><p>Projet tutoré BUT3 Réseaux &amp; Télécommunications, parcours cybersécurité · IUT de Valence, Université Grenoble Alpes · 2026–2027</p><ul class="etablissements__logos" role="list"><li><a href="https://www.iut-valence.fr/" target="_blank" rel="noopener noreferrer" title="IUT de Valence (nouvel onglet)"><img src="assets/img/brand/iut-valence-256.webp" alt="IUT de Valence" width="420" height="100" loading="lazy" decoding="async"></a></li><li><a href="https://www.iut-valence.fr/nos-formations/b-u-t-/b-u-t-rt/b-u-t-reseaux-informatiques-et-telecommunications-776398.kjsp" target="_blank" rel="noopener noreferrer" title="BUT Réseaux et Télécommunications (nouvel onglet)"><img src="assets/img/brand/but-rt-256.webp" alt="BUT Réseaux et Télécommunications" width="420" height="99" loading="lazy" decoding="async"></a></li><li><a href="https://www.univ-grenoble-alpes.fr/" target="_blank" rel="noopener noreferrer" title="Université Grenoble Alpes (nouvel onglet)"><img src="assets/img/brand/uga-256.webp" alt="Université Grenoble Alpes" width="360" height="240" loading="lazy" decoding="async"></a></li><li><a href="https://greta-ardechedrome.fr/" target="_blank" rel="noopener noreferrer" title="GRETA Ardèche Drôme (nouvel onglet)"><img src="assets/img/brand/greta-256.webp" alt="GRETA Ardèche Drôme" width="360" height="156" loading="lazy" decoding="async"></a></li></ul></div></section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img class="logo-clair" src="assets/img/logo.svg" alt="" width="22" height="22"><img class="logo-sombre" src="assets/img/logo-sombre.svg" alt="" width="22" height="22">
+      <span>AURA · Analyse Unifiée du Réseau et des Antennes</span>
+    </div>
+    <nav class="footer__links" aria-label="Liens de pied de page">
+      <a href="suggestions.html">Améliorations et suggestions</a>
+      <a href="faq.html">Questions fréquentes</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mentions-legales.html#confidentialite">Confidentialité</a>
+    </nav>
+    <p class="footer__legal">Projet tutoré BUT R&amp;T, IUT de Valence · <span id="year">2026</span> · Sans mesure d’audience. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
+  </div>
+  <img class="footer__logo" src="assets/img/brand/aura-logo-dark.png" alt="AURA — Analyse Unifiée du Réseau et des Antennes" width="560" height="596" loading="lazy">
+</footer>
+</body>
+</html>

@@ -12,21 +12,20 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <script src="assets/js/boot.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/scene-3d.css">
+  <link rel="stylesheet" href="assets/css/identite.css">
+  <link rel="stylesheet" href="assets/css/projet.css">
   <script src="assets/js/main.js"></script>
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/constellation.js" defer></script>
-  <script src="assets/js/motion.js" defer></script>
   <script src="assets/js/slider.js" defer></script>
-  <script src="assets/js/hero.js" type="module"></script>
 </head>
-<body>
+<body class="page-projet">
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 <header class="nav" id="nav">
   <div class="nav__inner glass">
     <a class="nav__logo" href="index.html" aria-label="AURA, accueil">
-      <img src="assets/img/logo.svg" alt="" width="26" height="26" loading="lazy">
+      <img class="logo-clair" src="assets/img/logo.svg" alt="" width="26" height="26"><img class="logo-sombre" src="assets/img/logo-sombre.svg" alt="" width="26" height="26">
       <span>AURA</span>
     </a>
     <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
@@ -35,23 +34,26 @@
     <nav class="nav__menu" id="menu" aria-label="Navigation principale">
       <a href="index.html">Accueil</a>
       <a href="le-projet.html" class="is-active" aria-current="page">Le projet</a>
-      <a href="demo.html">Démo</a>
+
       <a href="comparatif.html">Comparatif</a>
       <a href="faq.html">FAQ</a>
       <a href="equipe.html">Équipe</a>
-      <a class="nav__cta js-magnetic" href="suggestions.html">Proposer une idée</a>
+      <a class="nav__login" href="connexion.html">Connexion</a><a class="nav__cta js-magnetic" href="suggestions.html">Proposer une idée</a>
     </nav>
     <div class="nav__tools">
       <button class="nav__tool nav__tool--theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Activer le thème clair" title="Activer le thème clair">
-        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.3"/><path d="M12 2.5v2.3M12 19.2v2.3M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.5 12h2.3M19.2 12h2.3M4.4 19.6 6 18M18 6l1.6-1.6"/></svg>
-        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.2 8.2 0 1 1 9.7 3.5a6.4 6.4 0 0 0 10.8 10.8Z"/></svg>
+        <span class="icon-papi icon-sun theme-light" aria-hidden="true"></span>
+        <span class="icon-papi icon-moon theme-dark" aria-hidden="true"></span>
+        <span class="theme-label" aria-hidden="true">Clair</span>
       </button>
-      <button class="nav__tool nav__tool--lang" id="lang-toggle" type="button" aria-label="Switch to English" title="Switch to English"><span class="lang-current" aria-hidden="true">EN</span></button>
+      <button class="nav__tool nav__tool--lang" id="lang-toggle" type="button" aria-label="Switch to English" title="Switch to English">
+        <img class="flag-gb" src="/assets/img/flags/gb.svg" alt="" width="24" height="18">
+        <img class="flag-fr" src="/assets/img/flags/fr.svg" alt="" width="24" height="18">
+      </button>
     </div>
   </div>
 </header>
 
-<div class="aura-field" aria-hidden="true"><i></i><i></i><i></i></div>
 <canvas id="constellation" aria-hidden="true"></canvas>
 <main id="contenu">
 
@@ -60,11 +62,10 @@
   <div class="hero__inner">
     <nav class="crumbs" aria-label="Fil d’ariane"><a href="index.html">Accueil</a><i>/</i><span>Le projet</span></nav>
     <p class="hero__kicker">La démarche</p>
-    <h1 data-reveal>Du réseau aux ondes,<br>les indices se croisent.</h1>
-    <p class="hero__sub" data-reveal data-delay="0.1">AURA surveille le câble et les ondes en même temps, puis rapproche les deux. Le but : repérer vite ce qui cloche, sans rien installer sur les postes.</p>
-    <div class="hero__actions" data-reveal data-delay="0.18">
-      <a class="btn btn--primary js-magnetic" href="demo.html">Voir la démonstration <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      <a class="btn btn--glass" href="#fonctionnement">Comment ça marche</a>
+    <h1>Du premier signal à l’alerte</h1>
+    <p class="hero__sub">AURA rapproche les observations du réseau filaire et les relevés Wi-Fi de la sonde.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#fonctionnement"><span>Comment ça marche</span><span class="icon-papi icon-arrow" aria-hidden="true"></span></a>
     </div>
   </div>
 </section>
@@ -72,44 +73,24 @@
 <!-- ============ FONCTIONNEMENT ============ -->
 <section class="section how how--slider" id="fonctionnement">
   <div class="container">
-    <header class="section__head" data-reveal>
-      <h2 class="section__title">Cinq étapes,<br>une seule lecture.</h2><p class="section__lead">Parcourez les cinq étapes : le schéma suit la carte active. Au doigt, à la souris ou avec les flèches du clavier.</p>
+    <header class="section__head">
+      <h2 class="section__title">Comment AURA relie les observations</h2><p class="section__lead">Parcourez les cinq étapes : le schéma suit la carte active. Au doigt, à la souris ou avec les flèches du clavier.</p>
     </header>
 
     <div class="how__layout">
-      <div class="how__visual glass" data-reveal>
-        <div class="scene-3d scene-3d--overview">
-        <canvas id="network-canvas" data-network-scene="overview" aria-hidden="true"></canvas>
-        <svg class="how-svg step-1" id="how-svg" viewBox="0 0 640 520" role="img" aria-labelledby="how-svg-title">
-          <title id="how-svg-title">Schéma de principe : sonde Wi-Fi, serveur AURA et alertes. La localisation sur le switch est un objectif à venir.</title>
-          <defs>
-            <radialGradient id="g-core" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#7BEBFF"/>
-              <stop offset="100%" stop-color="#08B0B3"/>
-            </radialGradient>
-            <linearGradient id="g-aura" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#04D2F6"/>
-              <stop offset="55%" stop-color="#08B0B3"/>
-              <stop offset="100%" stop-color="#E84E0E"/>
-            </linearGradient>
-          </defs>
-          <g class="g s3"><path class="flow" d="M150 130 C 230 130, 250 200, 300 210"/></g>
-          <g class="g s2 s3"><path class="flow" d="M320 370 L 320 262"/></g>
-          <g class="g s4"><path class="cable" d="M150 400 L 280 400"/><text x="215" y="388" class="svg-label svg-label--accent" text-anchor="middle">port à identifier</text></g>
-          <g class="g s2"><path class="cable cable--plain" d="M360 400 L 470 400"/></g>
-          <g class="g s5"><path class="flow flow--alert" d="M360 200 C 420 180, 450 140, 500 130"/></g>
-          <g class="g s1 waves"><circle cx="110" cy="120" r="40"/><circle cx="110" cy="120" r="40"/><circle cx="110" cy="120" r="40"/></g>
-          <g class="g s1 s3 node"><rect x="78" y="100" width="64" height="44" rx="12" class="box"/><rect x="122" y="70" width="5" height="32" rx="2.5" class="ant"/><circle cx="96" cy="122" r="5" class="led"/><text x="110" y="170" text-anchor="middle" class="svg-label">Sonde Wi-Fi</text></g>
-          <g class="g s2 s3 s5 node"><circle cx="320" cy="210" r="52" class="core-ring"/><circle cx="320" cy="210" r="40" fill="url(#g-core)"/><text x="320" y="216" text-anchor="middle" class="svg-core">AURA</text><text x="320" y="290" text-anchor="middle" class="svg-label">NetAlertX + moteur AURA</text></g>
-          <g class="g s2 s4 node"><rect x="280" y="380" width="80" height="40" rx="8" class="box"/><g class="ports"><rect x="290" y="404" width="8" height="8" rx="1"/><rect x="302" y="404" width="8" height="8" rx="1"/><rect x="314" y="404" width="8" height="8" rx="1" class="port-hot"/><rect x="326" y="404" width="8" height="8" rx="1"/><rect x="338" y="404" width="8" height="8" rx="1"/></g><text x="320" y="446" text-anchor="middle" class="svg-label">Switch · SNMP à venir</text></g>
-          <g class="g s1 s4 node rogue"><rect x="80" y="384" width="66" height="34" rx="10" class="box box--rogue"/><rect x="92" y="358" width="4" height="28" rx="2" class="ant ant--rogue"/><rect x="130" y="358" width="4" height="28" rx="2" class="ant ant--rogue"/><text x="113" y="446" text-anchor="middle" class="svg-label svg-label--danger">Borne inconnue</text></g>
-          <g class="g s2 node"><rect x="470" y="380" width="70" height="44" rx="6" class="box"/><rect x="460" y="424" width="90" height="6" rx="3" class="box"/><path d="M494 402 l7 7 l14 -14" class="check"/><text x="505" y="456" text-anchor="middle" class="svg-label">Poste connu</text></g>
-          <g class="g s5 node phone"><rect x="500" y="70" width="70" height="128" rx="14" class="box"/><rect x="508" y="84" width="54" height="34" rx="6" class="notif"/><rect x="514" y="92" width="34" height="5" rx="2.5" class="notif-line"/><rect x="514" y="103" width="24" height="5" rx="2.5" class="notif-line"/><text x="535" y="222" text-anchor="middle" class="svg-label">Tableau de bord</text></g>
-        </svg>
+      <figure class="how__visual flow-diagram" data-flow-diagram data-step="1">
+        <figcaption>Schéma de principe</figcaption>
+        <div class="flow-diagram__grid">
+          <div class="flow-node flow-node--radio"><span class="icon-papi icon-globe" aria-hidden="true"></span><span>Sonde Wi-Fi</span></div>
+          <div class="flow-node flow-node--lan"><span class="icon-papi icon-link" aria-hidden="true"></span><span>NetAlertX</span></div>
+          <div class="flow-node flow-node--core"><img class="logo-clair" src="/assets/img/logo.svg" alt="" width="38" height="38"><img class="logo-sombre" src="/assets/img/logo-sombre.svg" alt="" width="38" height="38"><span>AURA Core</span></div>
+          <div class="flow-node flow-node--alert"><span class="icon-papi icon-bell" aria-hidden="true"></span><span>Tableau de bord</span></div>
+          <i class="flow-route flow-route--radio" aria-hidden="true"></i>
+          <i class="flow-route flow-route--lan" aria-hidden="true"></i>
+          <i class="flow-route flow-route--alert" aria-hidden="true"></i>
         </div>
-        <div class="how__caption" id="how-caption" aria-live="polite">1 / 5 · Écouter</div>
-        <p class="scene-3d-note">Schéma animé pour illustrer. Les flux sont indicatifs.</p>
-      </div>
+        <p class="flow-diagram__location">Emplacement à vérifier</p>
+      </figure>
 
       <div class="slider" data-slider>
         <div class="slider__viewport" data-slider-viewport tabindex="0" aria-roledescription="carrousel" aria-label="Étapes du fonctionnement d’AURA">
@@ -122,9 +103,9 @@
           </ol>
         </div>
         <div class="slider__controls">
-          <button class="slider__btn" type="button" data-slider-prev aria-label="Étape précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="slider__btn" type="button" data-slider-prev aria-label="Étape précédente"><span class="icon-papi icon-left" aria-hidden="true"></span></button>
           <div class="slider__dots" data-slider-dots></div>
-          <button class="slider__btn" type="button" data-slider-next aria-label="Étape suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <button class="slider__btn" type="button" data-slider-next aria-label="Étape suivante"><span class="icon-papi icon-right" aria-hidden="true"></span></button>
         </div>
         <p class="slider__progress" data-slider-progress aria-live="polite">01 / 05 · Écouter les ondes</p>
       </div>
@@ -135,26 +116,40 @@
 <!-- ============ SCÉNARIOS ============ -->
 <section class="section scenarios" id="scenarios">
   <div class="container">
-    <header class="section__head" data-reveal>
-      <h2 class="section__title">Ce que nous cherchons<br>à repérer.</h2>
-      <p class="section__lead">Quatre situations typiques. Les scènes sont des illustrations, pas un vrai réseau.</p>
+    <header class="section__head">
+      <h2 class="section__title">Quatre situations à repérer</h2>
+      <p class="section__lead">Les schémas illustrent des situations fictives.</p>
     </header>
     <div class="bento bento--scenarios">
-      <article class="cell glass scenario scenario--1" data-reveal>
-        <div class="scene-3d"><canvas data-network-scene="unknown" aria-hidden="true"></canvas><img class="scenario__art" src="assets/img/scenario-inconnu.svg" alt="Illustration : un nouvel appareil est relié au réseau" width="460" height="300" loading="lazy"></div>
-        <div class="scenario__text"><span class="tag">Priorité 1</span><h3>Un appareil pas déclaré</h3><p>Il se branche sans être au référentiel. NetAlertX le voit, l’administrateur le qualifie.</p></div>
+      <article class="cell glass scenario scenario--1">
+        <figure class="scenario-art scenario-art--registry" aria-hidden="true">
+          <div class="scenario-art__tiles"><span class="icon-papi icon-grid"></span><span class="icon-papi icon-grid"></span><span class="icon-papi icon-alert"></span></div>
+          <i class="scenario-art__wire"></i>
+          <div class="scenario-art__registry"><span class="icon-papi icon-grid"></span><span>Référentiel AURA</span></div>
+        </figure>
+        <div class="scenario__text"><h3>Un appareil non déclaré</h3><p>Il se branche sans être au référentiel. NetAlertX le voit, l’administrateur le qualifie.</p></div>
       </article>
-      <article class="cell glass scenario scenario--2" data-reveal data-delay="0.08">
-        <div class="scene-3d"><canvas data-network-scene="rogue" aria-hidden="true"></canvas><img class="scenario__art" src="assets/img/scenario-borne.svg" alt="Illustration : une borne Wi-Fi inconnue apparaît près de la sonde" width="460" height="300" loading="lazy"></div>
-        <div class="scenario__text"><span class="tag">Priorité 2</span><h3>Une borne Wi-Fi inconnue</h3><p>Une borne non déclarée émet dans les locaux. Retrouver son port de switch viendra plus tard.</p></div>
+      <article class="cell glass scenario scenario--2">
+        <figure class="scenario-art scenario-art--radar" aria-hidden="true">
+          <div class="scenario-art__scope"><i></i><i></i><i></i><span class="icon-papi icon-globe"></span></div>
+          <div class="scenario-art__blip"><span class="icon-papi icon-alert"></span><span>Signal non déclaré</span></div>
+        </figure>
+        <div class="scenario__text"><h3>Une borne Wi-Fi inconnue</h3><p>Une borne non déclarée émet dans les locaux. Retrouver son port de switch viendra plus tard.</p></div>
       </article>
-      <article class="cell glass scenario scenario--3" data-reveal>
-        <div class="scene-3d"><canvas data-network-scene="tether" aria-hidden="true"></canvas><img class="scenario__art" src="assets/img/scenario-partage.svg" alt="Illustration : un poste quitte le réseau tandis qu’une borne apparaît" width="460" height="300" loading="lazy"></div>
-        <div class="scenario__text"><span class="tag">Corrélation</span><h3>Un partage de connexion</h3><p>Un poste s’en va pile quand une borne apparaît. Possible partage, à vérifier.</p></div>
+      <article class="cell glass scenario scenario--3">
+        <figure class="scenario-art scenario-art--timeline" aria-hidden="true">
+          <div class="scenario-art__event"><span class="icon-papi icon-link"></span><span>Départ du poste</span></div>
+          <i class="scenario-art__wire"></i>
+          <div class="scenario-art__event"><span class="icon-papi icon-phone"></span><span>Apparition de la borne</span></div>
+        </figure>
+        <div class="scenario__text"><span class="tag">Corrélation</span><h3>Un partage de connexion</h3><p>Un poste quitte le réseau et une borne apparaît peu après. AURA signale un partage de connexion probable.</p></div>
       </article>
-      <article class="cell glass scenario scenario--4" data-reveal data-delay="0.08">
-        <div class="scene-3d"><canvas data-network-scene="switch" aria-hidden="true"></canvas><img class="scenario__art" src="assets/img/scenario-switch.svg" alt="Illustration : plusieurs appareils derrière un switch non déclaré" width="460" height="300" loading="lazy"></div>
-        <div class="scenario__text"><span class="tag">Sur données simulées</span><h3>Un switch ajouté en douce</h3><p>Plusieurs adresses derrière un même port. Nous le testons pour l’instant sur des données simulées.</p></div>
+      <article class="cell glass scenario scenario--4">
+        <figure class="scenario-art scenario-art--branch" aria-hidden="true">
+          <div class="scenario-art__switch"><span class="icon-papi icon-grid"></span><span>Switch non déclaré</span></div>
+          <div class="scenario-art__leaves"><span class="icon-papi icon-grid"></span><span class="icon-papi icon-grid"></span><span class="icon-papi icon-grid"></span></div>
+        </figure>
+        <div class="scenario__text"><span class="tag">Sur données simulées</span><h3>Un switch non déclaré</h3><p>Plusieurs adresses derrière un même port. Nous le testons pour l’instant sur des données simulées.</p></div>
       </article>
     </div>
   </div>
@@ -163,22 +158,16 @@
 <!-- ============ APPEL À L'ACTION ============ -->
 <section class="section page-cta" id="suite">
   <div class="container">
-    <header class="section__head" data-reveal>
-      <h2 class="section__title">Place à la pratique.</h2>
-      <p class="section__lead">Le plus parlant, c’est de voir AURA tourner sur un tableau de bord simulé.</p>
-    </header>
-    <div class="hero__actions" data-reveal>
-      <a class="btn btn--primary js-magnetic" href="demo.html">Ouvrir la démonstration <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      <a class="btn btn--glass" href="comparatif.html">Comparer à l’existant</a>
-    </div>
+    <a class="btn btn--glass" href="comparatif.html"><span>Comparer les outils</span><span class="icon-papi icon-arrow" aria-hidden="true"></span></a>
   </div>
 </section>
+<section class="etablissements" aria-label="Établissements"><div class="container"><p>Projet tutoré BUT3 Réseaux &amp; Télécommunications, parcours cybersécurité · IUT de Valence, Université Grenoble Alpes · 2026–2027</p><ul class="etablissements__logos" role="list"><li><a href="https://www.iut-valence.fr/" target="_blank" rel="noopener noreferrer" title="IUT de Valence (nouvel onglet)"><img src="assets/img/brand/iut-valence-256.webp" alt="IUT de Valence" width="420" height="100" loading="lazy" decoding="async"></a></li><li><a href="https://www.iut-valence.fr/nos-formations/b-u-t-/b-u-t-rt/b-u-t-reseaux-informatiques-et-telecommunications-776398.kjsp" target="_blank" rel="noopener noreferrer" title="BUT Réseaux et Télécommunications (nouvel onglet)"><img src="assets/img/brand/but-rt-256.webp" alt="BUT Réseaux et Télécommunications" width="420" height="99" loading="lazy" decoding="async"></a></li><li><a href="https://www.univ-grenoble-alpes.fr/" target="_blank" rel="noopener noreferrer" title="Université Grenoble Alpes (nouvel onglet)"><img src="assets/img/brand/uga-256.webp" alt="Université Grenoble Alpes" width="360" height="240" loading="lazy" decoding="async"></a></li><li><a href="https://greta-ardechedrome.fr/" target="_blank" rel="noopener noreferrer" title="GRETA Ardèche Drôme (nouvel onglet)"><img src="assets/img/brand/greta-256.webp" alt="GRETA Ardèche Drôme" width="360" height="156" loading="lazy" decoding="async"></a></li></ul></div></section>
 </main>
 
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <img src="assets/img/logo.svg" alt="" width="22" height="22" loading="lazy">
+      <img class="logo-clair" src="assets/img/logo.svg" alt="" width="22" height="22"><img class="logo-sombre" src="assets/img/logo-sombre.svg" alt="" width="22" height="22">
       <span>AURA · Analyse Unifiée du Réseau et des Antennes</span>
     </div>
     <nav class="footer__links" aria-label="Liens de pied de page">

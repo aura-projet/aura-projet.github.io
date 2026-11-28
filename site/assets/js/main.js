@@ -46,7 +46,9 @@ document.documentElement.classList.add('js');
     function open() { return burger.getAttribute('aria-expanded') === 'true'; }
     function setMenu(value, returnFocus) {
       burger.setAttribute('aria-expanded', String(value));
-      burger.setAttribute('aria-label', value ? 'Fermer le menu' : 'Ouvrir le menu');
+      var english = document.documentElement.lang === 'en';
+      var labels = english ? ['Open menu', 'Close menu'] : ['Ouvrir le menu', 'Fermer le menu'];
+      burger.setAttribute('aria-label', labels[Number(value)]);
       menu.classList.toggle('is-open', value);
       menu.inert = mobile() && !value;
       if (returnFocus) burger.focus();
@@ -88,20 +90,13 @@ document.documentElement.classList.add('js');
   }
 
   function initMotionControls() {
-    var button = document.getElementById('motion-toggle');
-    var userPaused = false;
+    // Les animations tournent par défaut. Seules les préférences système les arrêtent.
     function update() {
-      var paused = userPaused || motion.matches;
+      var paused = motion.matches;
       window.AURA_MOTION_PAUSED = paused;
       document.documentElement.classList.toggle('is-motion-paused', paused);
-      if (button) {
-        button.setAttribute('aria-pressed', String(paused));
-        button.disabled = motion.matches;
-        button.textContent = motion.matches ? 'Animations réduites selon vos préférences' : paused ? 'Reprendre les animations' : 'Mettre les animations en pause';
-      }
       document.dispatchEvent(new CustomEvent('aura:motion', { detail: { paused: paused } }));
     }
-    if (button) button.addEventListener('click', function () { userPaused = !userPaused; update(); });
     if (motion.addEventListener) motion.addEventListener('change', update);
     update();
   }

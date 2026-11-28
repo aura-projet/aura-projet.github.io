@@ -8,6 +8,13 @@ Rubriques : **Ajouté**, **Modifié**, **Corrigé**, **Supprimé**, **Sécurité
 
 ---
 
+## Refonte de l’accueil
+
+- La rubrique Démo cède la place aux technologies utilisées. L’accueil et la page du projet adoptent deux nouvelles polices, des commandes de thème plus lisibles et un drapeau pour la langue proposée.
+- Le schéma du projet suit chacune des cinq étapes. Les quatre scénarios ont des illustrations distinctes et les animations se mettent en pause à la demande.
+- L’accueil Astro présente un journal React qui permet de suivre les indices d’une alerte probable sur un exemple simulé.
+- GitHub Pages publie le résultat du build statique, avec les adresses existantes.
+
 ## Accueil et préférences de lecture
 
 - L’accueil présente le cas d’une borne Wi-Fi inconnue à partir d’une capture de la console AURA en mode simulé.

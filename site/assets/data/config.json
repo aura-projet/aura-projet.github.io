@@ -9,6 +9,16 @@
     "endpoint": ""
   },
 
+  "_connexion": "Page connexion.html (bêta). dashboard.loginUrl : adresse HTTPS du formulaire de connexion du tableau de bord, vide tant qu'il n'est pas ouvert sur Internet. support.endpoint : formulaire Formspree (https://formspree.io/f/...) qui reçoit les demandes de compte et de mot de passe ; à défaut, supportEmail ouvre la messagerie.",
+
+  "dashboard": {
+    "loginUrl": ""
+  },
+
+  "support": {
+    "endpoint": ""
+  },
+
   "socials": [
     { "id": "linkedin",  "label": "LinkedIn",  "url": "" },
     { "id": "instagram", "label": "Instagram", "url": "" },

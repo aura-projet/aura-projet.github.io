@@ -63,7 +63,6 @@
     cfg = cfg || {};
     if (typeof cfg.supportEmail === 'string' && /^[^\s@<>?&#]+@[^\s@<>?&#]+\.[^\s@<>?&#]+$/.test(cfg.supportEmail)) {
       supportEmail = cfg.supportEmail;
-      el('suggestion-mail').hidden = false;
     }
     var settings = cfg.suggestions || {};
     // Exact Formspree origin/path only ; aucune URL arbitraire acceptée.
@@ -162,23 +161,34 @@
       'Sujet : ' + subject.value.trim(), '', detail.value.trim(), '',
       email.value.trim() ? 'E-mail de contact : ' + email.value.trim() : 'Sans adresse de contact'].join('\n');
   }
-  el('suggestion-copy').disabled = false;
-  el('suggestion-copy').addEventListener('click', async function () {
+  var relais = el('suggestion-send');
+  var statut = el('alternative-status');
+
+  relais.addEventListener('click', async function () {
     var text = asText();
+    var copie = false;
     try {
       if (!navigator.clipboard || !window.isSecureContext) throw new Error('clipboard unavailable');
       await navigator.clipboard.writeText(text);
-      el('alternative-status').textContent = 'Texte copié. Rien n’a été envoyé.';
+      copie = true;
       el('suggestion-copy-text').hidden = true;
     } catch (error) {
-      var copy = el('suggestion-copy-text');
-      copy.value = text; copy.hidden = false; copy.focus(); copy.select();
-      el('alternative-status').textContent = 'La copie automatique est indisponible. Copiez le texte sélectionné. Rien n’a été envoyé.';
+      var zone = el('suggestion-copy-text');
+      zone.value = text;
+      zone.hidden = false;
+      zone.focus();
+      zone.select();
     }
-  });
-  el('suggestion-mail').addEventListener('click', function () {
-    if (!supportEmail) return;
-    window.location.href = 'mailto:' + supportEmail + '?subject=' + encodeURIComponent('Suggestion AURA : ' + subject.value.trim()) + '&body=' + encodeURIComponent(asText());
-    el('alternative-status').textContent = 'Ouverture demandée à votre messagerie. Aucun envoi automatique : vérifiez le brouillon avant de l’envoyer. Si rien ne s’ouvre, utilisez la copie.';
+    if (!supportEmail) {
+      statut.textContent = copie
+        ? 'Texte copié. L’adresse de contact n’est pas configurée : collez-le dans votre messagerie. Rien n’a été envoyé.'
+        : 'La copie automatique est indisponible. Copiez le texte sélectionné, rien n’a été envoyé.';
+      return;
+    }
+    statut.textContent = (copie ? 'Texte copié. ' : 'La copie automatique est indisponible, le texte est sélectionné ci-dessous. ')
+      + 'Votre messagerie devrait s’ouvrir avec le brouillon. Vérifiez-le avant de l’envoyer : rien ne part automatiquement.';
+    window.location.href = 'mailto:' + supportEmail
+      + '?subject=' + encodeURIComponent('Suggestion AURA : ' + subject.value.trim())
+      + '&body=' + encodeURIComponent(text);
   });
 })();

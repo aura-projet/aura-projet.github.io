@@ -1,0 +1,155 @@
+---
+import '../styles/accueil.css';
+
+const title = 'AURA · Repérer les appareils inconnus sur votre réseau';
+const description = 'AURA rapproche les observations du réseau filaire et du Wi-Fi 2,4 GHz. Projet tutoré de BUT Réseaux & Télécommunications à l’IUT de Valence.';
+const canonical = new URL('/', Astro.site);
+
+const links = [
+  ['index.html', 'Accueil'],
+  ['le-projet.html', 'Le projet'],
+  ['comparatif.html', 'Comparatif'],
+  ['faq.html', 'FAQ'],
+  ['equipe.html', 'Équipe'],
+];
+
+const institutions = [
+  { file: 'iut-valence', name: 'IUT de Valence', width: 420, height: 100, url: 'https://www.iut-valence.fr/' },
+  { file: 'but-rt', name: 'BUT Réseaux et Télécommunications', width: 420, height: 99, url: 'https://www.iut-valence.fr/nos-formations/b-u-t-/b-u-t-rt/b-u-t-reseaux-informatiques-et-telecommunications-776398.kjsp' },
+  { file: 'uga', name: 'Université Grenoble Alpes', width: 360, height: 240, url: 'https://www.univ-grenoble-alpes.fr/' },
+  { file: 'greta', name: 'GRETA Ardèche Drôme', width: 360, height: 156, url: 'https://greta-ardechedrome.fr/' },
+];
+
+const technologies = [
+  { name: 'NetAlertX', role: 'Inventaire du réseau filaire', image: 'netalertx.svg' },
+  { name: 'Kismet', role: 'Observation Wi-Fi 2,4 GHz', image: 'kismet.svg' },
+  { name: 'Raspberry Pi', role: 'Support de la sonde Wi-Fi', image: 'raspberrypi.svg' },
+  { name: 'Python', role: 'Collecte et corrélation', image: 'python.png' },
+  { name: 'FastAPI', role: 'API de supervision', image: 'fastapi.svg' },
+  { name: 'SQLite', role: 'Référentiel et historique', image: 'sqlite.svg', wordmark: true },
+];
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#070e20" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL('assets/img/og-refonte.png', canonical)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/identite.css" />
+    <script is:inline src="/assets/js/boot.js"></script>
+    <script is:inline src="/assets/js/main.js" defer></script>
+    <script is:inline src="/assets/js/i18n.js" defer></script>
+    <script is:inline src="/assets/js/constellation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header" id="nav">
+      <div class="conteneur site-header__inner">
+        <a class="site-header__brand" href="index.html" aria-label="AURA, accueil">
+          <img class="logo-clair" src="assets/img/logo.svg" alt="" width="28" height="28" />
+          <img class="logo-sombre" src="assets/img/logo-sombre.svg" alt="" width="28" height="28" />
+          <span>AURA</span>
+        </a>
+        <button class="site-header__burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+          <span></span><span></span>
+        </button>
+        <nav class="site-header__links" id="menu" aria-label="Navigation principale">
+          {links.map(([href, label]) => (
+            <a href={href} aria-current={href === 'index.html' ? 'page' : undefined}>{label}</a>
+          ))}
+          <a class="nav__login site-header__login" href="connexion.html">Connexion</a>
+          <a class="site-header__suggest" href="suggestions.html">Proposer une idée</a>
+        </nav>
+        <div class="site-header__tools">
+          <button class="nav__tool" id="theme-toggle" type="button" aria-pressed="false" aria-label="Activer le thème clair" title="Activer le thème clair">
+            <span class="icon-papi icon-sun theme-light" aria-hidden="true"></span>
+            <span class="icon-papi icon-moon theme-dark" aria-hidden="true"></span>
+            <span class="theme-label" aria-hidden="true">Clair</span>
+          </button>
+          <button class="nav__tool" id="lang-toggle" type="button" aria-label="Switch to English" title="Switch to English">
+            <img class="flag-gb" src="/assets/img/flags/gb.svg" alt="" width="24" height="18" />
+            <img class="flag-fr" src="/assets/img/flags/fr.svg" alt="" width="24" height="18" />
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <canvas id="constellation" aria-hidden="true"></canvas>
+    <main id="contenu" tabindex="-1">
+      <section class="hero conteneur" id="top" aria-labelledby="titre-accueil">
+        <div class="hero__texte">
+          <p class="hero__perimetre">Réseau filaire et Wi-Fi 2,4 GHz</p>
+          <h1 id="titre-accueil">Repérer les appareils inconnus sur votre réseau</h1>
+          <p class="hero__resume">AURA rapproche ce qui se connecte au réseau filaire et ce que la sonde capte en Wi‑Fi, sans agent sur les postes.</p>
+          <div class="hero__actions">
+            <a class="bouton bouton--principal" href="le-projet.html"><span>Découvrir le projet</span><span class="icon-papi icon-arrow" aria-hidden="true"></span></a>
+            <a class="bouton" href="#technologies">Voir les technologies</a>
+          </div>
+        </div>
+        <figure class="apercu">
+          <img
+            src="/assets/img/dashboard-supervision-1440.webp"
+            srcset="/assets/img/dashboard-supervision-760.webp 760w, /assets/img/dashboard-supervision-1440.webp 1440w"
+            sizes="(max-width: 900px) calc(100vw - 48px), 640px"
+            alt="Écran de supervision d’AURA : la liste des appareils à gauche, le graphe du réseau à droite, les appareils en alerte entourés d’orange."
+            width="1440"
+            height="810"
+          />
+          <figcaption>Écran de supervision, en mode démonstration avec des données simulées.</figcaption>
+        </figure>
+      </section>
+
+      <section class="technologies" id="technologies" aria-labelledby="titre-technologies">
+        <div class="conteneur">
+          <h2 id="titre-technologies">Les technologies derrière AURA</h2>
+          <ul class="technologies__liste" id="probleme" role="list">
+            {technologies.map(({ name, role, image, wordmark }) => (
+              <li>
+                <div class:list={['technologies__marque', { 'technologies__marque--large': wordmark }]}>
+                  <img src={`/assets/img/tech/${image}`} alt="" width={wordmark ? 56 : 32} height="32" loading="lazy" />
+                </div>
+                <div><h3>{name}</h3><p>{role}</p></div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="etablissements" aria-label="Établissements">
+        <div class="conteneur">
+          <p>Projet tutoré BUT3 Réseaux &amp; Télécommunications, parcours cybersécurité · IUT de Valence, Université Grenoble Alpes · 2026–2027</p>
+          <ul class="etablissements__logos" role="list">
+            {institutions.map(({ file, name, width, height, url }) => (
+              <li><a href={url} target="_blank" rel="noopener noreferrer" title={`${name} (nouvel onglet)`}><img src={`assets/img/brand/${file}-256.webp`} alt={name} width={width} height={height} loading="lazy" decoding="async" /></a></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="conteneur site-footer__inner">
+        <p>AURA · Analyse Unifiée du Réseau et des Antennes</p>
+        <nav aria-label="Liens de pied de page">
+          <a href="suggestions.html">Améliorations et suggestions</a>
+          <a href="faq.html">Questions fréquentes</a>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="mentions-legales.html#confidentialite">Confidentialité</a>
+        </nav>
+        <p class="site-footer__note">Sans mesure d’audience</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -818,3 +818,146 @@ html:not(.js) .motion-toggle { display: none; }
 :root[data-theme="light"] .suggestions-page .footer { color: #0f1d38; background: #e9eff8; }
 :root[data-theme="light"] .suggestions-page .footer__links a { color: #45597a; }
 :root[data-theme="light"] .suggestions-page .skip { color: #fff; background: #00677b; }
+
+/* ============================================================= *
+ *  Relecture n°4 — logo, typographies, établissements, connexion *
+ * ============================================================= */
+
+/* Logo officiel : nœuds marine sur fond clair, blancs sur fond sombre. */
+.logo-clair { display: none; }
+:root[data-theme="light"] .logo-clair { display: block; }
+:root[data-theme="light"] .logo-sombre { display: none; }
+:root[data-theme="light"] .footer .logo-clair { display: none; }
+:root[data-theme="light"] .footer .logo-sombre { display: block; }
+:root[data-theme="light"] .suggestions-page .footer .logo-clair { display: block; }
+:root[data-theme="light"] .suggestions-page .footer .logo-sombre { display: none; }
+
+/* Surtitres : la police de titre, sans capitales espacées. */
+.hero__kicker {
+  gap: 10px;
+  font: 700 1rem/1.2 var(--aura-display);
+  letter-spacing: -.005em;
+  text-transform: none;
+}
+:root[data-theme="light"] .hero__kicker { color: #00677b; }
+
+/* Pastilles numérotées du diaporama : Bricolage étroite, grand œil. */
+.slide__num,
+.page-projet .slide__num {
+  font: 700 1.375rem/1 var(--aura-display);
+  font-variation-settings: 'opsz' 96, 'wdth' 88;
+  font-feature-settings: normal;
+  font-variant-numeric: lining-nums proportional-nums;
+  letter-spacing: -.02em;
+}
+
+/* Répartition : domaine de chaque tâche avec son icône (Lucide). */
+.tache__dom {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 10px;
+  font: 700 .875rem/1.2 var(--aura-display);
+  letter-spacing: 0;
+  text-transform: none;
+  color: color-mix(in srgb, var(--teinte) 80%, var(--ink));
+}
+.tache__ico {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--teinte) 15%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teinte) 28%, transparent);
+}
+:root[data-theme="light"] .tache__dom { color: color-mix(in srgb, var(--teinte) 62%, #0f1d38); }
+
+/* Revendeurs : logo de l'enseigne dans le bouton. */
+.hw__achat a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding-left: 6px;
+}
+.hw__marque {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  border-radius: 6px;
+  background: #fff;
+  object-fit: contain;
+  box-sizing: border-box;
+}
+
+/* Établissements : bloc commun à toutes les pages, logos cliquables. */
+.etablissements {
+  padding: 48px 0 56px;
+  border-top: 1px solid var(--line, var(--filet));
+}
+.etablissements p {
+  max-width: 72ch;
+  margin: 0 auto 24px;
+  text-align: center;
+  font: 400 .875rem/1.6 var(--aura-text);
+  color: #b7cbdc;
+}
+:root[data-theme="light"] .etablissements p { color: #33465c; }
+.etablissements__logos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.etablissements__logos a {
+  display: grid;
+  place-items: center;
+  height: 100px;
+  padding: 14px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(16, 40, 80, .12);
+  background: #fff;
+  transition: transform .25s var(--ease, ease), box-shadow .25s, border-color .2s;
+}
+.etablissements__logos a:hover {
+  transform: translateY(-3px);
+  border-color: #04d2f6;
+  box-shadow: 0 14px 28px -18px rgba(4, 140, 180, .7);
+}
+.etablissements__logos a:focus-visible { outline: 3px solid #04d2f6; outline-offset: 3px; }
+.etablissements__logos img {
+  width: 100%;
+  height: 62px;
+  object-fit: contain;
+}
+/* UGA et GRETA ont beaucoup de marge blanche dans leur fichier. */
+.etablissements__logos li:nth-child(3) img { transform: scale(1.4); }
+.etablissements__logos li:nth-child(4) img { transform: scale(1.2); }
+@media (max-width: 720px) {
+  .etablissements__logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .etablissements__logos a { height: 84px; padding: 12px 14px; }
+  .etablissements__logos img { height: 52px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .etablissements__logos a { transition: none; }
+  .etablissements__logos a:hover { transform: none; }
+}
+
+/* Lien de connexion dans la navigation. */
+.nav__menu .nav__login,
+.site-header__login {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.nav__login::before {
+  content: '';
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m10 17 5-5-5-5'/%3E%3Cpath d='M15 12H3'/%3E%3Cpath d='M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m10 17 5-5-5-5'/%3E%3Cpath d='M15 12H3'/%3E%3Cpath d='M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4'/%3E%3C/svg%3E") center / contain no-repeat;
+}

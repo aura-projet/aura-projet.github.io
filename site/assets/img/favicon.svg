@@ -1,13 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#04D2F6"/><stop offset=".5" stop-color="#08B0B3"/><stop offset="1" stop-color="#08183C"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="#08183C"/>
-  <g transform="translate(8 8) scale(1.5)">
-    <circle cx="16" cy="16" r="4.2" fill="url(#a)"/>
-    <path d="M9.5 9.5a9.2 9.2 0 0 0 0 13M22.5 9.5a9.2 9.2 0 0 1 0 13" fill="none" stroke="url(#a)" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M5 5a15.5 15.5 0 0 0 0 22M27 5a15.5 15.5 0 0 1 0 22" fill="none" stroke="url(#a)" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="485 60 940 940" width="32" height="32"><defs><linearGradient id="g" gradientUnits="userSpaceOnUse" x1="1300" y1="150" x2="600" y2="950"><stop offset="0" stop-color="#14d6f7"/><stop offset="1" stop-color="#10aaa8"/></linearGradient></defs><rect x="485" y="60" width="940" height="940" rx="210" fill="#08183c"/><path d="M1027.1 131.3A415 415 0 0 1 1364.9 475.1M1360.9 626.3A415 415 0 0 1 1048.4 944.4M1005.6 951.9A415 415 0 0 1 904.4 951.9M861.6 944.4A415 415 0 0 1 549.1 626.3M545.1 475.1A415 415 0 0 1 882.9 131.3" fill="none" stroke="url(#g)" stroke-width="52"/><circle cx="955" cy="127" r="50" fill="#14d4f6"/><circle cx="540" cy="550" r="49" fill="#12b2b0"/><circle cx="1370" cy="550" r="49" fill="#12b2b0"/><path d="M800.0 480.6A165 165 0 0 1 1110.0 480.6M698.3 438.4A275 275 0 0 1 1211.7 438.4" fill="none" stroke="#14d4f6" stroke-width="44"/><path d="M955 548L680 603M955 548L1228 603M955 548L953 832M680 603L953 832M1228 603L953 832" fill="none" stroke="#f4f7fb" stroke-width="18" stroke-linecap="round"/><circle cx="680" cy="603" r="50" fill="#f4f7fb"/><circle cx="1228" cy="603" r="50" fill="#f4f7fb"/><circle cx="953" cy="832" r="50" fill="#f4f7fb"/><circle cx="955" cy="548" r="64" fill="#14d4f6"/></svg>

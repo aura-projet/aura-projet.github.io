@@ -283,7 +283,7 @@ h1 {
   background: var(--corail-survol);
 }
 
-.technologies, .etablissements, .site-footer {
+.technologies, .site-footer {
   border-block-start: 1px solid var(--filet);
 }
 
@@ -342,36 +342,6 @@ h2 {
   .technologies__liste { grid-template-columns: 1fr; }
 }
 
-.etablissements {
-  padding-block: 44px;
-  color: var(--secondaire);
-  font-size: .875rem;
-}
-
-.etablissements__logos {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  margin-block-start: 20px;
-  padding: 0;
-  list-style: none;
-}
-
-.etablissements__logos li {
-  display: grid;
-  place-items: center;
-  min-height: 80px;
-  padding: 12px;
-  border: 1px solid var(--filet);
-  border-radius: var(--rayon-controle);
-  background: #f8fafc;
-}
-
-.etablissements__logos img {
-  width: 100%;
-  height: 48px;
-  object-fit: contain;
-}
 
 .site-footer__inner, .site-footer nav {
   display: flex;
@@ -495,9 +465,6 @@ h2 {
     margin-block-start: 24px;
   }
 
-  .etablissements__logos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

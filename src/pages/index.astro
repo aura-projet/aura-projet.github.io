@@ -14,10 +14,10 @@ const links = [
 ];
 
 const institutions = [
-  { file: 'iut-valence', name: 'IUT de Valence', width: 420, height: 100 },
-  { file: 'but-rt', name: 'BUT Réseaux et Télécommunications', width: 420, height: 99 },
-  { file: 'uga', name: 'Université Grenoble Alpes', width: 360, height: 240 },
-  { file: 'greta', name: 'GRETA', width: 360, height: 156 },
+  { file: 'iut-valence', name: 'IUT de Valence', width: 420, height: 100, url: 'https://www.iut-valence.fr/' },
+  { file: 'but-rt', name: 'BUT Réseaux et Télécommunications', width: 420, height: 99, url: 'https://www.iut-valence.fr/nos-formations/b-u-t-/b-u-t-rt/b-u-t-reseaux-informatiques-et-telecommunications-776398.kjsp' },
+  { file: 'uga', name: 'Université Grenoble Alpes', width: 360, height: 240, url: 'https://www.univ-grenoble-alpes.fr/' },
+  { file: 'greta', name: 'GRETA Ardèche Drôme', width: 360, height: 156, url: 'https://greta-ardechedrome.fr/' },
 ];
 
 const technologies = [
@@ -58,7 +58,8 @@ const technologies = [
     <header class="site-header" id="nav">
       <div class="conteneur site-header__inner">
         <a class="site-header__brand" href="index.html" aria-label="AURA, accueil">
-          <img src="assets/img/logo.svg" alt="" width="28" height="28" />
+          <img class="logo-clair" src="assets/img/logo.svg" alt="" width="28" height="28" />
+          <img class="logo-sombre" src="assets/img/logo-sombre.svg" alt="" width="28" height="28" />
           <span>AURA</span>
         </a>
         <button class="site-header__burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
@@ -68,6 +69,7 @@ const technologies = [
           {links.map(([href, label]) => (
             <a href={href} aria-current={href === 'index.html' ? 'page' : undefined}>{label}</a>
           ))}
+          <a class="nav__login site-header__login" href="connexion.html">Connexion</a>
           <a class="site-header__suggest" href="suggestions.html">Proposer une idée</a>
         </nav>
         <div class="site-header__tools">
@@ -129,8 +131,8 @@ const technologies = [
         <div class="conteneur">
           <p>Projet tutoré BUT3 Réseaux &amp; Télécommunications, parcours cybersécurité · IUT de Valence, Université Grenoble Alpes · 2026–2027</p>
           <ul class="etablissements__logos" role="list">
-            {institutions.map(({ file, name, width, height }) => (
-              <li><img src={`assets/img/brand/${file}-256.webp`} alt={name} width={width} height={height} loading="lazy" decoding="async" /></li>
+            {institutions.map(({ file, name, width, height, url }) => (
+              <li><a href={url} target="_blank" rel="noopener noreferrer" title={`${name} (nouvel onglet)`}><img src={`assets/img/brand/${file}-256.webp`} alt={name} width={width} height={height} loading="lazy" decoding="async" /></a></li>
             ))}
           </ul>
         </div>

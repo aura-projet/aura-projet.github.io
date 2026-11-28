@@ -37,6 +37,7 @@
     'Établissements': 'Institutions',
     /* ---- Relecture n°4 : établissements, répartition, connexion ---- */
     "Connexion": "Sign in",
+    "Retour à la connexion": "Back to sign in",
     "IUT de Valence (nouvel onglet)": "IUT de Valence (new tab)",
     "BUT Réseaux et Télécommunications (nouvel onglet)": "BUT Networks and Telecommunications (new tab)",
     "Université Grenoble Alpes (nouvel onglet)": "Université Grenoble Alpes (new tab)",

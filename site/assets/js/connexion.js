@@ -59,50 +59,28 @@
   document.addEventListener('aura:config', function (e) { configure(e.detail); });
   if (window.AURA_CONFIG) configure(window.AURA_CONFIG);
 
-  /* ---------------- Onglets ---------------- */
-  var tablist = document.querySelector('.cx-onglets');
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.cx-onglet'));
-  var NOMS = ['connexion', 'demande', 'oubli'];
-  function choisir(nom, focus) {
-    var i = NOMS.indexOf(nom);
-    if (i < 0) i = 0;
-    tabs.forEach(function (tab, j) {
-      var actif = i === j;
-      tab.setAttribute('aria-selected', String(actif));
-      tab.tabIndex = actif ? 0 : -1;
-      el(tab.getAttribute('aria-controls')).hidden = !actif;
-    });
-    if (focus) tabs[i].focus();
+  /* ---------------- Volets ----------------
+     La connexion s'affiche d'abord. La demande de compte et le mot de passe
+     oublié ne s'ouvrent que depuis leurs liens, sous le formulaire. */
+  var volets = { connexion: el('volet-connexion'), demande: el('volet-demande'), oubli: el('volet-oubli') };
+  function afficher(nom, focus) {
+    if (!volets[nom]) nom = 'connexion';
+    Object.keys(volets).forEach(function (k) { volets[k].hidden = k !== nom; });
+    if (focus) {
+      var titre = volets[nom].querySelector('h2');
+      titre.tabIndex = -1;
+      titre.focus();
+    }
   }
-  tablist.hidden = false;
-  document.querySelector('.cx__carte').classList.add('a-onglets');
-  tabs.forEach(function (tab, i) {
-    tab.addEventListener('click', function () {
-      choisir(NOMS[i]);
-      history.replaceState(null, '', '#' + NOMS[i]);
-    });
-    tab.addEventListener('keydown', function (e) {
-      var k = e.key, n = null;
-      if (k === 'ArrowRight') n = (i + 1) % tabs.length;
-      else if (k === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-      else if (k === 'Home') n = 0;
-      else if (k === 'End') n = tabs.length - 1;
-      if (n === null) return;
+  document.querySelector('.cx__carte').classList.add('a-volets');
+  document.querySelectorAll('[data-volet]').forEach(function (lien) {
+    lien.hidden = false;
+    lien.addEventListener('click', function (e) {
       e.preventDefault();
-      choisir(NOMS[n], true);
-      history.replaceState(null, '', '#' + NOMS[n]);
+      afficher(lien.getAttribute('data-volet'), true);
     });
   });
-  document.querySelectorAll('[data-onglet]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      var nom = a.getAttribute('data-onglet');
-      choisir(nom, true);
-      history.replaceState(null, '', '#' + nom);
-    });
-  });
-  choisir((location.hash || '').slice(1));
-  window.addEventListener('hashchange', function () { choisir(location.hash.slice(1)); });
+  afficher('connexion');
 
   /* ---------------- Outils de formulaire ---------------- */
   function erreur(input, texte) {
